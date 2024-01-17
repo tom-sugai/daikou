@@ -1,0 +1,8 @@
+<p>** echo from php ***</p>
+<?php foreach($products as $product): ?>
+        <?= $product->id . "<br>" ?>
+        <?= $this->Html->image($product->image,  ["alt" => "item-img", 'width' => 100, 'height' => 100]) ?>
+        <?= $product['jancode'] . " : "  . $product['pname'] . " : "  . $product['brand'] . " : " . $product['category'] . "<br/>" ?>
+        <?= $product['image'] . "<br/>"  ?>
+        <?= $product['site'] . "<br/>" ?>
+<?php endforeach; ?>

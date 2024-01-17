@@ -1,0 +1,191 @@
+body        {
+                width: 100%;
+                margin-left: 2px; 
+                margin-top: 0px;
+            }
+
+.topmenu    {  background-color: darksalmon; }
+
+.ititle     {   border-style: dotted; border-width: 1px; border-color:black(14, 2, 8);
+                background-color: aqua;
+                font-size: 20px; 
+}
+
+.aboutsite  {   border-style: dotted; border-width: 1px; border-color:black(10, 0, 5);
+                background-color: chocolate;
+                font-size: 14px;
+            }
+
+.headerbox  {   border-style: dotted; border-width: 1px; border-color:black(10, 0, 5);
+                background-color:gold;
+                font-size: 14px;
+            }
+.sheader    {
+                border-style: solid; border-width: 1px; border-color:black(10, 0, 5);
+            }
+
+.syohin     {   
+                border-style: dotted; border-width: 1px; border-color:brown; 
+                font-size:14px; 
+            }
+/*
+.syohin-1   {   border-style: solid; border-width: 2px; border-color:coral }
+
+.syohin-2   {   border-style: solid; border-width: 2px; border-color:black }
+
+.boxA       {   border-style: dotted; border-width: 1px; border-color:brown }
+.boxB       {   border-style: dotted; border-width: 1px; border-color:brown }
+.boxC       {   border-style: dotted; border-width: 1px; border-color:brown }
+
+.boxD       {   border-style: dotted; border-width: 2px; border-color:brown }
+
+.boxE       {   border-style: dotted; border-width: 1px; border-color:brown }
+.boxF       {   border-style: dotted; border-width: 1px; border-color:brown }
+.boxG       {   border-style: dotted; border-width: 1px; border-color:brown }
+.boxH       {   border-style: dotted; border-width: 1px; border-color:brown }
+*/
+img         {   object-fit: scale-down; }
+
+/* for flexible design */
+
+@media (min-width: 480px) {
+    .scontainor {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
+    
+    .syohin {
+        flex: 1 1 400px;
+        height: 200px;
+        border: 2px dotted;
+    }
+}
+
+@media (min-width: 680px) {
+    .scontainor {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
+    
+    .syohin {
+        flex: 1 1 40%;
+        height: 200px;
+        border: 2px dotted;
+    }
+}
+
+@media (min-width: 1100px) {
+    .scontainor {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
+    .syohin {
+        flex: 1 1 30%;
+        height: 200px;
+        border: 2px dotted;
+    
+    }
+}
+
+/* Layout Definitions */
+
+.topmenu    {   display: block; height: 400; }
+
+.ititle     {   position: fixed; top: 0; left: 60; width: 100%;
+                z-index: 997;
+                height: 50px; 
+                text-align:center;
+                margin-top: 0px; margin-bottom: 0px;
+            }
+
+.aboutsite  {   position: fixed; top: 41px; left: 60; width: 100%; 
+                z-index: 997; 
+                height: 50px;
+                text-align:center;
+                margin-top: 0px;
+            }
+
+.headerbox  {
+                position: fixed; top: 92px; left: 60; width: 100%; 
+                z-index: 997; 
+                height: 70px; 
+                text-align:center;
+                margin-top: 0px;                
+}
+
+.sheader    {   margin-top: 158px; }
+
+.categoryform {
+    display: inline-flex;
+}
+.categoryform { border-style: solid; border-width: 1px; border-color:black(10, 0, 5); }
+
+.cat-in     { display: inline-block; }
+.syohin     {   margin-top: 10px; }
+
+/*
+    .boxB       {   display: inline;
+                    width: 200px;
+                }
+*/
+    .syohin-1   {   display: flex; 
+                    gap: 6px;
+                    height: 120px;
+                }
+
+        .boxD       {   flex: 0 0 60px; 
+                        margin-left: 2px;
+                    }
+
+        .syohin-2   {   flex: 0 0 220px;
+
+                        display: flex; 
+                        flex-flow: column;
+                        align-items: flex-start;
+                        justify-content: space-between;            
+                    }
+
+                    .boxB   {   flex: 20px;
+                                padding-left: 4px;
+                            }
+
+                    .boxE   {   flex: 20px;
+                                padding-left: 4px;
+                            }
+                    .boxF   {   flex: 20px;
+                                padding-left: 4px;
+                            }
+
+        .boxG       {   text-align: right; margin-right: 30px; }
+
+/* paginatoer layout */
+
+.pctrl {
+    text-align: left;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.pctrl ul.pagination li {
+    float: none;
+    display: inline-block;
+}
+
+.pctrl ul.pagination  {
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+.pctrl ul.pagination li {
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+
+
