@@ -4,6 +4,8 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
 use Cake\Mailer\Email;
+use Cake\Mailer\Mailer;
+
 use Cake\Mailer\Transport\DebugTransport;
 use Cake\Mailer\TransportFactory;
 
@@ -16,7 +18,7 @@ class SmailController extends AppController
 
         // prepare contents which will send by email
         $ordersTable = TableRegistry::getTableLocator()->get('Orders');
-        $order = $ordersTable->get(30, ['contain' => ['Users', 'Details' => 'Products']]);
+        $order = $ordersTable->get(12, ['contain' => ['Users', 'Details' => ['Items' => 'Products']]]);
         debug($order);
 
         // load from config/app_loca.php
@@ -37,20 +39,36 @@ class SmailController extends AppController
         TransportFactory::getConfig('default');
 
         // create Email
-        $email = new Email();
+        //$email = new Email();
+        /** 
+        $email
+            ->setEmailFormat('html')
+            ->setTo('tom@svr.home.com')
+            ->setCc('fumiko@svr.home.com')
+            ->setFrom('tom@svr.home.com')
+            ->viewBuilder()
+                ->setTemplate('welcome')
+                ->setLayout('default');
+
+        $email->deliver();
+        */
+        
+        //create Mailer
+        $mailer = new Mailer();
 
         // send mail
-        $result = $email
-            ->setTemplate('welcome', 'default') // 'view template' 'layout template'
-            //->viewBuilder()->setTemplate('default', 'default')
-            ->emailFormat('html')
+        $mailer
+            ->setEmailFormat('html')
             ->setTo('fumiko@svr.home.com')
             ->setFrom('tom@fmva52.home.com')
             ->setSubject('Mail test from Smail controller!!')
-            ->viewVars(['order' => $order])
-            ->send();
-        //debug($result);
-
+            ->setViewVars(['order' => $order])
+            ->viewBuilder()
+                ->setTemplate('welcome')
+                ->setLayout('default');
+    
+        $mailer->deliver();
+        
         // Subjects samples
         /** 
         $result = $email->setFrom(['me@example.com' => 'My Site'])
