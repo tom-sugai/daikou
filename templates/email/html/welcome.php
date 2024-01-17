@@ -2,12 +2,12 @@
 <?= $order->user->username ?><br>
 <?php $total = 0; ?>
 <?php foreach ($order->details as $detail): ?>
-		<?= $detail->product->pname ?>
-		<?php $imgurl = 'src = "http://fmva52.home.com/cake3/cake3102_message/webroot/img/' . $detail->product->image . "\""; ?>
+		<?= $detail->item->product->pname ?>
+		<?php $imgurl = 'src = "http://fmva52.home.com/cake3/cake3102_message/webroot/img/' . $detail->item->product->image . "\""; ?>
 		<img <?= $imgurl ?> height="100" width="100" alt=""/>	        
-        <?= $detail->product->price ?> * <?= $detail->size ?> ==> 
+        <?= $detail->item->product->price ?> * <?= $detail->size ?> ==> 
         <?php
-		    $uprice = $order->details[0]->product->price;
+		    $uprice = $order->details[0]->item->product->price;
 		    $quantity = $order->details[0]->size;
 		    $amount = $uprice * $quantity;
             $total = $total + $amount; 
