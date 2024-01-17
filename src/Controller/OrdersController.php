@@ -47,12 +47,12 @@ class OrdersController extends AppController
         $this->set(compact('order'));
         //debug($order);
 
-        /** 
+        
         // put here Event dispatch program
         $message = "Thank you for Order from shop";
         $event = new Event('Notification.E-Mail',$this,['message' => $message, 'order' => $order]);
-        $this->getEventManager()->dispatch($event); 
-         */    
+        $this->getEventManager()->dispatch($event);
+            
     }
 
     public function fixOrder(){
