@@ -8,6 +8,8 @@ use Cake\Error\Debugger;
 use Cake\ORM\TableRegistry;
 use Cake\Event\EventInterface;
 use Cake\Event\Event;
+use Cake\Event\EventManager;
+use App\Event\NotificationListener;
 use Cake\I18n\Time;
 use Cake\I18n\FrozenTime;
 
@@ -24,6 +26,10 @@ class OrdersController extends AppController
     public function initialize(): void
     {
         parent::initialize();
+
+        $this->Notification = new NotificationListener();
+        EventManager::instance()->attach($this->Notification);
+
     }
 
     public function beforeFilter(\Cake\Event\EventInterface $event)
@@ -51,6 +57,7 @@ class OrdersController extends AppController
         // put here Event dispatch program
         $message = "Thank you for Order from shop";
         $event = new Event('Notification.E-Mail',$this,['message' => $message, 'order' => $order]);
+        debug($event);
         $this->getEventManager()->dispatch($event);
             
     }
