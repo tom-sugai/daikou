@@ -12,13 +12,13 @@ use App\Controller\Component\SendMailComponent;
 class NotificationListener implements EventListenerInterface
 {
     protected $Email;
-        
+
     public function __construct()
     {
         $this->Email = new SendMailComponent(new ComponentRegistry());
     }
     
-    public function implementedEvents()
+    public function implementedEvents(): array
     {
         return [
             'Notification.E-Mail' => 'mailNotification'
@@ -32,6 +32,8 @@ class NotificationListener implements EventListenerInterface
      */
     public function mailNotification($event, $message, $order)
     {
+
+        //echo "This is mailNotification";
         $this->Email->send($message, $order);
     }
 }
