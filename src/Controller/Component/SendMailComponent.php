@@ -4,6 +4,7 @@ namespace App\Controller\Component;
 use Cake\Controller\Component;
 use Cake\Controller\ComponentRegistry;
 use Cake\Mailer\Email;
+use Cake\Mailer\Mailer;
 
 /**
  * SendMail component
@@ -17,14 +18,28 @@ class SendMailComponent extends Component
      */
     protected $_defaultConfig = [];
 
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
-        $this->email = new Email('default');
+        //$this->email = new Email('default');
+        $this->mailer = new Mailer('default');
     }
 
     public function send($message, $order)
     {
-        //debug($order);
+        // send mail
+        $mailer
+            ->setEmailFormat('html')
+            ->setTo('fumiko@svr.home.com')
+            ->setFrom('tom@svr.home.com')
+            ->setSubject('Mail test from Smail controller!!')
+            ->setViewVars(['order' => $order])
+            ->viewBuilder()
+                ->setTemplate('welcome')
+                ->setLayout('default');
+    
+        $mailer->deliver();
+
+        /** 
         $this->email
             ->setTemplate('welcome', 'default')
             ->emailFormat('html')
@@ -34,5 +49,6 @@ class SendMailComponent extends Component
             ->subject('Thank you mail !!')
             ->viewVars(['order' => $order])
             ->send($message);
+        */    
     }
 }
