@@ -17,6 +17,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use App\Controller\Component\SendMailComponent;
 
 /**
  * Application Controller
@@ -44,6 +45,7 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
         $this->loadComponent('Authentication.Authentication');
+        $this->loadComponent('SendMail');
 
         /*
          * Enable the following component for recommended CakePHP form protection settings.
