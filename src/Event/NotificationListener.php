@@ -19,39 +19,31 @@ class NotificationListener implements EventListenerInterface
     public function __construct()
     {
         $this->Email = new SendMailComponent(new ComponentRegistry());
-        //$this->Math = new MathComponent(new ComponentRegistry());
+        $this->Math = new MathComponent(new ComponentRegistry());
     }
     
     public function implementedEvents(): array
-    {
-        /** 
+    {     
         return [
             'Notification.Math' => 'mathNotification'
         ];
-        */
          
         return [
             'Notification.E-Mail' => 'mailNotification'
-        ];
-        
+        ];    
     }
 
     /**
      * Math 計算結果の通知
      * @param $amount1
      * @param $amount2
-     */
-    /** 
+    */
     public function mathNotification($event, $amount1, $amount2)
     {
-        //debug($amount1);
-        //debug($amount2)
-        //echo "This is mailNotification";
         $result = $this->Math->doComplexOperation($amount1, $amount2);
         debug($result);
     }
-    */
-    
+
     /**
      * E-Mail通知処理
      * @param $event
@@ -59,8 +51,6 @@ class NotificationListener implements EventListenerInterface
      */
     public function mailNotification($event, $message, $order)
     {
-
-        //echo "This is mailNotification";
         $this->Email->send($message, $order);
     }
 }
