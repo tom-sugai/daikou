@@ -11,6 +11,8 @@ use Cake\Mailer\Mailer;
  */
 class SendMailComponent extends Component
 {
+    protected $mailer;
+
     /**
      * Default configuration.
      *
@@ -26,8 +28,9 @@ class SendMailComponent extends Component
 
     public function send($message, $order)
     {
+        //debug($this->mailer);
         // send mail
-        $mailer
+        $this->mailer
             ->setEmailFormat('html')
             ->setTo('fumiko@svr.home.com')
             ->setFrom('tom@svr.home.com')
@@ -37,7 +40,7 @@ class SendMailComponent extends Component
                 ->setTemplate('welcome')
                 ->setLayout('default');
     
-        $mailer->deliver();
+        $this->mailer->deliver();
 
         /** 
         $this->email
