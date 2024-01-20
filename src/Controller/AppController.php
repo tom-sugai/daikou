@@ -18,6 +18,7 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use App\Controller\Component\SendMailComponent;
+use App\Controller\Component\MathComponent;
 
 /**
  * Application Controller
