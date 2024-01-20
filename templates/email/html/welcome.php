@@ -2,9 +2,8 @@
 <?= $order->user->username ?><br>
 <?php $total = 0; ?>
 <?php foreach ($order->details as $detail): ?>
-		<?= $detail->item->product->pname ?>
-		<?php $imgurl = 'src = "http://fmva52.home.com/cake3/cake3102_message/webroot/img/' . $detail->item->product->image . "\""; ?>
-		<img <?= $imgurl ?> height="100" width="100" alt=""/>	        
+		<img src="<?= $detail->item->product->image ?>"  height="100" width="100" alt=""/>
+		<?= $detail->item->product->pname ?>  
         <?= $detail->item->product->price ?> * <?= $detail->size ?> ==> 
         <?php
 		    $uprice = $order->details[0]->item->product->price;
@@ -12,9 +11,10 @@
 		    $amount = $uprice * $quantity;
             $total = $total + $amount; 
 		 ?>
-		<?= "金額　" . $amount . "　円" ?><br>
+		<?= "金額 " . $amount . " 円" ?><br>
 <?php endforeach; ?>
 <hr></hr>
-<?= "注文合計　" . $total . "　円" ?><br>
+<?= "注文合計 " . $total . " 円" ?><br>
 <?= $order->note1 ?><br>
 <?= $order->note2 ?><br>
+<?= $order->note3 ?><br>
