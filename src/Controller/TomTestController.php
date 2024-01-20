@@ -20,8 +20,8 @@ class TomTestController extends AppController
         parent::initialize();
 
         $this->Notification = new NotificationListener();
-        //EventManager::instance()->attach($this->Notification); // nothing attach method *** BUG
         EventManager::instance()->on($this->Notification);
+        //EventManager::instance()->attach($this->Notification); // nothing attach method *** BUG
     }
 
     public function beforeFilter(\Cake\Event\EventInterface $event)
@@ -37,14 +37,14 @@ class TomTestController extends AppController
 
         echo "This is TomTest/index() method." . "<br>";
 
-        /** 
+         
         // コントローラーのアクションの中でComponentを使う
         $this->loadComponent('Math');
         $amount1 = 10;
         $amount2 = 40;
         $val = $this->Math->doComplexOperation($amount1, $amount2);
         echo $val . "<br/>";
-        */
+        
         /** 
         // put here Event dispatch program
         $amount1 = 10;
@@ -54,7 +54,7 @@ class TomTestController extends AppController
         $result = $this->getEventManager()->dispatch($event);
         debug($result);
         */
-        
+        /** 
         // prepar Oders object
         $id = 20;
         $ordersTable = TableRegistry::getTableLocator()->get('Orders');
@@ -64,7 +64,8 @@ class TomTestController extends AppController
         $message = "Thank you for Order from shop";
         $event = new Event('Notification.E-Mail',$this,['message' => $message, 'order' => $order]);
         //debug($event);
-        $this->getEventManager()->dispatch($event);         
+        $this->getEventManager()->dispatch($event);
+        */         
     }
 
 }    
