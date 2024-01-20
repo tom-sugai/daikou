@@ -28,7 +28,7 @@ class OrdersController extends AppController
         parent::initialize();
 
         $this->Notification = new NotificationListener();
-        EventManager::instance()->attach($this->Notification);
+        EventManager::instance()->on($this->Notification);
     }
 
     public function beforeFilter(\Cake\Event\EventInterface $event)
@@ -52,7 +52,7 @@ class OrdersController extends AppController
         // put here Event dispatch program
         $message = "Thank you for Order from shop";
         $event = new Event('Notification.E-Mail',$this,['message' => $message, 'order' => $order]);
-        debug($event);
+        //debug($event);
         $this->getEventManager()->dispatch($event);        
     }
 
