@@ -29,8 +29,6 @@ class OrdersController extends AppController
 
         $this->Notification = new NotificationListener();
         EventManager::instance()->attach($this->Notification);
-
-
     }
 
     public function beforeFilter(\Cake\Event\EventInterface $event)
@@ -39,8 +37,6 @@ class OrdersController extends AppController
 
         // loginUser --- Authentication コンポーネントで取得
         $this->loginUser = $this->Authentication->getIdentity();
-        //debug($this->loginUser);
-
         $this->Authentication->allowUnauthenticated(['order']);
     }
 
@@ -52,15 +48,12 @@ class OrdersController extends AppController
             'contain' => ['Users', 'Details' => ['Items' => 'Products']],
         ]);
         $this->set(compact('order'));
-        //debug($order);
-
         
         // put here Event dispatch program
         $message = "Thank you for Order from shop";
         $event = new Event('Notification.E-Mail',$this,['message' => $message, 'order' => $order]);
         debug($event);
-        $this->getEventManager()->dispatch($event);
-            
+        $this->getEventManager()->dispatch($event);        
     }
 
     public function fixOrder(){
@@ -70,9 +63,7 @@ class OrdersController extends AppController
         //echo "This is Orders/fixOrder Controller/Action." . "<br>";
         //echo $this->loginUser->name . " is Login Now!! " . "<br>";
 
-
         // Preparation Display orderd Items
-
         $this->paginate = [
             'contain' => ['Users','Items' => 'Products'],
         ];
@@ -110,8 +101,6 @@ class OrdersController extends AppController
             // increment ndx
             //$ndx++;
         }
-        //debug($details);
-
 
         // step2 create and save Orders object with details
         $order = $this->Orders->newEmptyEntity();
@@ -151,7 +140,6 @@ class OrdersController extends AppController
             'contain' => ['Users'],
         ];
         $orders = $this->paginate($this->Orders);
-
         $this->set(compact('orders'));
     }
 
@@ -167,7 +155,6 @@ class OrdersController extends AppController
         $order = $this->Orders->get($id, [
             'contain' => ['Users', 'Details'],
         ]);
-
         $this->set(compact('order'));
     }
 
@@ -233,7 +220,6 @@ class OrdersController extends AppController
         } else {
             $this->Flash->error(__('The order could not be deleted. Please, try again.'));
         }
-
         return $this->redirect(['action' => 'index']);
     }
 }
