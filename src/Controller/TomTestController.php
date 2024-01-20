@@ -5,7 +5,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Controller\ComponentRegistry;
-use App\Controller\Component\MathComponent;
+//use App\Controller\Component\MathComponent;
 use Cake\Event\EventInterface;
 use Cake\Event\Event;
 use Cake\Event\EventManager;
