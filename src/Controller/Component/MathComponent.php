@@ -11,7 +11,7 @@ class MathComponent extends Component
         function plus($a, $b){
             return $a * $b;
         }
-
+        echo "This is MathComponent" . "<br>";
         $val = plus($amount1, $amount2);
         return $val;
     }
