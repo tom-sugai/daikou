@@ -46,7 +46,7 @@ class TomTestController extends AppController
         echo $val . "<br/>";
         */
 
-        /** 
+        
         // exec MathComponent using Event Notification.Math
         $amount1 = 10;
         $amount2 = 50;
@@ -54,21 +54,21 @@ class TomTestController extends AppController
         debug($event);
         $this->getEventManager()->dispatch($event);
         debug($this->getEventManager());
-        */
+        
         
         // prepar Oders object
-        $id = 20;
+        $id = 24;
         $ordersTable = TableRegistry::getTableLocator()->get('Orders');
         $order = $ordersTable->get($id, ['contain' => ['Users', 'Details' => ['Items' => 'Products']]]);
         debug($order);
         
         // put here Event dispatch program
         $message = "Thank you for Order from shop";
-        $event = new Event('Notification.E-Mail',$this,['message' => $message, 'order' => $order]);
-        //debug($event);
+        $event = new Event('Notification.E-Mail', $this, ['message' => $message, 'order' => $order]);
+        debug($event);
         $this->getEventManager()->dispatch($event);
         //debug($this->getEventManager());
-             
+           
     }
 
 }    
