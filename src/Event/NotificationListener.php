@@ -24,14 +24,9 @@ class NotificationListener implements EventListenerInterface
     
     public function implementedEvents(): array
     {
-        /** 
         return [
+            'Notification.E-Mail' => 'mailNotification',
             'Notification.Math' => 'mathNotification'
-        ];
-        */
-
-        return [
-            'Notification.E-Mail' => 'mailNotification'
         ];
     }
 
