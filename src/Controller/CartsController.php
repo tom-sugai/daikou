@@ -61,7 +61,7 @@ class CartsController extends AppController
     public function checkOrder($cartId = null){
         $this->autoLayout = true;
         $this->autoRender = true;
-        //$this->viewBuilder()->setLayout('new_layout');
+        $this->viewBuilder()->setLayout('new_layout');
         //echo "This is Carts Controller." . "<br>";
         //echo $this->loginUser->name . " is Login Now!! " . "<br>";
         
@@ -98,7 +98,7 @@ class CartsController extends AppController
     public function checkCart(){
         $this->autoLayout = true;
         $this->autoRender = true;
-        //$this->viewBuilder()->setLayout('new_layout');
+        $this->viewBuilder()->setLayout('new_layout');
         //echo "This is Carts Controller." . "<br>";
         //echo $this->loginUser->name . " is Login Now!! " . "<br>";
         
