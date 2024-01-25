@@ -41,6 +41,10 @@ class OrdersController extends AppController
     }
 
     public function confirm($id = null){
+        $this->autoLayout = true;
+        $this->autoRender = true;
+        $this->viewBuilder()->setLayout('new_layout');
+        
         $this->paginate = [
             'contain' => ['Users', 'Details' => ['Items' => 'Products']],
         ];
@@ -59,7 +63,7 @@ class OrdersController extends AppController
     public function fixOrder(){
         $this->autoLayout = true;
         $this->autoRender = true;
-        //$this->viewBuilder()->setLayout('new_layout');
+        $this->viewBuilder()->setLayout('new_layout');
         //echo "This is Orders/fixOrder Controller/Action." . "<br>";
         //echo $this->loginUser->name . " is Login Now!! " . "<br>";
 
