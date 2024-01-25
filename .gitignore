@@ -6,7 +6,7 @@
 /tmp/*
 /vendor/*
 /webroot/img/*
-/db/*
+/db/*.db
 
 # OS generated files #
 ######################
