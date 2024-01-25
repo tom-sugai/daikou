@@ -4,9 +4,43 @@
  * @var \App\Model\Entity\Order $order
  */
 ?>
+<?php $this->set('headertext', 'This is headertext in the new_index.ctp file.'); ?>
+<div class="sheader">
+    <p><?= "-- This Page is Info Block in the new_index.ctp file. --" ?></p>
+    <?= $this->Html->link(__('商品選択へ戻る'), ['controller' => 'Items', 'action' => 'newIndex'], ['class' => 'button float-right']) ?>
+</div>
+<div class="scontainor"> 
+    <h4><?= __('注文ありがとうございます！ ご注文の内容は以下の通りです') ?></h4>  
+    <?php foreach ($order->details as $detail): ?>
+        <div class="syohin">
+            <div class="boxA">
+                <?= $this->Number->format($detail->id) ?>
+            </div>
+            <div class="syohin-1">
+                <div class="boxD"><?= $this->Html->image($detail->item->product->image,  ['width' => 60, 'height' => 60]) ?></div>
+                <div class="syohin-2">
+                    <div class="boxB">
+                        <!--<?= $detail->item->product->category ?><?= "  ----  " ?><?= $detail->item->jancode ?>-->
+                    </div>
+                    <div class="boxE"><?= $detail->item->product->pname ?></div>
+                    <div class="boxF"><?= "---- Price or Others line -----" . "<br>" ?></div>
+                </div>
+            </div>
+            <div class="boxG">
+                <!--<?= $this->Html->link(__('注文する'), ['controller' => 'Carts', 'action' => 'order', $detail->id]) ?>-->
+                <!--<?= $this->Form->postLink(__('削除する'), ['action' => 'delete', $detail->id], ['confirm' => __('Are you sure you want to delete # {0}?', $detail->id)]) ?>-->
+            </div>
+            <!--<div class="boxH"><?= "---- fotter line  for each Product----890----------0---------0---------0---------0---------0" ?></div>-->   
+        </div>            
+    <?php endforeach; ?>
+    <br>
+    <p><?= "登録いただいたメールアドレスへ確認メールを送信しました。ご確認ください。" ?></P>
+</div>
+
+<!--
 <nav>
     <ul>
-        <!--<li class="heading"><?= __('Actions') ?></li>-->
+        <li class="heading"><?= __('Actions') ?></li>
         <li>    <?= $this->Html->link(__('商品選択へ戻る'), ['controller' => 'Items', 'action' => 'newIndex'], ['class' => 'button float-right']) ?> </li>
     </ul>
 </nav>
@@ -22,7 +56,7 @@
                 <th scope="col"><?= __('Size') ?></th>
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
-            <!--    <th scope="col" class="actions"><?= __('Actions') ?></th> -->
+                <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($order->details as $detail): ?>
             <tr>
@@ -67,4 +101,4 @@
         </tr>
     </table>
 </div>
-
+-->

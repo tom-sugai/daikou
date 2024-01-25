@@ -4,6 +4,48 @@
  * @var iterable<\App\Model\Entity\Cart> $carts
  */
 ?>
+<?php $this->set('headertext', 'This is headertext in the new_index.ctp file.'); ?>
+<div class="sheader">
+    <p><?= "-- This Page is Info Block in the new_index.ctp file. --" ?></p>
+    <?= $this->Html->link(__('商品選択へ戻る'), ['controller' => 'Items', 'action' => 'newIndex'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(__('カートへ戻る'), ['controller' => 'Carts', 'action' => 'checkCart'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(__('注文情報の入力'), ['controller' => 'Orders', 'action' => 'fixOrder'], ['class' => 'button float-right']) ?>
+</div>
+<div class="scontainor">   
+    <?php foreach ($carts as $cart): ?>
+        <div class="syohin">
+            <div class="boxA">
+                <?= $this->Number->format($cart->id) ?>
+            </div>
+            <div class="syohin-1">
+                <div class="boxD"><?= $this->Html->image($cart->item->product->image,  ['width' => 60, 'height' => 60]) ?></div>
+                <div class="syohin-2">
+                    <div class="boxB">
+                        <!--<?= $cart->item->product->category ?><?= "  ----  " ?><?= $cart->jancode ?>-->
+                    </div>
+                    <div class="boxE"><?= $cart->item->product->pname ?></div>
+                    <div class="boxF"><?= "---- Price or Others line -----" . "<br>" ?></div>
+                </div>
+            </div>
+            <div class="boxG">
+                <!--<?= $this->Html->link(__('注文する'), ['controller' => 'Carts', 'action' => 'order', $cart->id]) ?>-->
+                <?= $this->Form->postLink(__('削除する'), ['action' => 'delete', $cart->id], ['confirm' => __('Are you sure you want to delete # {0}?', $cart->id)]) ?>
+            </div>
+            <!--<div class="boxH"><?= "---- fotter line  for each Product----890----------0---------0---------0---------0---------0" ?></div>-->    
+        </div>            
+    <?php endforeach; ?>
+</div>    
+<div class="pctrl">
+    <ul class="pagination">
+        <!--<?= $this->Paginator->first('<< ' . __('first')) ?>-->
+        <?= $this->Paginator->prev('< ' . __('previous')) ?>
+        <?= $this->Paginator->numbers() ?>
+        <?= $this->Paginator->next(__('next') . ' >') ?>
+        <!--<?= $this->Paginator->last(__('last') . ' >>') ?>-->
+    </ul>
+    <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+</div>
+<!--
 <div class="carts index content">
     <?= $this->Html->link(__('カートへ戻る'), ['controller' => 'Carts', 'action' => 'checkCart'], ['class' => 'button float-right']) ?>
     <?= $this->Html->link(__('商品選択へ戻る'), ['controller' => 'Items', 'action' => 'newIndex'], ['class' => 'button float-right']) ?>
@@ -32,7 +74,6 @@
                     <td><?= $this->Number->format($cart->size) ?></td>
                     <td><?= $cart->orderd === null ? '' : $this->Number->format($cart->orderd) ?></td>
                     <td class="actions">
-                        <!--<?= $this->Html->link(__('Order'), ['controller' => 'Carts', 'action' => 'order', $cart->id]) ?>-->
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $cart->id], ['confirm' => __('Are you sure you want to delete # {0}?', $cart->id)]) ?>
                     </td>
                 </tr>
@@ -51,3 +92,4 @@
         <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
     </div>
 </div>
+-->
