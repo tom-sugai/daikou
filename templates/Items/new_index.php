@@ -5,10 +5,10 @@
  */
 ?>
 
-<?php $this->set('headertext', 'This is headertext in the new_index.ctp file.'); ?>
+<?php $this->set('headertext', 'This is headertext in the new_index.php file.'); ?>
 
 <div class="sheader">
-        <p><?= "-- This is Page Info Block in the new_index.ctp file. --" ?></p>
+        <p><?= "-- This Page is Info Block in the new_index.php file. --" ?></p>
 </div>
 <div class="categoryform">
 			<?= $this->Form->create(null, ['type' => 'post', 'url' => ['action' => 'new-index']]) ?>
