@@ -1,14 +1,13 @@
 body        {
-                width: 100%;
-                margin-left: 2px; 
-                margin-top: 0px;
+                margin-left:0px; position:relative;
+                margin-right: 32px;
             }
 
 .topmenu    {  background-color: darksalmon; }
 
 .ititle     {   border-style: dotted; border-width: 1px; border-color:black(14, 2, 8);
                 background-color: aqua;
-                font-size: 20px; 
+                font-size: 20px;
 }
 
 .aboutsite  {   border-style: dotted; border-width: 1px; border-color:black(10, 0, 5);
@@ -18,46 +17,30 @@ body        {
 
 .headerbox  {   border-style: dotted; border-width: 1px; border-color:black(10, 0, 5);
                 background-color:gold;
-                font-size: 14px;
-            }
-.sheader    {
-                border-style: solid; border-width: 1px; border-color:black(10, 0, 5);
+                font-size: 14px; 
             }
 
-button     {
-                width: 100px; height: 30px; display: flex;
+.sheader    {
+                border-style: solid; border-width: 1px; border-color:black(10, 0, 5);
+                margin-left: 10px;
             }
 
 .syohin     {   
                 border-style: dotted; border-width: 1px; border-color:brown; 
                 font-size:14px; 
             }
-/*
-.syohin-1   {   border-style: solid; border-width: 2px; border-color:coral }
 
-.syohin-2   {   border-style: solid; border-width: 2px; border-color:black }
-
-.boxA       {   border-style: dotted; border-width: 1px; border-color:brown }
-.boxB       {   border-style: dotted; border-width: 1px; border-color:brown }
-.boxC       {   border-style: dotted; border-width: 1px; border-color:brown }
-
-.boxD       {   border-style: dotted; border-width: 2px; border-color:brown }
-
-.boxE       {   border-style: dotted; border-width: 1px; border-color:brown }
-.boxF       {   border-style: dotted; border-width: 1px; border-color:brown }
-.boxG       {   border-style: dotted; border-width: 1px; border-color:brown }
-.boxH       {   border-style: dotted; border-width: 1px; border-color:brown }
-*/
 img         {   object-fit: scale-down; }
 
 /* for flexible design */
 
 @media (min-width: 480px) {
-    .scontainor {
+    .scontainer {
         display: flex;
         flex-flow: row wrap;
         justify-content: space-around;
         align-items: flex-start;
+        margin-left: 0;
     }
     
     .syohin {
@@ -68,11 +51,12 @@ img         {   object-fit: scale-down; }
 }
 
 @media (min-width: 680px) {
-    .scontainor {
+    .scontainer {
         display: flex;
         flex-flow: row wrap;
         justify-content: space-around;
         align-items: flex-start;
+        margin-left: 0;
     }
     
     .syohin {
@@ -83,11 +67,12 @@ img         {   object-fit: scale-down; }
 }
 
 @media (min-width: 1100px) {
-    .scontainor {
+    .scontainer {
         display: flex;
         flex-flow: row wrap;
         justify-content: space-around;
         align-items: flex-start;
+        margin-left: 0;
     }
     .syohin {
         flex: 1 1 30%;
@@ -101,37 +86,56 @@ img         {   object-fit: scale-down; }
 
 .topmenu    {   display: block; height: 400; }
 
-.ititle     {   position: fixed; top: 0; left: 60; width: 100%;
+.ititle     {   position: fixed; top: 0;  width: 95%;
                 z-index: 997;
                 height: 50px; 
                 text-align:center;
-                margin-top: 0px; margin-bottom: 0px;
+                margin-top: 0px; margin-bottom: 0px; margin-left: 10px;
             }
 
-.aboutsite  {   position: fixed; top: 41px; left: 60; width: 100%; 
+.aboutsite  {   position: fixed; top: 41px;  width: 95%; 
                 z-index: 997; 
-                height: 50px;
+                height: 40px;
                 text-align:center;
-                margin-top: 0px;
+                margin-top: 0px; margin-left: 10px;
             }
 
 .headerbox  {
-                position: fixed; top: 92px; left: 60; width: 100%; 
+                position: fixed; top: 72px;  width: 95%; 
                 z-index: 997; 
-                height: 70px; 
+                height: 42px; 
                 text-align:center;
-                margin-top: 0px;                
+                margin-top: 0px; margin-left: 10px;            
 }
 
-.sheader    {   margin-top: 158px; height: 70px; }
+.sheader    {   margin-top: 120px; height: 100px; display: block;  width: 100%; 
+                margin-left: 0px; padding-left:0px; 
+            }
 
-.categoryform {
-    display: inline-flex;
+.topguid    {   margin-top: 80px; height: 100px; display: block; 
+                border-style: solid; border-width: 1px; border-color:black(10, 0, 5);
+            }
+
+.operation-block { display: flex;}
+
+.button-row   { display: flex; justify-content: space-around;}
+
+.button10   {
+    border-style: solid; border-width: 1px; border-color:black(10, 0, 5);
+    width: 200px; height: 60px; text-align: center; background-color: red;
+    font-size: 14px; color: white; border-radius: 6px;
 }
+
+.button20   {
+    border-style: solid; border-width: 1px; border-color:black(10, 0, 5);
+    width: 100px;  text-align: center; background-color: red;
+    font-size: 12px; color: white; border-radius: 6px;
+}
+
 .categoryform { border-style: solid; border-width: 1px; border-color:black(10, 0, 5); }
 
 .cat-in     { display: inline-block; }
-.syohin     {   margin-top: 10px; }
+.syohin     { margin-top: 10px; }
 
 /*
     .boxB       {   display: inline;
