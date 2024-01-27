@@ -15,7 +15,7 @@
  */
 
 //$cakeDescription = 'CakePHP: the rapid development php framework';
-$cakeDescription = 'my_cake3';
+$cakeDescription = 'Otsukai';
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,7 +27,6 @@ $cakeDescription = 'my_cake3';
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
-
     <?= $this->Html->css(['normalize.min', 'milligram.min', 'fonts', 'cake']) ?>
     <!-- <?= $this->Html->css('base.css') ?> -->
     <!-- <?= $this->Html->css('style.css') ?> -->
@@ -35,10 +34,8 @@ $cakeDescription = 'my_cake3';
     <?= $this->Html->css('hbg-menu.css') ?>
     <?= $this->Html->css('new-index.css') ?>
     <?= $this->Html->css('box-test.css') ?>
-
     <?= $this->Html->script('jquery-3.6.0.min.js') ?>
     <?= $this->Html->script('hbg-menu.js') ?>
-    
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
@@ -47,7 +44,6 @@ $cakeDescription = 'my_cake3';
     <!-- もしすべてのビューでメニューを表示したい場合、ここに入れます -->
     <div class="topmenu">
       <p class="menubtn"><?= $this->Html->image('piece.png',['width' => 36, 'height' => 36]) ?></p>
-      
       <nav>
           <ul>
               <li><a href=""><?= $this->Html->link(__('New Item'), ['action' => 'add']) ?></a></li>
@@ -55,28 +51,10 @@ $cakeDescription = 'my_cake3';
               <li><a href=""><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></a></li>
           </ul>  
       </nav>
-      
         <p class="ititle"><?= __('Items') ?></p>
         <p class="aboutsite"><?= $this->element('aboutsite'); ?></p>
-        <p class="headerbox"><?= $this->element('headerbox'); ?></P>
-      
+        <p class="headerbox"><?= $this->element('headerbox'); ?></P>  
     </div>
-
-    <!--
-    <nav class="top-bar expanded" data-topbar role="navigation">
-        <ul class="title-area large-3 medium-4 columns">
-            <li class="name">
-                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
-            </li>
-        </ul>
-        <div class="top-bar-section">
-            <ul class="right">
-                <li><a target="_blank" href="https://book.cakephp.org/3/">Documentation</a></li>
-                <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
-            </ul>
-        </div>
-    </nav>
--->
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
         <?= $this->fetch('content') ?>
