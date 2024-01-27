@@ -5,18 +5,18 @@
  */
 ?>
 
-<?php $this->set('headertext', 'This is headertext in the new_index.php file.'); ?>
-
+<?php $this->set('headertext', 'headertext from element'); ?>
 <div class="sheader">
-        <p><?= "-- This Page is Info Block in the new_index.php file. --" ?></p>
+    <p><?= "商品を選んでカートに入れてください。商品を選んだらカートの中を確認してください。" ?>
+    <?= $this->Html->link(__('カートをチェック'), ['controller' => 'Carts', 'action' => 'checkCart'], ['class' => 'button10']) ?></p>
 </div>
 <div class="categoryform">
-			<?= $this->Form->create(null, ['type' => 'post', 'url' => ['action' => 'new-index']]) ?>
-		    <div class="cat-in"><?= $this->Form->select('select-1', $category_list, array('empty' => '分類を選択', 'width' => 100)) ?></div>
-            <div class="cat-in"><?= $this->Form->submit(__('Submit')) ?></div>
-		    <?= $this->Form->end() ?>
+            <?= $this->Form->create(null, ['type' => 'post', 'url' => ['action' => 'new-index']]) ?>
+            <div class="cat-in"><?= $this->Form->select('select-1', $category_list, array('empty' => '分類を選択', 'width' => 100)) ?></div>
+            <div class="cat-in"><?= $this->Form->submit(__('選択')) ?></div>
+            <?= $this->Form->end() ?>
 </div>
-<div class="scontainor">   
+<div class="scontainer">   
     <?php foreach ($items as $item): ?>
         <div class="syohin">
             <div class="boxA">
@@ -33,12 +33,14 @@
                 </div>
             </div>
             <div class="boxG">
-                    <?= $this->Html->link(__('IntoCart'), ['controller' => 'Carts', 'action' => 'intoCart', $item->id]) ?>
+                    <?= $this->Html->link(__('カートに入れる'), ['controller' => 'Carts', 'action' => 'intoCart', $item->id]) ?>
+                    <!--
                     <?= $this->Html->link(__('View'), ['action' => 'view', $item->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $item->id]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $item->id], ['confirm' => __('Are you sure you want to delete # {0}?', $item->id)]) ?>
+                    -->
             </div>
-            <!--<div class="boxH"><?= "---- fotter line  for each Product----890----------0---------0---------0---------0---------0" ?></div>-->    
+            <div class="boxH"><?= "---- fotter line  for each Product----" ?></div>   
         </div>            
     <?php endforeach; ?>
 </div>    
