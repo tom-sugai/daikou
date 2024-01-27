@@ -4,14 +4,16 @@
  * @var \App\Model\Entity\Order $order
  */
 ?>
-<?php $this->set('headertext', 'This is headertext in the new_index.ctp file.'); ?>
+<?php $this->set('headertext', 'headertext from element'); ?>
 <div class="sheader">
     <p><?= "-- This Page is Info Block in the new_index.ctp file. --" ?></p>
-    <?= $this->Html->link(__('商品選択へ戻る'), ['controller' => 'Items', 'action' => 'newIndex'], ['class' => 'button float-right']) ?>
-    <?= $this->Html->link(__('カートへ戻る'), ['controller' => 'Carts', 'action' => 'checkCart'], ['class' => 'button float-right']) ?>
-    <?= $this->Html->link(__('注文確認へ戻る'), ['controller' => 'Carts', 'action' => 'checkOrder'], ['class' => 'button float-right']) ?>
+    <div class="button-row">
+        <?= $this->Html->link(__('商品選択へ戻る'), ['controller' => 'Items', 'action' => 'newIndex'], ['class' => 'button float-right']) ?>
+        <?= $this->Html->link(__('カートへ戻る'), ['controller' => 'Carts', 'action' => 'checkCart'], ['class' => 'button float-right']) ?>
+        <?= $this->Html->link(__('注文確認へ戻る'), ['controller' => 'Carts', 'action' => 'checkOrder'], ['class' => 'button float-right']) ?>
+    </div>
 </div>
-<div class="scontainor">   
+<div class="scontainer">   
     <?php foreach ($carts as $cart): ?>
         <div class="syohin">
             <div class="boxA">
