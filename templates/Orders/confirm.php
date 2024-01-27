@@ -7,7 +7,9 @@
 <?php $this->set('headertext', 'This is headertext in the new_index.ctp file.'); ?>
 <div class="sheader">
     <p><?= "-- This Page is Info Block in the new_index.ctp file. --" ?></p>
-    <?= $this->Html->link(__('商品選択へ戻る'), ['controller' => 'Items', 'action' => 'newIndex'], ['class' => 'button float-right']) ?>
+    <div class="button-row">
+        <?= $this->Html->link(__('商品選択へ戻る'), ['controller' => 'Items', 'action' => 'newIndex'], ['class' => 'button float-right']) ?>
+    </div>
 </div>
 <div class="scontainor"> 
     <h4><?= __('注文ありがとうございます！ ご注文の内容は以下の通りです') ?></h4>  
