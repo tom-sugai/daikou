@@ -1,7 +1,7 @@
 /*ハンバーガーメニューCSS*/
 
 .menubtn {
-    position: fixed; top: 2px; left:6px;
+    position: fixed; top: 2px; left: 20px;
     z-index: 999;    /*追記*/
     border: 1px solid; margin-left: 0px; margin-bottom: 0px;
     height: 38px;
