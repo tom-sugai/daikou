@@ -13,10 +13,10 @@
 <?= " / " ?>
 <?= $this->Html->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout']) ?>
 <?= " / " ?>
-<?= $this->Html->link(__('Select'), ['controller' => 'Items', 'action' => 'new-index']) ?>
-<?= " / " ?>
-<?= $this->Html->link(__('CheckCart'), ['controller' => 'Carts', 'action' => 'check-cart']) ?>
-<?= " / " ?><?= "<br>" ?>
+<!--<?= $this->Html->link(__('Select'), ['controller' => 'Items', 'action' => 'new-index']) ?>-->
+<!--<?= " / " ?>-->
+<!--<?= $this->Html->link(__('CheckCart'), ['controller' => 'Carts', 'action' => 'check-cart']) ?>-->
+<!--<?= " / " ?><?= "<br>" ?>-->
 <?= "Login User : " . $username ?>
 
 <!--
