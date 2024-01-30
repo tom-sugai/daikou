@@ -24,27 +24,6 @@ class TopController extends AppController
         
         $msg = "Message from TopCntroller!!";
         $this->set('msg', $msg);
-
-        /**  
-        // Authentication コンポーネントで取得
-        $user = $this->Authentication->getIdentity();
-        $username = $user->name;
-        $this->set(compact('username'));
-        $userid = $user->id;
-        $this->set(compact('userid'));
-        
-        
-            
-        debug($user);
-        debug($user->name);
-        debug($user->email);
-    
-        echo '<h1>2. request で取得</h1>';
-        $user = $this->request->getAttribute('identity');
-        debug($user);
-        debug($user->name);
-        debug($user->email);
-        */
     }
 
 }
