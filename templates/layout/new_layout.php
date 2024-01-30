@@ -51,10 +51,11 @@ $cakeDescription = 'Otsukai';
               <li><a href=""><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></a></li>
           </ul>  
       </nav>
-        <p class="ititle"><?= __('Items') ?></p>
-        <p class="aboutsite"><?= $this->element('aboutsite'); ?></p>
-        <p class="headerbox"><?= $this->element('headerbox'); ?></P>  
     </div>
+    <p class="ititle"><?= __('Items') ?></p>
+    <p class="aboutsite"><?= $this->element('aboutsite'); ?></p>
+    <p class="headerbox"><?= $this->element('headerbox'); ?></P>  
+    
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
         <?= $this->fetch('content') ?>
