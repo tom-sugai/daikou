@@ -7,6 +7,7 @@
 
 <?php $this->set('headertext', 'headertext from element'); ?>
 <div class="sheader">
+    <?= "Login User : " . $username ?>
     <p><?= "商品を選んでカートに入れてください。商品を選んだらカートの中を確認してください。" ?>
     <?= $this->Html->link(__('カートをチェック'), ['controller' => 'Carts', 'action' => 'checkCart'], ['class' => 'button10']) ?></p>
 </div>
