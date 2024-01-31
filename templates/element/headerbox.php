@@ -17,12 +17,4 @@
 <!--<?= " / " ?>-->
 <!--<?= $this->Html->link(__('CheckCart'), ['controller' => 'Carts', 'action' => 'check-cart']) ?>-->
 <!--<?= " / " ?><?= "<br>" ?>-->
-<?= "Login User : " . $username ?>
-
-<!--
-<?= $this->Html->getCrumbs(' | ',array(
-    'text' => 'top',
-    'url' => '/exc-view/index',
-    'escape' => false,
-    )); ?>
--->
+<!--<?= "Login User : " . $username ?>-->
