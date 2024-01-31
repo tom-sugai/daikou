@@ -6,7 +6,7 @@
 ?>
 <?php $this->set('headertext', 'headertext from element'); ?>
 <div class="sheader">
-    <p><?= "Info Block in the check_order.php" ?></p>
+    <p><?= "Info Block in the check_order.php" . " / " ?><?= "Login User : " . $username ?> </p>
     <div class="button-row">
         <?= $this->Html->link(__('商品選択へ戻る'), ['controller' => 'Items', 'action' => 'newIndex'], ['class' => 'button20']) ?>
         <?= $this->Html->link(__('カートへ戻る'), ['controller' => 'Carts', 'action' => 'checkCart'], ['class' => 'button20']) ?>
