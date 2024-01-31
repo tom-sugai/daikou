@@ -6,7 +6,7 @@
 ?>
 <?php $this->set('headertext', 'headertext from element'); ?>
 <div class="sheader">
-    <p><?= "-- This Page is Info Block in the new_index.ctp file. --" ?></p>
+    <p><?= "-- Info Block Order/fix_order.php file. --"  . " / " ?><?= "Login User : " . $username ?> </p>
     <div class="button-row">
         <?= $this->Html->link(__('商品選択へ戻る'), ['controller' => 'Items', 'action' => 'newIndex'], ['class' => 'button float-right']) ?>
         <?= $this->Html->link(__('カートへ戻る'), ['controller' => 'Carts', 'action' => 'checkCart'], ['class' => 'button float-right']) ?>
