@@ -8,9 +8,9 @@
 <div class="sheader">
     <p><?= "Info Block in the check_order.php" . " / " ?><?= "Login User : " . $username ?> </p>
     <div class="button-row">
-        <?= $this->Html->link(__('商品選択へ戻る'), ['controller' => 'Items', 'action' => 'newIndex'], ['class' => 'button20']) ?>
-        <?= $this->Html->link(__('カートへ戻る'), ['controller' => 'Carts', 'action' => 'checkCart'], ['class' => 'button20']) ?>
-        <?= $this->Html->link(__('注文情報の入力'), ['controller' => 'Orders', 'action' => 'fixOrder'], ['class' => 'button20']) ?>
+        <?= $this->Html->link(__('商品選択へ戻る'), ['controller' => 'Items', 'action' => 'newIndex'], ['class' => 'button10']) ?>
+        <?= $this->Html->link(__('カートへ戻る'), ['controller' => 'Carts', 'action' => 'checkCart'], ['class' => 'button10']) ?>
+        <?= $this->Html->link(__('注文情報の入力'), ['controller' => 'Orders', 'action' => 'fixOrder'], ['class' => 'button10']) ?>
     </div>
     <!--
     <?= $this->Html->link(__('商品選択へ戻る'), ['controller' => 'Items', 'action' => 'newIndex'], ['class' => 'button float-right']) ?>
