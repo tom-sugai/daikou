@@ -13,28 +13,14 @@
         <?= $this->Html->link(__('注文確認へ戻る'), ['controller' => 'Carts', 'action' => 'checkOrder'], ['class' => 'button float-right']) ?>
     </div>
 </div>
-<div class="scontainer">   
+<div class="scontainer">
+    <?php //debug($carts); ?>
     <?php foreach ($carts as $cart): ?>
-        <div class="syohin">
-            <div class="boxA">
-                <?= $this->Number->format($cart->id) ?>
-            </div>
-            <div class="syohin-1">
-                <div class="boxD"><?= $this->Html->image($cart->item->product->image,  ['width' => 60, 'height' => 60]) ?></div>
-                <div class="syohin-2">
-                    <div class="boxB">
-                        <!--<?= $cart->item->product->category ?><?= "  ----  " ?><?= $cart->jancode ?>-->
-                    </div>
-                    <div class="boxE"><?= $cart->item->product->pname ?></div>
-                    <div class="boxF"><?= "---- Price or Others line -----" . "<br>" ?></div>
-                </div>
-            </div>
-            <div class="boxG">
-                <!--<?= $this->Html->link(__('注文する'), ['controller' => 'Carts', 'action' => 'order', $cart->id]) ?>-->
-                <?= $this->Form->postLink(__('削除する'), ['action' => 'delete', $cart->id], ['confirm' => __('Are you sure you want to delete # {0}?', $cart->id)]) ?>
-            </div>
-            <!--<div class="boxH"><?= "---- fotter line  for each Product----890----------0---------0---------0---------0---------0" ?></div>-->    
-        </div>            
+        <?php //debug($cart); ?>
+        <?php $this->set('cart', $cart); ?>
+        <?php $this->set('item', $cart->item); ?>
+        <?= $this->element('syohinbox'); ?>
+        <?= $this->element('act_fix_order'); ?>
     <?php endforeach; ?>
 </div>
 <div class="orders form large-9 medium-8 columns content">
