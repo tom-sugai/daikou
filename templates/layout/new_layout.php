@@ -28,12 +28,8 @@ $cakeDescription = 'Otsukai';
     </title>
     <?= $this->Html->meta('icon') ?>
     <?= $this->Html->css(['normalize.min', 'milligram.min', 'fonts', 'cake']) ?>
-    <!-- <?= $this->Html->css('base.css') ?> -->
-    <!-- <?= $this->Html->css('style.css') ?> -->
-    <!-- <?= $this->Html->css('home.css') ?> -->
     <?= $this->Html->css('hbg-menu.css') ?>
     <?= $this->Html->css('new-index.css') ?>
-    <?= $this->Html->css('box-test.css') ?>
     <?= $this->Html->script('jquery-3.6.0.min.js') ?>
     <?= $this->Html->script('hbg-menu.js') ?>
     <?= $this->fetch('meta') ?>
