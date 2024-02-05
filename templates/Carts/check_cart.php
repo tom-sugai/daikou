@@ -18,8 +18,12 @@
         <?php //debug($cart); ?>
         <?php $this->set('cart', $cart); ?>
         <?php $this->set('item', $cart->item); ?>
+        <?= $this->element('syohinlist'); ?>
+
+        <!--
         <?= $this->element('syohinbox'); ?>
         <?= $this->element('act_check_cart'); ?>
+        -->
     <?php endforeach; ?>
 </div>   
 <div class="pctrl">
