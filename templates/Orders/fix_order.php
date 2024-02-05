@@ -19,8 +19,12 @@
         <?php //debug($cart); ?>
         <?php $this->set('cart', $cart); ?>
         <?php $this->set('item', $cart->item); ?>
+        <!-- for listview -->
+        <?= $this->element('syohinlist'); ?>
+        <!-- for box view
         <?= $this->element('syohinbox'); ?>
         <?= $this->element('act_fix_order'); ?>
+    -->
     <?php endforeach; ?>
 </div>
 <div class="orders form large-9 medium-8 columns content">
