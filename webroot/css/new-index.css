@@ -28,92 +28,96 @@ img         {   object-fit: scale-down; }
 
 /* Layout Definitions */
 
-html            { margin: 0 auto; }
-body            { position:relative; margin-left:0px; margin-right: 0px; }
-    /* class : menubtn */
-    .topmenu    {   display: block; height: 400; }
-    .ititle     {   position: fixed; z-index: 997; 
-                    top: 0;  width: 94%;  height: 50px; text-align:center; 
-                    margin-top: 0px; margin-bottom: 0px; margin-left: 20px; margin-right: 20px;
-                }
-    .aboutsite  {   position: fixed; z-index: 997; 
-                    top: 41px;  width: 94%;  height: 40px; text-align:center; 
-                    margin-top: 0px; margin-left: 20px; margin-right: 20px;
-                }
-    .headerbox  {
-                    position: fixed; z-index: 997; 
-                    top: 72px;  width: 94%; height: 42px; text-align:center;
-                    margin-top: 0px; margin-left: 20px; margin-right: 20px;        
-                }
-    /* class container */
+html            { max-width: 800px; margin: 0 auto; }
+/* body            { position:relative; margin-left:0px; margin-right: 0px; } */
+    .topmenu    { 
+                    max-width:auto;
+                    margin: 0 auto;
+                    position: absolute;/*追記*/
+                    height: 40px;/*追記*/
 
-        .topguid    {   margin-top: 130px; height: 100px; display: block; 
-                        border-style: solid; border-width: 1px; border-color:black(10, 0, 5);
-                    }
-            .button-row   { display: flex; justify-content: space-around;}
-        .sheader    {   margin-top: 120px; height: 100px; display: block;  width: 100%; 
-                        margin-left: 0px; margin-right: 0px;
-                    }
-            .button10   {
-                border-style: solid; border-width: 1px; border-color:black(10, 0, 5);
-                width: 120px; height: 30px; text-align: center; background-color: red;
-                font-size: 14px; color: white; border-radius: 6px;
+                    background-image: url(/web_exc/img/momiyaki.png);
+                    background-repeat: no-repeat;
+                    background-size: 400px 200px;
+                    background-position: right 0px;
+                    background-attachment: fixed;
+                }
+
+        /* class : menubtn */
+    .ititle     { display: block; height: 40px; text-align: center; margin-bottom: 0;}
+    .aboutsite  { display: block; height: 40px; text-align: center; margin-bottom: 0;} 
+    .headerbox  { display: block; height: 40px; }
+    /* class main */
+        /* class container */
+        .container { padding: 0 0; }
+            /* for /Top/index view */
+            .topguid    {   display: block; margin-top: 20px; height: 100px; 
+                            border-style: solid; border-width: 1px; border-color:black(10, 0, 5);
+                        }
+                .button-row   { display: flex; justify-content: space-around;}
+            /* for common view after container */
+            .sheader    {   display: block;  width: 100%; height: 100px;  
+                            margin: 0 auto; 
+                        }
+                .button10   {
+                    border-style: solid; border-width: 1px; border-color:black(10, 0, 5);
+                    width: 120px; height: 30px; text-align: center; background-color: red;
+                    font-size: 14px; color: white; border-radius: 6px;
+                }
+            .categoryform { border-style: solid; border-width: 1px; border-color:black(10, 0, 5); }
+                .cat-in     { display: inline-block; }
+            /* for flexible design parts */
+            @media (min-width: 480px) {
+                .scontainer { display: flex; flex-flow: row wrap; justify-content: space-around; align-items: flex-start; margin-left: 0;}
+                    .syohin     { flex: 1 1 400px;height: 200px;border: 2px dotted;margin-top: 10px;}
+                        /* class : boxA  item->id */
+                        .syohin-1   { display: flex; gap: 6px;height: 120px; }
+                            .boxD       {   flex: 0 0 60px; margin-left: 2px; }  /* mage */
+                            .syohin-2   {   flex: 0 0 220px; display: flex;  flex-flow: column;  align-items: flex; justify-content: space-between; }        
+                                .boxB   {   flex: 20px; padding-left: 4px; }    /* category & jancode */
+                                .boxE   {   flex: 20px; padding-left: 4px; }    /* product name */
+                                .boxF   {   flex: 20px; padding-left: 4px; }    /* price or others */
+                        .boxG       { text-align: right; margin-right: 30px; }  /* footer line for product */
             }
-        .categoryform { border-style: solid; border-width: 1px; border-color:black(10, 0, 5); }
-            .cat-in     { display: inline-block; }
-        
-        /* for flexible design */
-        @media (min-width: 480px) {
-            .scontainer { display: flex; flex-flow: row wrap; justify-content: space-around; align-items: flex-start; margin-left: 0;}
-                .syohin     { flex: 1 1 400px;height: 200px;border: 2px dotted;margin-top: 10px;}
-                    /* class : boxA  item->id */
-                    .syohin-1   { display: flex; gap: 6px;height: 120px; }
+            @media (min-width: 680px) {
+                .scontainer { display: flex;flex-flow: row wrap;justify-content: space-around;align-items: flex-start;margin-left: 0;}
+                    .syohin { flex: 1 1 40%;height: 200px;border: 2px dotted;}
+                        /* class : boxA  item->id */
+                        .syohin-1   { display: flex; gap: 6px;height: 120px; }
                         .boxD       {   flex: 0 0 60px; margin-left: 2px; }  /* mage */
                         .syohin-2   {   flex: 0 0 220px; display: flex;  flex-flow: column;  align-items: flex; justify-content: space-between; }        
                             .boxB   {   flex: 20px; padding-left: 4px; }    /* category & jancode */
                             .boxE   {   flex: 20px; padding-left: 4px; }    /* product name */
                             .boxF   {   flex: 20px; padding-left: 4px; }    /* price or others */
-                    .boxG       { text-align: right; margin-right: 30px; }  /* footer line for product */
-        }
-        @media (min-width: 680px) {
-            .scontainer { display: flex;flex-flow: row wrap;justify-content: space-around;align-items: flex-start;margin-left: 0;}
-                .syohin { flex: 1 1 40%;height: 200px;border: 2px dotted;}
-                    /* class : boxA  item->id */
-                    .syohin-1   { display: flex; gap: 6px;height: 120px; }
-                    .boxD       {   flex: 0 0 60px; margin-left: 2px; }  /* mage */
-                    .syohin-2   {   flex: 0 0 220px; display: flex;  flex-flow: column;  align-items: flex; justify-content: space-between; }        
-                        .boxB   {   flex: 20px; padding-left: 4px; }    /* category & jancode */
-                        .boxE   {   flex: 20px; padding-left: 4px; }    /* product name */
-                        .boxF   {   flex: 20px; padding-left: 4px; }    /* price or others */
-                    .boxG       { text-align: right; margin-right: 30px; }  /* footer line for product */
-        }
-        @media (min-width: 1100px) {
-            .scontainer { display: flex;flex-flow: row wrap;justify-content: space-around;align-items: flex-start;margin-left: 0; }
-                .syohin { flex: 1 1 30%;height: 200px;border: 2px dotted;}
-                    /* class : boxA  item->id */
-                    .syohin-1   { display: flex; gap: 6px;height: 120px; }
-                        .boxD       {   flex: 0 0 60px; margin-left: 2px; }  /* mage */
-                        .syohin-2   {   flex: 0 0 220px; display: flex;  flex-flow: column;  align-items: flex; justify-content: space-between; }        
-                            .boxB   {   flex: 20px; padding-left: 4px; }    /* category & jancode */
-                            .boxE   {   flex: 20px; padding-left: 4px; }    /* product name */
-                            .boxF   {   flex: 20px; padding-left: 4px; }    /* price or others */
-                    .boxG       { text-align: right; margin-right: 30px; }  /* footer line for product */                
-        }
-/* paginatoer layout */
-.pctrl {
-    text-align: left;
-    margin-top: 20px;
-    margin-left: 10px;
-}
-.pctrl ul.pagination li {
-    float: none;
-    display: inline-block;
-}
-.pctrl ul.pagination  {
-    margin-left: 0px;
-    padding-left: 0px;
-}
-.pctrl ul.pagination li {
-    margin-left: 0px;
-    padding-left: 0px;
-}
+                        .boxG       { text-align: right; margin-right: 30px; }  /* footer line for product */
+            }
+            @media (min-width: 1100px) {
+                .scontainer { display: flex;flex-flow: row wrap;justify-content: space-around;align-items: flex-start;margin-left: 0; }
+                    .syohin { flex: 1 1 30%;height: 200px;border: 2px dotted;}
+                        /* class : boxA  item->id */
+                        .syohin-1   { display: flex; gap: 6px;height: 120px; }
+                            .boxD       {   flex: 0 0 60px; margin-left: 2px; }  /* mage */
+                            .syohin-2   {   flex: 0 0 220px; display: flex;  flex-flow: column;  align-items: flex; justify-content: space-between; }        
+                                .boxB   {   flex: 20px; padding-left: 4px; }    /* category & jancode */
+                                .boxE   {   flex: 20px; padding-left: 4px; }    /* product name */
+                                .boxF   {   flex: 20px; padding-left: 4px; }    /* price or others */
+                        .boxG       { text-align: right; margin-right: 30px; }  /* footer line for product */                
+            }        
+    /* paginatoer layout */
+    .pctrl {
+        text-align: left;
+        margin-top: 20px;
+        margin-left: 10px;
+    }
+    .pctrl ul.pagination li {
+        float: none;
+        display: inline-block;
+    }
+    .pctrl ul.pagination  {
+        margin-left: 0px;
+        padding-left: 0px;
+    }
+    .pctrl ul.pagination li {
+        margin-left: 0px;
+        padding-left: 0px;
+    }
