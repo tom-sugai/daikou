@@ -12,6 +12,7 @@ use Cake\Validation\Validator;
  * Products Model
  *
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
+ * @property \App\Model\Table\ItemsTable&\Cake\ORM\Association\HasMany $Items
  *
  * @method \App\Model\Entity\Product newEmptyEntity()
  * @method \App\Model\Entity\Product newEntity(array $data, array $options = [])
@@ -45,18 +46,15 @@ class ProductsTable extends Table
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
-        //$this->addBehavior('Timestamp');
+        $this->addBehavior('Timestamp');
 
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
             'joinType' => 'INNER',
         ]);
-        // 2024-01-07 add
-        
         $this->hasMany('Items', [
             'foreignKey' => 'product_id',
         ]);
-        
     }
 
     /**
@@ -72,21 +70,25 @@ class ProductsTable extends Table
             ->notEmptyString('user_id');
 
         $validator
+            ->scalar('jancode')
+            ->requirePresence('jancode', 'create')
+            ->notEmptyString('jancode');
+
+        $validator
             ->scalar('category')
             ->allowEmptyString('category');
 
         $validator
-            ->scalar('jancode')
-            ->requirePresence('jancode', 'create')
-            ->notEmptyString('jancode');
+            ->scalar('brand')
+            ->allowEmptyString('brand');
 
         $validator
             ->scalar('pname')
             ->allowEmptyString('pname');
 
         $validator
-            ->scalar('brand')
-            ->allowEmptyString('brand');
+            ->integer('price')
+            ->allowEmptyString('price');
 
         $validator
             ->scalar('store')
