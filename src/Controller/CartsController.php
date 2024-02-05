@@ -107,7 +107,7 @@ class CartsController extends AppController
         ];
         //debug($this->loginUser->id);
         $carts = $this->Carts->find()->contain(['Users', 'Items' => 'Products'])->where(['Carts.orderd = ' => 0])->where(['Carts.user_id = ' => $this->loginUser->id]);
-        //debug($carts->toArray());
+        //debug($carts);
         $carts = $this->paginate($carts);
         $this->set(compact('carts'));
     }
