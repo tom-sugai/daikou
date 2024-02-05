@@ -33,7 +33,6 @@ class ItemsController extends AppController
         // loginUser --- Authentication コンポーネントで取得
         $this->loginUser = $this->Authentication->getIdentity();
         //debug($this->loginUser);
-
         $this->Authentication->allowUnauthenticated(['new-index']);
     }
 
