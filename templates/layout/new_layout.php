@@ -51,11 +51,12 @@ $cakeDescription = 'Otsukai';
     <p class="ititle"><?= __('Items') ?></p>
     <p class="aboutsite"><?= $this->element('aboutsite'); ?></p>
     <p class="headerbox"><?= $this->element('headerbox'); ?></P>  
-    
-    <?= $this->Flash->render() ?>
-    <div class="container clearfix">
-        <?= $this->fetch('content') ?>
-    </div>
+    <main class="main">
+        <div class="container clearfix">
+            <?= $this->Flash->render() ?>
+            <?= $this->fetch('content') ?>
+        </div>
+    </main>
     <footer>
     </footer>
 </body>
