@@ -10,10 +10,11 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $user_id
- * @property string|null $category
  * @property string $jancode
- * @property string|null $pname
+ * @property string|null $category
  * @property string|null $brand
+ * @property string|null $pname
+ * @property int|null $price
  * @property string|null $store
  * @property string|null $image
  * @property string|null $site
@@ -21,6 +22,7 @@ use Cake\ORM\Entity;
  * @property string|null $modified
  *
  * @property \App\Model\Entity\User $user
+ * @property \App\Model\Entity\Item[] $items
  */
 class Product extends Entity
 {
@@ -35,15 +37,17 @@ class Product extends Entity
      */
     protected $_accessible = [
         'user_id' => true,
-        'category' => true,
         'jancode' => true,
-        'pname' => true,
+        'category' => true,
         'brand' => true,
+        'pname' => true,
+        'price' => true,
         'store' => true,
         'image' => true,
         'site' => true,
         'created' => true,
         'modified' => true,
         'user' => true,
+        'items' => true,
     ];
 }

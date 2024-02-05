@@ -13,8 +13,12 @@
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('user_id') ?></th>
-                    <th><?= __('Image') ?></th>
-                    <th><?= __('Product Info') ?></th>
+                    <th><?= "image" ?></th>
+                    <th><?= $this->Paginator->sort('jancode') ?></th>
+                    <th><?= "ctegory" ?></th>
+                    <th><?= "pname" ?></th>
+                    <th><?= $this->Paginator->sort('price') ?></th>
+                    <th><?= "store" ?></th
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -23,13 +27,13 @@
                 <tr>
                     <td><?= $this->Number->format($product->id) ?></td>
                     <td><?= $product->has('user') ? $this->Html->link($product->user->id, ['controller' => 'Users', 'action' => 'view', $product->user->id]) : '' ?></td>
-                    <td><?= $this->Html->image($product->image,  ["alt" => "item-img", 'width' => 100, 'height' => 100]) ?></td>
-                    <td>
-                        <?= $product['jancode'] . "<br> " ?>
-                        <?= $product['pname'] . "<br>" ?>
-                        <?= $product['brand'] . "<br>" ?>
-                        <?= $product['category'] . "<br/>" ?>
-                    </td>
+                    <td><?= $this->Html->image($product->image,  ['width' => 60, 'height' => 60]) ?></td>
+                    <td><?= $product->jancode ?></td>
+                    <td><?= $product->category ?></td>
+                    <!--<td><?= $product->brand ?></td>-->
+                    <td><?= $product->pname?></td>
+                    <td><?= $product->price === null ? '' : $this->Number->format($product->price) ?></td>
+                    <td><?= $product->store ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $product->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $product->id]) ?>

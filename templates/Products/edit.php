@@ -27,10 +27,11 @@
                 <legend><?= __('Edit Product') ?></legend>
                 <?php
                     echo $this->Form->control('user_id', ['options' => $users]);
-                    echo $this->Form->control('category');
                     echo $this->Form->control('jancode');
-                    echo $this->Form->control('pname');
+                    echo $this->Form->control('category');
                     echo $this->Form->control('brand');
+                    echo $this->Form->control('pname');
+                    echo $this->Form->control('price');
                     echo $this->Form->control('store');
                     echo $this->Form->control('image');
                     echo $this->Form->control('site');
