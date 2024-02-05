@@ -46,6 +46,7 @@ class ProductsController extends AppController
             'contain' => ['Users'],
         ];
         $products = $this->paginate($this->Products);
+
         $this->set(compact('products'));
     }
 
@@ -59,8 +60,9 @@ class ProductsController extends AppController
     public function view($id = null)
     {
         $product = $this->Products->get($id, [
-            'contain' => ['Users'],
+            'contain' => ['Users', 'Items'],
         ]);
+
         $this->set(compact('product'));
     }
 
@@ -99,6 +101,8 @@ class ProductsController extends AppController
         $product = $this->Products->get($id, [
             'contain' => [],
         ]);
+        //debug($product->created);
+        //debug($product->modified);
         $created = $product->created;
         if ( $created == null){
             $created = Time::now();
@@ -115,7 +119,6 @@ class ProductsController extends AppController
         }
         $users = $this->Products->Users->find('list', ['limit' => 200])->all();
         $this->set(compact('product', 'users'));
-
     }
 
     /**
@@ -134,6 +137,7 @@ class ProductsController extends AppController
         } else {
             $this->Flash->error(__('The product could not be deleted. Please, try again.'));
         }
+
         return $this->redirect(['action' => 'index']);
     }
 }
