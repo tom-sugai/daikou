@@ -19,40 +19,18 @@
 </div>
 <div class="scontainer">
     <!--<h3><?= __('Items') ?></h3>-->
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-                    <!--<th><?= $this->Paginator->sort('id') ?></th>-->
-                    <!--<th><?= $this->Paginator->sort('user_id') ?></th>-->
-                    <!--<th><?= $this->Paginator->sort('product_id') ?></th>-->
-                    <!--<th class="actions"><?= __('Actions') ?></th>-->
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <?php foreach ($items as $item): ?>
-                        <?php $this->set('item', $item); ?>
-                        <?= $this->element('itemlist'); ?>
-                        <!--
-                        <?= $this->element('syohinbox'); ?>
-                        <?= $this->element('act_new_index'); ?>
-                        -->
-                    <?php endforeach; ?>
+    <!-- list -->
 
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-                    </div>  
+    <!-- box -->
+    <?= $this->element('syohinbox') ?>
+</div> 
 <div class="pctrl">
     <ul class="pagination">
-        <!--<?= $this->Paginator->first('<< ' . __('first')) ?>-->
+        <?= $this->Paginator->first('<< ' . __('first')) ?>
         <?= $this->Paginator->prev('< ' . __('previous')) ?>
         <?= $this->Paginator->numbers() ?>
         <?= $this->Paginator->next(__('next') . ' >') ?>
-        <!--<?= $this->Paginator->last(__('last') . ' >>') ?>-->
+        <?= $this->Paginator->last(__('last') . ' >>') ?>
     </ul>
     <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
 </div>
