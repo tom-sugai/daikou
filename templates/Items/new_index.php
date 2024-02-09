@@ -18,7 +18,6 @@
             <?= $this->Form->end() ?>
 </div>
 <div class="scontainer">
-    <!--<h3><?= __('Items') ?></h3>-->
     <!-- list -->
 
     <!-- box -->
