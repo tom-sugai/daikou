@@ -1,123 +1,116 @@
 .topmenu    {  background-color: darksalmon; }
 
-.ititle     {   border-style: dotted; border-width: 1px; border-color:black(14, 2, 8);
-                background-color: aqua; font-size: 20px;
-}
+.ititle     {   border-style: dotted; border-width: 0.1rem; border-color:black(14, 2, 8);
+                background-color: aqua; font-size: 2.0rem; }
 
-.aboutsite  {   border-style: dotted; border-width: 1px; border-color:black(10, 0, 5);
-                background-color: chocolate;
-                font-size: 14px;
+.aboutsite  {   border-style: dotted; border-width: 0.1rem; border-color:black(10, 0, 5);
+                background-color: chocolate; font-size: 1.4rem;
             }
 
-.headerbox  {   border-style: dotted; border-width: 1px; border-color:black(10, 0, 5);
+.headerbox  {   border-style: dotted; border-width: 0.1rem; border-color:black(10, 0, 5);
                 background-color:gold;
-                font-size: 14px; 
+                font-size: 1.4rem; 
             }
 
-.sheader    {
-                border-style: solid; border-width: 1px; border-color:black(10, 0, 5);
-                margin-left: 10px;
-            }
+.sheader    {   border-style: solid; border-width: 0.1rem; border-color:black(10, 0, 5); }
 
-.syohin     {   
-                border-style: dotted; border-width: 1px; border-color:brown; 
-                font-size:14px; 
-            }
+.scontainer { border-style: dotted; border-width: 0.4rem; border-color:brown; }            
+.s-box-1    { border-style: solid; border-width: 0.4rem; border-color:green; }
+.s-box-2    { border-style: dotted; border-width: 0.4rem; border-color:blue; }
 
-img         {   object-fit: scale-down; }
+img         { object-fit: scale-down; }
 
 /* Layout Definitions */
-
-html            { max-width: 800px; margin: 0 auto; }
-/* body            { position:relative; margin-left:0px; margin-right: 0px; } */
-    .topmenu    { 
-                    max-width:auto;
-                    margin: 0 auto;
-                    position: absolute;/*追記*/
-                    height: 40px;/*追記*/
-
+html            { max-width: 120rem; margin: 0 auto; }
+/* body            { position:relative; margin-left:0; margin-right: 0; } */
+    .topmenu    {   max-width:auto;margin: 0 auto;position: absolute;/*追記*/height: 4.0rem;/*追記*/
                     background-image: url(/web_exc/img/momiyaki.png);
-                    background-repeat: no-repeat;
-                    background-size: 400px 200px;
-                    background-position: right 0px;
+                    background-repeat: no-repeat;background-size: 40rem 20rem; background-position: right 0rem;
                     background-attachment: fixed;
                 }
 
         /* class : menubtn */
-    .ititle     { display: block; height: 40px; text-align: center; margin-bottom: 0;}
-    .aboutsite  { display: block; height: 40px; text-align: center; margin-bottom: 0;} 
-    .headerbox  { display: block; height: 40px; }
+
+    .ititle     { display: block; height: 4.0rem; text-align: center; margin-bottom: 0;}
+    .aboutsite  { display: block; height: 4.0rem; text-align: center; margin-bottom: 0;} 
+    .headerbox  { display: block; height: 4.0rem; }
+
     /* class main */
         /* class container */
         .container { padding: 0 0; }
             /* for /Top/index view */
-            .topguid    {   display: block; margin-top: 20px; height: 100px; 
-                            border-style: solid; border-width: 1px; border-color:black(10, 0, 5);
+            .topguid    {   display: block; margin-top: 2.0rem; height: 10.0rem; 
+                            border-style: solid; border-width: 0.1rem; border-color:black(10, 0, 5);
                         }
                 .button-row   { display: flex; justify-content: space-around;}
             /* for common view after container */
-            .sheader    {   display: block;  width: 100%; height: 100px;  
+            .sheader    {   display: block;  width: 100%; height: 10.0rem;  
                             margin: 0 auto; 
                         }
                 .button10   {
-                    border-style: solid; border-width: 1px; border-color:black(10, 0, 5);
-                    width: 120px; height: 30px; text-align: center; background-color: red;
-                    font-size: 14px; color: white; border-radius: 6px;
+                    border-style: solid; border-width: 0.1rem; border-color:black(10, 0, 5);
+                    width: 12.0rem; height: 3.0rem; text-align: center; background-color: red;
+                    font-size: 1.4rem; color: white; border-radius: 6.0rem;
                 }
-            .categoryform { border-style: solid; border-width: 1px; border-color:black(10, 0, 5); }
+            .categoryform { border-style: solid; border-width: 0.1rem; border-color:black(10, 0, 5); }
                 .cat-in     { display: inline-block; }
-            /* for flexible design parts */
-            @media (min-width: 480px) {
+
+            /* for element(syohinbox) : flexible design parts */
+            @media (min-width: 480) {
                 .scontainer { display: flex; flex-flow: row wrap; justify-content: space-around; align-items: flex-start; margin-left: 0;}
-                    .syohin     { flex: 1 1 400px;height: 200px;border: 2px dotted;margin-top: 10px;}
-                        /* class : boxA  item->id */
-                        .syohin-1   { display: flex; gap: 6px;height: 120px; }
-                            .boxD       {   flex: 0 0 60px; margin-left: 2px; }  /* mage */
-                            .syohin-2   {   flex: 0 0 220px; display: flex;  flex-flow: column;  align-items: flex; justify-content: space-between; }        
-                                .boxB   {   flex: 20px; padding-left: 4px; }    /* category & jancode */
-                                .boxE   {   flex: 20px; padding-left: 4px; }    /* product name */
-                                .boxF   {   flex: 20px; padding-left: 4px; }    /* price or others */
-                        .boxG       { text-align: right; margin-right: 30px; }  /* footer line for product */
+                    .s-box-1     { flex: 1 1 40.0rem; height: 20.0rem; border: 0.2rem dotted; margin-top: 1.0rem; }
+                        /* class : s-id : item->id */
+                        .s-box-2   { display: flex; gap: 6px;height: 12.0rem; }
+                            .s-image       {   flex: 0 0 2.0rem; margin-left: 0.2rem; }  /* image */
+                            .s-details   {   flex: 0 0 22.0rem; display: flex;  flex-flow: column;  align-items: flex; justify-content: space-between; }        
+                                .s-category   { flex: 2.0rem; padding-left: 0.4rem; }    /* category */
+                                .s-jancode    { flex: 2.0rem; padding-left: 0.4rem;}     /* jancode  */
+                                .s-pname      {   flex: 2.0rem; padding-left: 0.4rem; }    /* product name */
+                                .s-price      {   flex: 2.0rem; padding-left: 0.4rem; }    /* price */
+                        .s-others             { text-align: right; margin-right: 3.0rem; }  /* footer line for product */
             }
-            @media (min-width: 680px) {
-                .scontainer { display: flex;flex-flow: row wrap;justify-content: space-around;align-items: flex-start;margin-left: 0;}
-                    .syohin { flex: 1 1 40%;height: 200px;border: 2px dotted;}
-                        /* class : boxA  item->id */
-                        .syohin-1   { display: flex; gap: 6px;height: 120px; }
-                        .boxD       {   flex: 0 0 60px; margin-left: 2px; }  /* mage */
-                        .syohin-2   {   flex: 0 0 220px; display: flex;  flex-flow: column;  align-items: flex; justify-content: space-between; }        
-                            .boxB   {   flex: 20px; padding-left: 4px; }    /* category & jancode */
-                            .boxE   {   flex: 20px; padding-left: 4px; }    /* product name */
-                            .boxF   {   flex: 20px; padding-left: 4px; }    /* price or others */
-                        .boxG       { text-align: right; margin-right: 30px; }  /* footer line for product */
+            @media (min-width: 680) {
+                .scontainer { display: flex; flex-flow: row wrap; justify-content: space-around; align-items: flex-start; margin-left: 0;}
+                    .s-box-1     { flex: 1 1 40.0rem; height: 20.0rem; border: 0.2rem dotted;margin-top: 1.0rem;}
+                        /* class : s-id : item->id */
+                        .s-box-2   { display: flex; gap: 6px;height: 12.0rem; }
+                            .s-image       {   flex: 0 0 6.0rem; margin-left: 0.2rem; }  /* image */
+                            .s-details   {   flex: 0 0 22.0rem; display: flex;  flex-flow: column;  align-items: flex; justify-content: space-between; }        
+                                .s-category   { flex: 2.0rem; padding-left: 0.4rem; }    /* category */
+                                .s-jancode    { flex: 2.0rem; padding-left: 0.4rem;}     /* jancode  */
+                                .s-pname      {   flex: 2.0rem; padding-left: 0.4rem; }    /* product name */
+                                .s-price      {   flex: 2.0rem; padding-left: 0.4rem; }    /* price */
+                        .s-others             { text-align: right; margin-right: 3.0rem; }  /* footer line for product */
             }
-            @media (min-width: 1100px) {
-                .scontainer { display: flex;flex-flow: row wrap;justify-content: space-around;align-items: flex-start;margin-left: 0; }
-                    .syohin { flex: 1 1 30%;height: 200px;border: 2px dotted;}
-                        /* class : boxA  item->id */
-                        .syohin-1   { display: flex; gap: 6px;height: 120px; }
-                            .boxD       {   flex: 0 0 60px; margin-left: 2px; }  /* mage */
-                            .syohin-2   {   flex: 0 0 220px; display: flex;  flex-flow: column;  align-items: flex; justify-content: space-between; }        
-                                .boxB   {   flex: 20px; padding-left: 4px; }    /* category & jancode */
-                                .boxE   {   flex: 20px; padding-left: 4px; }    /* product name */
-                                .boxF   {   flex: 20px; padding-left: 4px; }    /* price or others */
-                        .boxG       { text-align: right; margin-right: 30px; }  /* footer line for product */                
-            }        
+            @media (min-width: 110.0rem) {
+                .scontainer { display: flex; flex-flow: row wrap; justify-content: space-around; align-items: flex-start; margin-left: 0;}
+                    .s-box-1     { flex: 1 1 40.0rem;height: 20.0rem;border: 0.2rem dotted;margin-top: 1.0rem;}
+                        /* class : s-id : item->id */
+                        .s-box-2   { display: flex; gap: 6px;height: 12.0rem; }
+                            .s-image       {   flex: 0 0 6.0rem; margin-left: 0.2rem; }  /* image */
+                            .s-details   {   flex: 0 0 22.0rem; display: flex;  flex-flow: column;  align-items: flex; justify-content: space-between; }        
+                                .s-category   { flex: 2.0rem; padding-left: 0.4rem; }    /* category */
+                                .s-jancode    { flex: 2.0rem; padding-left: 0.4rem;}     /* jancode  */
+                                .s-pname      {   flex: 2.0rem; padding-left: 0.4rem; }    /* product name */
+                                .s-price      {   flex: 2.0rem; padding-left: 0.4rem; }    /* price */
+                        .s-others             { text-align: right; margin-right: 3.0rem; }  /* footer line for product */
+            }
+            
     /* paginatoer layout */
     .pctrl {
         text-align: left;
-        margin-top: 20px;
-        margin-left: 10px;
+        margin-top: 2.0rem;
+        margin-left: 1.0rem;
     }
     .pctrl ul.pagination li {
         float: none;
         display: inline-block;
     }
     .pctrl ul.pagination  {
-        margin-left: 0px;
-        padding-left: 0px;
+        margin-left: 0;
+        padding-left: 0;
     }
     .pctrl ul.pagination li {
-        margin-left: 0px;
-        padding-left: 0px;
+        margin-left: 0;
+        padding-left: 0;
     }
