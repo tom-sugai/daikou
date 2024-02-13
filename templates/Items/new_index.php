@@ -17,21 +17,4 @@
             <div class="cat-in"><?= $this->Form->submit(__('選択')) ?></div>
             <?= $this->Form->end() ?>
 </div>
-<div class="scontainer">
-    <!-- list -->
-
-    <!-- box -->
-    <?= $this->element('syohinbox') ?>
-</div> 
-<div class="pctrl">
-    <ul class="pagination">
-        <?= $this->Paginator->first('<< ' . __('first')) ?>
-        <?= $this->Paginator->prev('< ' . __('previous')) ?>
-        <?= $this->Paginator->numbers() ?>
-        <?= $this->Paginator->next(__('next') . ' >') ?>
-        <?= $this->Paginator->last(__('last') . ' >>') ?>
-    </ul>
-    <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
-</div>
-
-
+<?= $this->element('item-box') ?>
