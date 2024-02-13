@@ -5,5 +5,4 @@
         <?= $this->Html->link(__('ログイン'), ['controller' => 'Users', 'action' => 'login'], ['class' => 'button']) ?>
     </div>
 </div>
-
-<?= $msg ?>
+<p style="font-size:12px;"><?= $msg ?></p>
