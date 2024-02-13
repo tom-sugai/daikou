@@ -6,12 +6,12 @@
 		<?= $detail->item->product->pname ?>  
         <?= $detail->item->product->price ?> * <?= $detail->size ?> ==> 
         <?php
-		    $uprice = $order->details[0]->item->product->price;
-		    $quantity = $order->details[0]->size;
+		    $uprice = $detail->item->product->price;
+		    $quantity = $detail->size;
 		    $amount = $uprice * $quantity;
-            $total = $total + $amount; 
 		 ?>
 		<?= "金額 " . $amount . " 円" ?><br>
+		<?php $total = $total + $amount; ?>
 <?php endforeach; ?>
 <hr></hr>
 <?= "注文合計 " . $total . " 円" ?><br>
