@@ -43,7 +43,7 @@ class ItemsController extends AppController
 
         $this->paginate = [
             'contain' => ['Users', 'Products'],
-            'limit' => 10
+            'limit' => 5
         ];
 
         // productsテーブルのオブジェクトを取得
