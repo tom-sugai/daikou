@@ -48,8 +48,7 @@ class CartsController extends AppController
             $cart->modified = Time::now();
             if ($this->Carts->save($cart)) {
                 $this->Flash->success(__('The cart has been saved.'));
-
-                return $this->redirect(['controller' => 'Orders', 'action' => 'fixOrder']);
+                return $this->redirect(['controller' => 'Carts', 'action' => 'checkOrder']);
             }
             $this->Flash->error(__('The cart could not be saved. Please, try again.'));
         }
@@ -73,6 +72,26 @@ class CartsController extends AppController
         //debug($carts->toArray());
         $carts = $this->paginate($carts);
         $this->set(compact('carts'));
+    }
+
+    public function backCart($cartId = null){
+        $this->autoLayout = true;
+        $this->autoRender = false;
+        //$this->viewBuilder()->setLayout('new_layout');
+        //echo "This is Carts Controller." . "<br>";
+        echo $this->loginUser->name . " is Login Now!! " . "<br>";
+
+        $cart = $this->Carts->get($cartId);
+        $cart->orderd = 0;
+        $cart->created = Time::now();
+        $cart->modified = Time::now();                
+
+        // save cart record to cartsTable
+        if ($this->Carts->save($cart)) {    
+            $this->Flash->success(__('Here is /Carts/order --- cartId : ' . $cartId . ' was saved.'));
+            return $this->redirect(['controller' => 'Carts', 'action' => 'check_order']); 
+        }
+        $this->Flash->error(__('The cart could not be saved. Please, try again.'));   
     }
 
     public function order($cartId = null){
