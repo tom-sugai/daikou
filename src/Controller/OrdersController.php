@@ -40,17 +40,15 @@ class OrdersController extends AppController
         $this->Authentication->allowUnauthenticated(['order']);
     }
 
-    public function confirm($id = null){
+    public function confirmOrder($id = null){
         $this->autoLayout = true;
         $this->autoRender = true;
         $this->viewBuilder()->setLayout('new_layout');
-        
-        $this->paginate = [
-            'contain' => ['Users', 'Details' => ['Items' => 'Products']],
-        ];
+
         $order = $this->Orders->get($id, [
             'contain' => ['Users', 'Details' => ['Items' => 'Products']],
         ]);
+        //debug($order);
         $this->set(compact('order'));
         
         // put here Event dispatch program
@@ -69,7 +67,7 @@ class OrdersController extends AppController
 
         // Preparation Display orderd Items
         $this->paginate = [
-            'contain' => ['Users','Items' => 'Products'],
+            'contain' => ['Users', 'Items' => 'Products'],
         ];
 
         $userId = $this->loginUser->id;
@@ -126,7 +124,7 @@ class OrdersController extends AppController
                 foreach($orderdItems as $orderItem){
                     $cartsTable->delete($orderItem);
                 }
-                return $this->redirect(['action' => 'confirm', $order->id]);
+                return $this->redirect(['action' => 'confirm-order', $order->id]);
             } else {
                 $this->Flash->error(__( 'The order could not be saved. Please, try again.'));
             }
