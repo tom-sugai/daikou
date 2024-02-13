@@ -38,6 +38,7 @@
             </tbody>
         </table>
     </div>
+
     <div class="paginator">
         <ul class="pagination">
             <?= $this->Paginator->first('<< ' . __('first')) ?>
