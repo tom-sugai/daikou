@@ -14,6 +14,7 @@
                     <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('user_id') ?></th>
                     <th><?= $this->Paginator->sort('item_id') ?></th>
+                    <th><?= "image" ?></th>
                     <th><?= $this->Paginator->sort('size') ?></th>
                     <th><?= $this->Paginator->sort('orderd') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
