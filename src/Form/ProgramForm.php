@@ -27,7 +27,7 @@ class ProgramForm extends Form
      * @param \Cake\Validation\Validator $validator to use against the form
      * @return \Cake\Validation\Validator
      */
-    protected function _buildValidator(Validator $validator)
+    protected function _buildValidator(Validator $validator): Validator
     {
         return $validator;
     }
