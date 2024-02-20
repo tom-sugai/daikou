@@ -1,0 +1,2 @@
+<?= $loginUser . "<br>" ?>
+<?= $message . "<br>" ?>
