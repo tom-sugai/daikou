@@ -8,14 +8,14 @@ use Cake\Mailer\Email;
 
 class ContactForm extends Form
 {
-    protected function _buildSchema(Schema $schema)
+    protected function _buildSchema(Schema $schema): Schema
     {
         return $schema->addField('name', 'string')
             ->addField('email', ['type' => 'string'])    
             ->addField('body', ['type' => 'text']);
     }
 
-    protected function _buildValidator(Validator $validator)
+    protected function _buildValidator(Validator $validator): Validator
     {
         $validator->add('name', 'length', [
             'rule' => ['minLength', 6],
@@ -28,7 +28,7 @@ class ContactForm extends Form
         return $validator;
     }
 
-    protected function _execute(array $data)
+    protected function _execute(array $data): bool
     {
         //echo "name : " . $data['name'] . "<br/>";
         //echo "email : " . $data['email'] . "<br/>";
