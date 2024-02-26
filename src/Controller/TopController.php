@@ -20,7 +20,7 @@ class TopController extends AppController
     {
         $this->autoLayout = true;
         $this->autoRender = true;
-        $this->viewBuilder()->setLayout('new_layout');
+        $this->viewBuilder()->setLayout('otsukai_layout');
        
         $msg = "Message from TopCntroller!!";
         $this->set('msg', $msg);
