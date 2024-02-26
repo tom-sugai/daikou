@@ -20,9 +20,9 @@
     <?= $this->Form->create($order) ?>
         <fieldset >
             <legend style="font-size:1.2rem;"><?= __('注文情報入力') ?></legend>
-            <?= $this->Form->control('note1',['label' => ['style' => 'font-size:12px']]) ?>
-            <?= $this->Form->control('note2',['label' => ['style' => 'font-size:12px']]) ?>
-            <?= $this->Form->control('note3',['label' => ['style' => 'font-size:12px']]) ?>
+            <?= $this->Form->control('note1',['label' => ['style' => 'font-size:1.0rem']]) ?>
+            <?= $this->Form->control('note2',['label' => ['style' => 'font-size:1.0rem']]) ?>
+            <?= $this->Form->control('note3',['label' => ['style' => 'font-size:1.0rem']]) ?>
         </fieldset>
     <?= $this->Form->button(__('注文の確定')) ?>
     <?= $this->Form->end() ?>
