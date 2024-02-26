@@ -3,13 +3,33 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Controller\AppController;
+use Cake\Core\Configure;
+use App\Form\ConfirmForm;
+
 class ExcViewController extends AppController
 {
     private $identity;
+    private $text1 = null;
+    private $confirmConst = [];
 
     public function initialize(): void
     {
         parent::initialize();
+        $this->text1 = Configure::read('text1');
+        $this ->confirmConst['name'] = Configure::read('name');
+        $this ->confirmConst['tel'] = Configure::read('tel');
+        $this ->confirmConst['email'] = Configure::read('email');
+        $this ->confirmConst['date'] = Configure::read('date');
+        $this ->confirmConst['time'] = Configure::read('time');
+        $this ->confirmConst['textarea'] = Configure::read('textarea');
+        $this ->confirmConst['likered'] = Configure::read('likered');
+        $this ->confirmConst['likeblue'] = Configure::read('likeblue');
+        $this ->confirmConst['answer'] = Configure::read('answer');
+        $this ->confirmConst['banks'] = Configure::read('banks');
+        //debug($this->confirmConst);
+        $this->set('text1', $this->text1);
+        $this->set('confirmConst', $this->confirmConst);
     }
 
     public function beforeFilter(\Cake\Event\EventInterface $event)
@@ -23,11 +43,30 @@ class ExcViewController extends AppController
         //$this->Authentication->allowUnauthenticated(['index']);
     }
 
-
     public function index()
     {
         $message = "This is ExcViewController.php.";
         $this->set('message', $message);
+        echo $this->text1 . "<---- out by echo" . "<br>";
+
+    }
+
+    public function confirmForm()
+    {
+        $this->autoLayout = true;
+        $this->autoRender = true;
+
+        $confirmForm = new ConfirmForm();
+        //debug($confirmForm);
+        if ($this->request->is('post')) {
+            if ($confirmForm->execute($this->request->getData())) {
+                $this->Flash->success('すぐにご連絡いたします。');
+            } else {
+                $this->Flash->error('フォーム送信に問題がありました。');
+            }
+        }
+        //debug($confirmForm);
+        $this->set(compact('confirmForm'));
     }
 
     public function sendForm()
