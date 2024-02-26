@@ -10,7 +10,7 @@
           <li>input type=tel</li>
               
           <label for="telno">
-              Telephon
+              Telephone
           </label>
           <input type="tel" name="telno" id="telno">
           <p>---------</p>
