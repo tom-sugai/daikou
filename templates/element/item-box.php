@@ -1,4 +1,4 @@
-<p><?= __('new-index Item Box') ?></p>
+<p><?= __('otsukai Item Box') ?></p>
 <div class="scontainer">
     <?php foreach ($items as $item): ?><!-- box -->
         <div class="i-box-0">   
