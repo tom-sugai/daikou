@@ -1,0 +1,146 @@
+.topmenu    {  background-color: darksalmon; }
+
+.ititle     {   border-style: dotted; border-width: 0.1rem; border-color:black(14, 2, 8);
+                background-color: aqua; font-size: 2.0rem; }
+
+.aboutsite  {   border-style: dotted; border-width: 0.1rem; border-color:black(10, 0, 5);
+                background-color: chocolate; font-size: 1.2rem;
+            }
+
+.headerbox  {   border-style: dotted; border-width: 0.1rem; border-color:black(10, 0, 5);
+                background-color:gold; font-size: 1.2rem; 
+            }
+    .o-loginlogout { font-size:1.2rem; }
+
+.sheader    {   border-style: solid; border-width: 0.1rem; border-color:black(10, 0, 5); 
+                font-size: 1.2rem; 
+}
+
+img         { object-fit: scale-down; }
+
+/* Layout Definitions */
+html            { max-width: 110rem; margin: 0 auto; }
+/* body            { position:relative; margin-left:0; margin-right: 0; } */
+    .topmenu    {   max-width:auto;margin: 0 auto;position: absolute;/*追記*/height: 4.0rem;/*追記*/
+                    background-image: url(/web_exc/img/momiyaki.png);
+                    background-repeat: no-repeat;background-size: 40rem 20rem; background-position: right 0rem;
+                    background-attachment: fixed;
+                }
+
+        /* class : menubtn */
+
+    .ititle     { display: block; height: 4.0rem; text-align: center; margin-bottom: 0;}
+    .aboutsite  { display: block; height: 4.0rem; text-align: center; margin-bottom: 0;} 
+    .headerbox  { display: block; height: 4.0rem; }
+    .o-loginlogout { text-align: right; }
+
+    /* class main */
+        /* class container */
+        .container { padding: 0 0; }
+            /* for /Top/index view */
+            .topguid    {   display: block; margin-top: 2.0rem; height: 10.0rem;font-size:1.2rem;
+                            border-style: solid; border-width: 0.1rem; border-color:black(10, 0, 5);
+                        }
+                .button-row   { display: flex; justify-content: space-around;}
+            /* for common view after container */
+            .sheader    {   display: block;  width: 100%; height: 10.0rem; 
+                            margin: 0 auto; font-size: 1.0rem; padding: 1.0.0rem 0; 
+                        }
+                .button-row { margin:1.0rem 0;}
+                .button10   {
+                    border-style: solid; border-width: 0.1rem; border-color:black(10, 0, 5);
+                    width: 12.0rem; height: 3.0rem; text-align: center; background-color: red;
+                    font-size: 1.4rem; color: white; border-radius: 6.0rem;
+                }
+            .categoryform { border-style: solid; border-width: 0.1rem; border-color:black(10, 0, 5); }
+                .cat-in     { display: inline-block; }
+
+            .scontainer { display:flex; flex-flow: row wrap; justify-content: space-around; align-items: flex-start; 
+                margin-left: 0; border:dotted 0.2rem red; font-size:1.2rem; }
+            .i-box-0    { flex: 1 1 380px; height: 14.0rem;
+                border:dotted 0.2rem blue; margin: 0.5rem 0.5rem;
+            }
+            .i-box-1     { display: flow-root; height: 9.0rem;
+                margin: 0.5rem 0.5rem; padding: auto 0.4rem; border:none;
+            }
+                .i-id           { display: inline; }  /* id */
+                .i-jancode      { display: block; } /* jancode  */
+                .i-image        { float:left; height: 8.0rem; border:none; margin:auto 2.0rem; }  /* image */
+                .i-category     { display: block; margin:auto 2.0rem; }  /* category */
+                .i-pname        { display: block; }  /* product name */
+                .i-price        { display: block; }  /* price */
+
+                .i-box-2    { display: flow-root; height: 3.0rem; text-align-last: right;
+                    margin: 0rem 0.5rem; border:none;
+                }
+                .i-comment   { display: block; text-align-last: left;}  /* comment line for product */
+                .i-action   { display: block; }  /* action guid */
+
+            /* for element(syohinbox) : flexible design parts */
+            
+            @media (max-width: 380) {
+                .scontainer { display:flex; flex-flow: row wrap; justify-content: space-around; align-items: flex-start; 
+                    margin-left: 0; border:dotted 0.2rem red; font-size:1.2rem;}
+                .i-box-0    { flex: 1 1 80%; height: 30.0rem;
+                    border:dotted 0.2rem blue; margin: 0.5rem 0.5rem; 
+                }
+                .i-box-1     { display: flow-root; height: 6.0rem;
+                    margin: 0.5rem 0.5rem; border:dotted 0.2rem black;
+                }
+                    .i-id           { display: inline; }  /* id */
+                    .i-jancode      { display: block; } /* jancode  */
+                    .i-image        { float:left; height: 6.0rem; border:none; }  /* image */
+                    .i-category     { display: block; margin:auto 2.0rem; }  /* category */
+                    .i-pname        { display: block; }  /* product name */
+                    .i-price        { display: block; }  /* price */
+    
+                    .i-box-2    { display: flow-root; height: 4.0rem;border:dotted 0.2rem red;
+                        margin: 1.0rem 0.5rem; }
+                    .i-comment  { display: block; }  /* comment line for product */
+                    .i-action   { display: block; margin: 0.2rem 0; height: 2.0rem;
+                                    border:dotted 0.2rem black;
+                    }  /* action guid */    
+            }
+    .item-table     { font-size:1.0rem; border:dotted 0.2rem blue; }
+    .item-list      { font-size:1.0rem; border:dotted 0.2rem blue; }
+    .cart-table     { font-size:1.0rem; border:dotted 0.2rem blue; }  
+    .cart-list      { font-size:1.4rem; border:dotted 0.2rem blue; margin:0 0;}
+    .content-list   { font-size:1.2rem; border:dotted 0.2rem black; display: flex; }
+    .confirm-message { font-size:1.0rem; }
+    .order-form { font-size:0.2rem; border:dotted 0.2rem blue; }
+
+    textarea {background-color:transparent;border:0.1rem solid #d1d1d1;border-radius:.4rem;box-shadow:none;box-sizing:inherit;height:2.0rem;padding:0.2rem 1.0rem;width:60%;}
+    textarea {min-height:3.0rem; font-size:1.2rem;font-size:1.4rem;}
+
+    .button,button,input[type='button'],input[type='reset'],input[type='submit'] {
+        background-color:#d33c43;border:0.1rem solid #d33c43;border-radius:.4rem;color:#fff;cursor:pointer;
+        display:inline-block;font-size:1.1rem;font-weight:700;height:2.0rem;letter-spacing:.1rem;line-height:2.0rem;
+        padding:0 0.2rem;text-align:left;text-decoration:none;text-transform:uppercase;white-space:nowrap;
+        width:9.0rem;
+    }
+
+    .input, .text {color:blue;}
+    #confirmform-name {color:black;font-size:1.2rem;}
+    #confirmform-tel {color:black;display:inline;}
+    #confirmform-email {color:chocolate;}
+    
+    .table-responsive {border:0.1rem solid red}
+
+    /* paginatoer layout */
+    .pctrl {
+        text-align: left;
+        margin-top: 2.0rem;
+        margin-left: 1.0rem;
+    }
+    .pctrl ul.pagination li {
+        float: none;
+        display: inline-block;
+    }
+    .pctrl ul.pagination  {
+        margin-left: 0;
+        padding-left: 0;
+    }
+    .pctrl ul.pagination li {
+        margin-left: 0;
+        padding-left: 0;
+    }
