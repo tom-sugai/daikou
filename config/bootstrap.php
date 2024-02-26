@@ -227,3 +227,17 @@ TypeFactory::map('time', StringType::class);
 // and https://unicode-org.github.io/icu/userguide/format_parse/datetime/#datetime-format-syntax
 //\Cake\I18n\FrozenDate::setToStringFormat('dd.MM.yyyy');
 //\Cake\I18n\FrozenTime::setToStringFormat('dd.MM.yyyy HH:mm');
+
+// set private constant
+// Configure で指定する場合
+Configure::write("text1", "変数のテキスト");
+Configure::write("name", "Tom Sugai");
+Configure::write("tel", "090-7435-6398");
+Configure::write("email", "tom@svr.home.com");
+Configure::write("date", "2024-02-25");
+Configure::write("time", "12:52:00");
+Configure::write("textarea", "hello");
+Configure::write("likered", "1");
+Configure::write("likeblue", "1");
+Configure::write("answer", "0");
+Configure::write("banks", ["0" => "1", "1" => "1", "2" => "1"]);
