@@ -12,6 +12,7 @@ use Cake\Event\EventManager;
 use App\Event\NotificationListener;
 use Cake\I18n\Time;
 use Cake\I18n\FrozenTime;
+use Cake\Core\Configure;
 
 /**
  * Orders Controller
@@ -26,7 +27,6 @@ class OrdersController extends AppController
     public function initialize(): void
     {
         parent::initialize();
-
         $this->Notification = new NotificationListener();
         EventManager::instance()->on($this->Notification);
     }
@@ -43,7 +43,7 @@ class OrdersController extends AppController
     public function confirmOrder($id = null){
         $this->autoLayout = true;
         $this->autoRender = true;
-        $this->viewBuilder()->setLayout('new_layout');
+        $this->viewBuilder()->setLayout('otsukai_layout');
 
         $order = $this->Orders->get($id, [
             'contain' => ['Users', 'Details' => ['Items' => 'Products']],
@@ -61,7 +61,7 @@ class OrdersController extends AppController
     public function fixOrder(){
         $this->autoLayout = true;
         $this->autoRender = true;
-        $this->viewBuilder()->setLayout('new_layout');
+        $this->viewBuilder()->setLayout('otsukai_layout');
         //echo "This is Orders/fixOrder Controller/Action." . "<br>";
         //echo $this->loginUser->name . " is Login Now!! " . "<br>";
 
@@ -111,11 +111,11 @@ class OrdersController extends AppController
         $order->created = Time::now();
         $order->modified = Time::now(); 
         //debug($order);
-
         // set for orders Form which is to input Oders fields Note1, Note2, Note3
         $this->set('order',$order);
-         
+
         // Save order with some related details using details[] array automatecalyly. 
+        // and save with Note1,Note2, Note3 fileds from input form(Order)
         if ($this->request->is('post')) {
             $order = $this->Orders->patchEntity($order, $this->request->getData());
             // save order to ordersTable              
