@@ -36,10 +36,10 @@ class ItemsController extends AppController
         $this->Authentication->allowUnauthenticated(['new-index']);
     }
 
-    public function newIndex(){
+    public function otsukai(){
         $this->autoLayout = true;
         $this->autoRender = true;
-        $this->viewBuilder()->setLayout('new_layout');
+        $this->viewBuilder()->setLayout('otsukai_layout');
 
         $this->paginate = [
             'contain' => ['Users', 'Products'],
