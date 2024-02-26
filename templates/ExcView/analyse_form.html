@@ -1,0 +1,100 @@
+<main class="main">
+    <div class="container">
+        <div class="message success" onclick="this.classList.add('hidden')">すぐにご連絡いたします。</div>
+        This is confirm_form.php template file.<br><br>
+        <form method="post" accept-charset="utf-8" action="/cakeapp/otsukai/exc-view/confirm-form">
+           
+            <!-- hidden tag for csrfToken-->                        
+            <div style="display:none;">
+                <input type="hidden" name="_csrfToken" autocomplete="off" value="x1n/zwI/DY56XGgwsym/tt1IGgi49OynS+tuC2mLvy4+a3mL2y0IohAWqfjGjsqTHXTtdDrtteZiO7dlO0+94IO7UkpQTrUh6yp8PY7MjcYt3gg9ULqMSgwNSOrsSGvEJCObzf7v+6J8R9xFXoiG1Q==">
+            </div>
+
+            <!-- input[tye=text]-->            
+            <div class="input text">
+                <label class="tom" for="confirmform-name">UserName</label>
+                <input type="text" name="confirmForm[name]" size="20" style="width:20.0rem;" id="confirmform-name" value="Tom Sugai">
+            </div>
+
+            <!-- input[tye=tel]-->               
+            <div class="input tel">
+                <label for="confirmform-tel">Tel</label>
+                <input type="tel" name="confirmForm[tel]" id="confirmform-tel" value="090-7435-6398">
+            </div>
+
+            <!-- input[tye=email] -->   
+            <div class="input email">
+                <label for="confirmform-email">Email</label>
+                <input type="email" name="confirmForm[email]" id="confirmform-email" value="tom@svr.home.com">
+            </div>
+
+            <!-- input[tye=date]-->   
+            <div class="input date">
+                <label for="confirmform-date">Date</label>
+                <input type="date" name="confirmForm[date]" id="confirmform-date" value="2024-02-22">
+            </div>
+
+            <!-- input[tye=time] -->               
+            <div class="input time">
+                <label for="confirmform-time">Time</label>
+                <input type="time" name="confirmForm[time]" id="confirmform-time" step="1" value="14:13:00">
+            </div>
+
+            <!-- input[tye=textarea] -->               
+            <div class="input textarea">
+                <label for="confirmform-textarea">Your message.</label>
+                <textarea name="confirmForm[textarea]" cols="20" rows="2" style="width:40.0rem;height:4.0rem;" id="confirmform-textarea">hello</textarea>
+            </div>
+
+            <!-- checkbox -->
+            <label for="which-do-you-like">Which Do You Like ?</label>
+            <div class="input checkbox">
+                <input type="hidden" name="confirmForm[likered]" value="0">
+                <label for="confirmform-likered">
+                <input type="checkbox" name="confirmForm[likered]" value="1" id="confirmform-likered" checked="checked">赤が好き</label>
+            </div>
+            <div class="input checkbox">
+                <input type="hidden" name="confirmForm[likeblue]" value="0">
+                <label for="confirmform-likeblue">
+                <input type="checkbox" name="confirmForm[likeblue]" value="1" id="confirmform-likeblue" checked="checked">青が好き</label>
+            </div>
+
+            <!-- radio bottun -->
+            <label for="question-how-are-you">Question : How Are You ? </label>
+            <input type="hidden" name="confirmForm[answer]" id="confirmform-answer" value="">
+
+            <label for="confirmform-answer-0">
+            <input type="radio" name="confirmForm[answer]" value="0" id="confirmform-answer-0">元気です</label>
+            
+            <label class="true selected" for="confirmform-answer-1">
+            <input type="radio" name="confirmForm[answer]" value="1" id="confirmform-answer-1" checked="checked">マアマア</label>
+            
+            <label for="confirmform-answer-2">
+            <input type="radio" name="confirmForm[answer]" value="2" id="confirmform-answer-2">あんまり</label>
+           
+            <!-- select filed -->
+            <input type="hidden" name="confirmForm[banks]" value="">
+            <select name="confirmForm[banks][]" multiple="multiple">
+                <option value="0" selected="selected">みずほ銀行</option>
+                <option value="1">三菱銀行</option>
+                <option value="2" selected="selected">三井住友銀行</option>
+            </select>
+            
+            <!-- Submit button -->
+            <button type="submit">Submit</button>
+        </form>
+            
+            The recieved results from ConfirmForm are follows.<br><br>
+            name : Tom Sugai<br>
+            tel : 090-7435-6398<br>
+            email : tom@svr.home.com<br>
+            date : 2024-02-22<br>
+            time : 14:13:00<br>
+            textarea : hello<br>
+            likered : 1<br>
+            likeblue : 1<br>
+            answer : 1<br>
+            Selected Bank is : 0<br>
+            Selected Bank is : 2<br>
+            
+    </div>
+</main>
