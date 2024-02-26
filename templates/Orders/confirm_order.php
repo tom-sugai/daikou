@@ -8,7 +8,7 @@
 <div class="sheader">
     <p><?= "-- This Page is Info Block in the new_index.ctp file. --" ?></p>
     <div class="button-row">
-        <?= $this->Html->link(__('商品選択へ戻る'), ['controller' => 'Items', 'action' => 'newIndex'], ['class' => 'button float-right']) ?>
+        <?= $this->Html->link(__('商品選択へ戻る'), ['controller' => 'Items', 'action' => 'otsukai'], ['class' => 'button float-right']) ?>
     </div>
 </div>
 <div class="confirm-message">
