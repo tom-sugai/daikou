@@ -11,7 +11,7 @@ input[type="time"]  {width:6.0rem;}
 
 
 /* basic table layout (column style) */
-table { border:solid 0.1rem black; margin:2.0rem 0; width:30%;table-layout:fixed;}
+table { border:solid 0.1rem black; margin:2.0rem 0; width:100%;table-layout:fixed;}
 caption { margin:1.0rem 0; border:none}
 th { border:solid 0.1rem black;text-align: center;font-size:0.92rem; }
 td { border:solid 0.1rem black; text-align: center;}
