@@ -35,7 +35,7 @@ class CartsController extends AppController
     public function changeSize($cartId = null){
         $this->autoLayout = true;
         $this->autoRender = true;
-        //$this->viewBuilder()->setLayout('new_layout');
+        //$this->viewBuilder()->setLayout('otsukai_layout');
         echo "This is Carts Controller/chengeSize." . "<br>";
         echo $this->loginUser->name . " is Login Now!! " . "<br>";
 
@@ -60,7 +60,7 @@ class CartsController extends AppController
     public function checkOrder($cartId = null){
         $this->autoLayout = true;
         $this->autoRender = true;
-        $this->viewBuilder()->setLayout('new_layout');
+        $this->viewBuilder()->setLayout('otsukai_layout');
         //echo "This is Carts Controller." . "<br>";
         //echo $this->loginUser->name . " is Login Now!! " . "<br>";
         
@@ -77,7 +77,7 @@ class CartsController extends AppController
     public function backCart($cartId = null){
         $this->autoLayout = true;
         $this->autoRender = false;
-        //$this->viewBuilder()->setLayout('new_layout');
+        //$this->viewBuilder()->setLayout('otsukai_layout');
         //echo "This is Carts Controller." . "<br>";
         echo $this->loginUser->name . " is Login Now!! " . "<br>";
 
@@ -97,7 +97,7 @@ class CartsController extends AppController
     public function order($cartId = null){
         $this->autoLayout = true;
         $this->autoRender = false;
-        //$this->viewBuilder()->setLayout('new_layout');
+        //$this->viewBuilder()->setLayout('otsukai_layout');
         //echo "This is Carts Controller." . "<br>";
         echo $this->loginUser->name . " is Login Now!! " . "<br>";
 
@@ -117,7 +117,7 @@ class CartsController extends AppController
     public function checkCart(){
         $this->autoLayout = true;
         $this->autoRender = true;
-        $this->viewBuilder()->setLayout('new_layout');
+        $this->viewBuilder()->setLayout('otsukai_layout');
         //echo "This is Carts Controller." . "<br>";
         //echo $this->loginUser->name . " is Login Now!! " . "<br>";
         
@@ -134,7 +134,7 @@ class CartsController extends AppController
     public function intoCart($item_id){
         $this->autoLayout = true;
         $this->autoRender = false;
-        $this->viewBuilder()->setLayout('new_layout');
+        $this->viewBuilder()->setLayout('otsukai_layout');
         //echo "This is Carts Controller." . "<br>";
         //echo $this->loginUser->name . " is Login Now!! " . "<br>";
 
@@ -149,7 +149,7 @@ class CartsController extends AppController
         // save Cart Entity
         if ($this->Carts->save($cart)) {
             $this->Flash->success(__('The cart has been saved.'));
-            return $this->redirect(['controller' => 'Items', 'action' => 'new-index']);
+            return $this->redirect(['controller' => 'Items', 'action' => 'otsukai']);
         }
         $this->Flash->error(__('The cart could not be saved. Please, try again.'));
 
