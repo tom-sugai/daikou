@@ -3,6 +3,10 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\I18n\Time;
+use Cake\I18n\FrozenTime;
+
+
 /**
  * Details Controller
  *
@@ -50,6 +54,8 @@ class DetailsController extends AppController
     public function add()
     {
         $detail = $this->Details->newEmptyEntity();
+        $detail->created = Time::now();
+        $detail->modified = Time::now();
         if ($this->request->is('post')) {
             $detail = $this->Details->patchEntity($detail, $this->request->getData());
             if ($this->Details->save($detail)) {
