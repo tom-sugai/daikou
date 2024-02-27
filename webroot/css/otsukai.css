@@ -106,7 +106,7 @@ html            { max-width: 110rem; margin: 0 auto; }
     .cart-table     { font-size:1.0rem; border:dotted 0.2rem blue; }  
     .cart-list      { font-size:1.4rem; border:dotted 0.2rem blue; margin:0 0;}
     .content-list   { font-size:1.2rem; border:dotted 0.2rem black; display: flex; }
-    .confirm-message { font-size:1.0rem; }
+    .confirm-message { font-size:1.4rem; }
     .order-form { font-size:0.2rem; border:dotted 0.2rem blue; }
 
     textarea {background-color:transparent;border:0.1rem solid #d1d1d1;border-radius:.4rem;box-shadow:none;box-sizing:inherit;height:2.0rem;padding:0.2rem 1.0rem;width:60%;}
