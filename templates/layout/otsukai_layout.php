@@ -42,9 +42,9 @@ $cakeDescription = 'Otsukai';
       <p class="menubtn"><?= $this->Html->image('piece.png',['width' => 36, 'height' => 36]) ?></p>
       <nav>
           <ul>
-              <li><a href=""><?= $this->Html->link(__('New Item'), ['action' => 'add']) ?></a></li>
+              <li><a href=""><?= $this->Html->link(__('List Items'), ['controller' => 'Items', 'action' => 'index']) ?></a></li>
+              <li><a href=""><?= $this->Html->link(__('List Products'), ['controller' => 'Products', 'action' => 'index']) ?></a></li>
               <li><a href=""><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></a></li>
-              <li><a href=""><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></a></li>
           </ul>  
       </nav>
     </div>
