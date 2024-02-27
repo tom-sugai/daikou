@@ -1,5 +1,8 @@
 <div class="order-list">
     <p><?= __('confirm-order-list') ?></p>
+    <?= "注文番号       : " . $order->id ?><br>
+    <?= "依頼者のお名前 : " . $order->user->name ?><br>
+    <?= "お買物商品のリスト" ?><br>
     <ul>
         <?php $total = 0; ?>
         <?php foreach ($order->details as $detail): ?>
@@ -14,5 +17,8 @@
         </div>        
         <?php endforeach; ?>
     </ul>
-    <?= "注文の合計金額は " . $total . " 円です。" ?>        
+    <?= "注文の合計金額は " . $total . " 円です。" . "<br>" ?>
+    <?= "お届け先     : " . $order->note1 . "<br>" ?> 
+    <?= "お支払い方法 : " . $order->note2 . "<br>" ?> 
+    <?= "お届け日時   : " . $order->note3 . "<br>" ?> 
 </div>
