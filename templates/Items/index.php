@@ -5,7 +5,7 @@
  */
 ?>
 <div class="items index content">
-    <?= $this->Html->link(__('New Item'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(__('Back to Top'), ['controller' => 'Top', 'action' => 'index'], ['class' => 'button float-right']) ?>
     <h4><?= __('Items') ?></h4>
     <div class="table-responsive">
         <table>
