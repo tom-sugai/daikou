@@ -22,7 +22,7 @@
                 <?php foreach ($details as $detail): ?>
                 <tr>
                     <td><?= $this->Number->format($detail->id) ?></td>
-                    <td><?= $detail->has('order') ? $this->Html->link($detail->order->id, ['controller' => 'Orders', 'action' => 'view', $detail->order->id]) : '' ?></td>
+                    <td><?= $this->Number->format($detail->order_id) ?></td>
                     <td><?= $detail->has('item') ? $this->Html->link($detail->item->id, ['controller' => 'Items', 'action' => 'view', $detail->item->id]) : '' ?></td>
                     <td><?= $this->Number->format($detail->size) ?></td>
                     <td class="actions">
