@@ -48,7 +48,7 @@ $cakeDescription = 'Otsukai';
           </ul>  
       </nav>
     </div>
-    <p class="ititle"><?= __('Items') ?></p>
+    <p class="ititle"><?= __('--お買物代行--お使い屋--') ?></p>
     <p class="aboutsite"><?= $this->element('aboutsite'); ?></p>
     <p class="headerbox"><?= $this->element('headerbox'); ?></P>  
     <main class="main">
