@@ -82,6 +82,18 @@ class CartsTable extends Table
             ->integer('orderd')
             ->allowEmptyString('orderd');
 
+        $validator
+            ->scalar('note1')
+            ->allowEmptyString('note1');
+
+        $validator
+            ->scalar('note2')
+            ->allowEmptyString('note2');
+
+        $validator
+            ->scalar('note3')
+            ->allowEmptyString('note3');
+
         return $validator;
     }
 

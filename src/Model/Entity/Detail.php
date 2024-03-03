@@ -12,6 +12,9 @@ use Cake\ORM\Entity;
  * @property int $order_id
  * @property int $item_id
  * @property int $size
+ * @property string|null $note1
+ * @property string|null $note2
+ * @property string|null $note3
  * @property string|null $created
  * @property string|null $modified
  *
@@ -33,6 +36,9 @@ class Detail extends Entity
         'order_id' => true,
         'item_id' => true,
         'size' => true,
+        'note1' => true,
+        'note2' => true,
+        'note3' => true,
         'created' => true,
         'modified' => true,
         'order' => true,

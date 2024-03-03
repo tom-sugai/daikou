@@ -13,6 +13,9 @@ use Cake\ORM\Entity;
  * @property int $item_id
  * @property int $size
  * @property int|null $orderd
+ * @property string|null $note1
+ * @property string|null $note2
+ * @property string|null $note3
  * @property string|null $created
  * @property string|null $modified
  *
@@ -35,6 +38,9 @@ class Cart extends Entity
         'item_id' => true,
         'size' => true,
         'orderd' => true,
+        'note1' => true,
+        'note2' => true,
+        'note3' => true,
         'created' => true,
         'modified' => true,
         'user' => true,

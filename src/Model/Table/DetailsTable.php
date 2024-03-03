@@ -13,6 +13,7 @@ use Cake\Validation\Validator;
  *
  * @property \App\Model\Table\OrdersTable&\Cake\ORM\Association\BelongsTo $Orders
  * @property \App\Model\Table\ItemsTable&\Cake\ORM\Association\BelongsTo $Items
+ * @property \App\Model\Table\OrdersTable&\Cake\ORM\Association\HasMany $Orders
  *
  * @method \App\Model\Entity\Detail newEmptyEntity()
  * @method \App\Model\Entity\Detail newEntity(array $data, array $options = [])
@@ -56,6 +57,11 @@ class DetailsTable extends Table
             'foreignKey' => 'item_id',
             'joinType' => 'INNER',
         ]);
+        /** 
+        $this->hasMany('Orders', [
+            'foreignKey' => 'detail_id',
+        ]);
+        */
     }
 
     /**
@@ -78,6 +84,18 @@ class DetailsTable extends Table
             ->integer('size')
             ->requirePresence('size', 'create')
             ->notEmptyString('size');
+
+        $validator
+            ->scalar('note1')
+            ->allowEmptyString('note1');
+
+        $validator
+            ->scalar('note2')
+            ->allowEmptyString('note2');
+
+        $validator
+            ->scalar('note3')
+            ->allowEmptyString('note3');
 
         return $validator;
     }
