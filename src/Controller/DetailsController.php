@@ -3,10 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use Cake\I18n\Time;
-use Cake\I18n\FrozenTime;
-
-
 /**
  * Details Controller
  *
@@ -23,7 +19,7 @@ class DetailsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Orders', 'Items'],
+            'contain' => ['Items'],
         ];
         $details = $this->paginate($this->Details);
 
@@ -40,7 +36,7 @@ class DetailsController extends AppController
     public function view($id = null)
     {
         $detail = $this->Details->get($id, [
-            'contain' => ['Orders', 'Items'],
+            'contain' => ['Items', 'Orders'],
         ]);
 
         $this->set(compact('detail'));
@@ -54,8 +50,6 @@ class DetailsController extends AppController
     public function add()
     {
         $detail = $this->Details->newEmptyEntity();
-        $detail->created = Time::now();
-        $detail->modified = Time::now();
         if ($this->request->is('post')) {
             $detail = $this->Details->patchEntity($detail, $this->request->getData());
             if ($this->Details->save($detail)) {
@@ -65,9 +59,8 @@ class DetailsController extends AppController
             }
             $this->Flash->error(__('The detail could not be saved. Please, try again.'));
         }
-        $orders = $this->Details->Orders->find('list', ['limit' => 200])->all();
         $items = $this->Details->Items->find('list', ['limit' => 200])->all();
-        $this->set(compact('detail', 'orders', 'items'));
+        $this->set(compact('detail', 'items'));
     }
 
     /**
@@ -91,9 +84,8 @@ class DetailsController extends AppController
             }
             $this->Flash->error(__('The detail could not be saved. Please, try again.'));
         }
-        $orders = $this->Details->Orders->find('list', ['limit' => 200])->all();
         $items = $this->Details->Items->find('list', ['limit' => 200])->all();
-        $this->set(compact('detail', 'orders', 'items'));
+        $this->set(compact('detail', 'items'));
     }
 
     /**
