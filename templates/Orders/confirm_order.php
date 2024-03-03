@@ -13,6 +13,8 @@
 </div>
 <div class="confirm-message">
     <p><?= __('ご注文の内容は以下の通りです') ?></p>
+
     <?= $this->element('confirm-order-list') ?>
+    
     <p><?= "登録したメールアドレスへ確認メールを送信しました。" ?></P>
 </div>
