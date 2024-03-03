@@ -50,6 +50,7 @@ class OrdersController extends AppController
         ]);
         //debug($order);
         $this->set(compact('order'));
+        $this->set('details', $order->details);
         
         // put here Event dispatch program
         $message = "Thank you for Order from shop";
@@ -96,6 +97,9 @@ class OrdersController extends AppController
             //$detail->order_id = $order->id; 
             $detail->item_id = $orderdItem->item_id;
             $detail->size = $orderdItem->size;
+            $detail->note1 = $orderdItem->note1;
+            $detail->note2 = $orderdItem->note2;
+            $detail->note3 = $orderdItem->note3;
             $detail->created = Time::now();
             $detail->modified = Time::now();   
             // set entity(detail) to Array(detailes[ndx])
@@ -107,10 +111,11 @@ class OrdersController extends AppController
         // step2 create and save Orders object with details
         $order = $this->Orders->newEmptyEntity();
         $order->user_id = $userId;
-        $order->details = $details;
+        $order->details = $details; 
         $order->created = Time::now();
         $order->modified = Time::now(); 
         //debug($order);
+
         // set for orders Form which is to input Oders fields Note1, Note2, Note3
         $this->set('order',$order);
 
@@ -120,6 +125,9 @@ class OrdersController extends AppController
             $order = $this->Orders->patchEntity($order, $this->request->getData());
             // save order to ordersTable              
             if ($this->Orders->save($order)) {;
+                // $orderのidが確定
+                // その後、$details[]の中の配列要素$detailのfileｄ($order_id)に値が挿入される
+                //debug($order);
                 // clean carts table( delete orderd cart record from carts table ) 
                 foreach($orderdItems as $orderItem){
                     $cartsTable->delete($orderItem);
