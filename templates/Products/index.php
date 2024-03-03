@@ -5,7 +5,7 @@
  */
 ?>
 <div class="products index content">
-    <?= $this->Html->link(__('Back to Top'), ['controller' => 'Top', 'action' => 'index'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(__('New Product'), ['controller' => 'Products', 'action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Products') ?></h3>
     <div class="table-responsive">
         <table>
@@ -18,7 +18,7 @@
                     <th><?= "ctegory" ?></th>
                     <th><?= "pname" ?></th>
                     <th><?= $this->Paginator->sort('price') ?></th>
-                    <th><?= "store" ?></th
+                    <th><?= "store" ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -27,7 +27,7 @@
                 <tr>
                     <td><?= $this->Number->format($product->id) ?></td>
                     <td><?= $product->has('user') ? $this->Html->link($product->user->id, ['controller' => 'Users', 'action' => 'view', $product->user->id]) : '' ?></td>
-                    <td><?= $this->Html->image($product->image,  ['width' => 60, 'height' => 60]) ?></td>
+                    <td><?= $this->Html->image($product->image,  ['alt' => 'noImage', 'width' => 60, 'height' => 60]) ?></td>
                     <td><?= $product->jancode ?></td>
                     <td><?= $product->category ?></td>
                     <!--<td><?= $product->brand ?></td>-->
