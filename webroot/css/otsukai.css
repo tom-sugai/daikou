@@ -1,10 +1,10 @@
 .topmenu    {  background-color: darksalmon; }
 
 .ititle     {   border-style: dotted; border-width: 0.1rem; border-color:black(14, 2, 8);
-                background-color: aqua; font-size: 2.0rem; }
+                background-color: aqua; font-size: 1.6rem; vertical-align: text-bottom;}
 
 .aboutsite  {   border-style: dotted; border-width: 0.1rem; border-color:black(10, 0, 5);
-                background-color: chocolate; font-size: 1.2rem;
+                background-color:wheat; font-size: 1.2rem;vertical-align:middle;
             }
 
 .headerbox  {   border-style: dotted; border-width: 0.1rem; border-color:black(10, 0, 5);
@@ -104,8 +104,16 @@ html            { max-width: 110rem; margin: 0 auto; }
     .item-table     { font-size:1.0rem; border:dotted 0.2rem blue; }
     .item-list      { font-size:1.0rem; border:dotted 0.2rem blue; }
     .cart-table     { font-size:1.0rem; border:dotted 0.2rem blue; }  
-    .cart-list      { font-size:1.4rem; border:dotted 0.2rem blue; margin:0 0;}
-    .content-list   { font-size:1.2rem; border:dotted 0.2rem black; display: flex; }
+    .cart-list      { font-size:1.4rem; border:dotted 0.1rem white; margin:0 0;}
+
+    .content-list   { font-size:1.2rem; border:dotted 0.1rem black; display: block; }
+    .base-info      { display:inline; border:solid 0.1rem white}
+    .side-box       { display:inline-block; border:solid 0.1rem white;}
+    .base-info > li { display:inline; vertical-align: top;}
+    .name-price     { display:block; border:solid 0.1rem white;}
+    .add-info       { display:block; border:solid 0.1rem white;}
+    .content-actions { display:block; border:dotted 0.1rem black;text-align: right;}
+
     .confirm-message { font-size:1.4rem; }
     .order-form { font-size:0.2rem; border:dotted 0.2rem blue; }
 
