@@ -28,6 +28,9 @@
                     echo $this->Form->control('item_id', ['options' => $items]);
                     echo $this->Form->control('size');
                     echo $this->Form->control('orderd');
+                    echo $this->Form->control('note1');
+                    echo $this->Form->control('note2');
+                    echo $this->Form->control('note3');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
