@@ -1,7 +1,8 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Detail $detail
+ * @var \App\Model\Entity\Cart $cart
+ * @var string[]|\Cake\Collection\CollectionInterface $users
  * @var string[]|\Cake\Collection\CollectionInterface $items
  */
 ?>
@@ -11,21 +12,23 @@
             <h4 class="heading"><?= __('Actions') ?></h4>
             <?= $this->Form->postLink(
                 __('Delete'),
-                ['action' => 'delete', $detail->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $detail->id), 'class' => 'side-nav-item']
+                ['action' => 'delete', $cart->id],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $cart->id), 'class' => 'side-nav-item']
             ) ?>
-            <?= $this->Html->link(__('List Details'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('List Carts'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column-responsive column-80">
-        <div class="details form content">
-            <?= $this->Form->create($detail) ?>
+        <div class="carts form content">
+            <!--<?php debug($cart) ?>-->
+            <?= $this->Form->create($cart) ?>
             <fieldset>
-                <legend><?= __('Edit Detail') ?></legend>
+                <legend><?= __('Edit Cart') ?></legend>
                 <?php
-                    echo $this->Form->control('order_id');
+                    echo $this->Form->control('user_id', ['options' => $users]);
                     echo $this->Form->control('item_id', ['options' => $items]);
                     echo $this->Form->control('size');
+                    echo $this->Form->control('orderd');
                     echo $this->Form->control('note1');
                     echo $this->Form->control('note2');
                     echo $this->Form->control('note3');

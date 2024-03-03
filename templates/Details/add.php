@@ -2,7 +2,6 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Detail $detail
- * @var \Cake\Collection\CollectionInterface|string[] $orders
  * @var \Cake\Collection\CollectionInterface|string[] $items
  */
 ?>
@@ -19,9 +18,12 @@
             <fieldset>
                 <legend><?= __('Add Detail') ?></legend>
                 <?php
-                    echo $this->Form->control('order_id', ['options' => $orders]);
+                    echo $this->Form->control('order_id');
                     echo $this->Form->control('item_id', ['options' => $items]);
                     echo $this->Form->control('size');
+                    echo $this->Form->control('note1');
+                    echo $this->Form->control('note2');
+                    echo $this->Form->control('note3');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

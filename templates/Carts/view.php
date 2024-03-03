@@ -40,6 +40,24 @@
                 </tr>
             </table>
             <div class="text">
+                <strong><?= __('Note1') ?></strong>
+                <blockquote>
+                    <?= $this->Text->autoParagraph(h($cart->note1)); ?>
+                </blockquote>
+            </div>
+            <div class="text">
+                <strong><?= __('Note2') ?></strong>
+                <blockquote>
+                    <?= $this->Text->autoParagraph(h($cart->note2)); ?>
+                </blockquote>
+            </div>
+            <div class="text">
+                <strong><?= __('Note3') ?></strong>
+                <blockquote>
+                    <?= $this->Text->autoParagraph(h($cart->note3)); ?>
+                </blockquote>
+            </div>
+            <div class="text">
                 <strong><?= __('Created') ?></strong>
                 <blockquote>
                     <?= $this->Text->autoParagraph(h($cart->created)); ?>
