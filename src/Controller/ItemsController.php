@@ -111,6 +111,8 @@ class ItemsController extends AppController
     public function add()
     {
         $item = $this->Items->newEmptyEntity();
+        $item->created  = Time::now();
+        $item->modified = Time::now();
         if ($this->request->is('post')) {
             $item = $this->Items->patchEntity($item, $this->request->getData());
             if ($this->Items->save($item)) {
@@ -137,6 +139,8 @@ class ItemsController extends AppController
         $item = $this->Items->get($id, [
             'contain' => [],
         ]);
+        $item->created  = Time::now();
+        $item->modified = Time::now();
         if ($this->request->is(['patch', 'post', 'put'])) {
             $item = $this->Items->patchEntity($item, $this->request->getData());
             if ($this->Items->save($item)) {
