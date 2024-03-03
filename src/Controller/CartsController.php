@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use Cake\I18n\Time;
 use Cake\I18n\FrozenTime;
+use Cake\ORM\TableRegistry;
 
 /**
  * Carts Controller
@@ -31,6 +32,32 @@ class CartsController extends AppController
 
         $this->Authentication->allowUnauthenticated(['into-cart']);
     }
+
+    public function editCart($cartId = null){
+        $this->autoLayout = true;
+        $this->autoRender = true;
+        //$this->viewBuilder()->setLayout('otsukai_layout');
+        echo "This is Carts Controller/chengeSize." . "<br>";
+        echo $this->loginUser->name . " is Login Now!! " . "<br>";
+
+        $cart = $this->Carts->get($cartId, [
+            'contain' => [],
+        ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $cart = $this->Carts->patchEntity($cart, $this->request->getData());
+            $cart->created = Time::now();
+            $cart->modified = Time::now();
+            if ($this->Carts->save($cart)) {
+                $this->Flash->success(__('The cart has been saved.'));
+                return $this->redirect(['controller' => 'Carts', 'action' => 'checkCart']);
+            }
+            $this->Flash->error(__('The cart could not be saved. Please, try again.'));
+        }
+        $users = $this->Carts->Users->find('list', ['limit' => 200])->all();
+        $items = $this->Carts->Items->find('list', ['limit' => 200])->all();
+        $this->set(compact('cart', 'users', 'items'));   
+    }
+
 
     public function changeSize($cartId = null){
         $this->autoLayout = true;
@@ -99,19 +126,42 @@ class CartsController extends AppController
         $this->autoRender = false;
         //$this->viewBuilder()->setLayout('otsukai_layout');
         //echo "This is Carts Controller." . "<br>";
-        echo $this->loginUser->name . " is Login Now!! " . "<br>";
+        //echo $this->loginUser->name . " is Login Now!! " . "<br>";
 
-        $cart = $this->Carts->get($cartId);
+        //$cart = $this->Carts->get($cartId);
+        $cart = $this->Carts->get($cartId, [
+            'contain' => ['Users', 'Items' => 'Products'],
+        ]);
         $cart->orderd = 1;
         $cart->created = Time::now();
-        $cart->modified = Time::now();                
+        $cart->modified = Time::now();
+        $this->set('cart', $cart); 
 
-        // save cart record to cartsTable
-        if ($this->Carts->save($cart)) {    
-            $this->Flash->success(__('Here is /Carts/order --- cartId : ' . $cartId . ' was saved.'));
-            return $this->redirect(['controller' => 'Carts', 'action' => 'check_cart']); 
+        //debug($cart->item->jancode);
+        if(($cart->item->jancode - 493000) < 0){
+            $this->autoRender = true;         
+            if ($this->request->is(['patch', 'post', 'put'])) {
+                $cart = $this->Carts->patchEntity($cart, $this->request->getData());
+                $cart->created = Time::now();
+                $cart->modified = Time::now();
+                // save cart record to cartsTable
+                if ($this->Carts->save($cart)) {    
+                    $this->Flash->success(__('Here is /Carts/order --- cartId : ' . $cartId . ' was saved.'));
+                    return $this->redirect(['controller' => 'Carts', 'action' => 'check_cart']); 
+                }
+                $this->Flash->error(__('The cart could not be saved. Please, try again.'));
+            }
+        } else {
+            // save cart record to cartsTable
+            if ($this->Carts->save($cart)) {    
+                $this->Flash->success(__('Here is /Carts/order --- cartId : ' . $cartId . ' was saved.'));
+                return $this->redirect(['controller' => 'Carts', 'action' => 'check_cart']); 
+            }
+            $this->Flash->error(__('The cart could not be saved. Please, try again.'));   
         }
-        $this->Flash->error(__('The cart could not be saved. Please, try again.'));   
+        $users = $this->Carts->Users->find('list', ['limit' => 200])->all();
+        $items = $this->Carts->Items->find('list', ['limit' => 200])->all();
+        $this->set(compact('cart', 'users', 'items'));
     }
 
     public function checkCart(){
@@ -134,25 +184,64 @@ class CartsController extends AppController
     public function intoCart($item_id){
         $this->autoLayout = true;
         $this->autoRender = false;
-        $this->viewBuilder()->setLayout('otsukai_layout');
         //echo "This is Carts Controller." . "<br>";
         //echo $this->loginUser->name . " is Login Now!! " . "<br>";
+
+        // テーブルオブジェクトを取得
+        $itemsTable = TableRegistry::getTableLocator()->get('Items');        
+        $item = $itemsTable->get($item_id, [
+            'contain' => ['Users', 'Products'],
+        ]);
+        //debug($item);
 
         // Create Cart Entity
         $cart = $this->Carts->newEmptyEntity();
         $cart->user_id = $this->loginUser->id;
         $cart->item_id = $item_id;
         $cart->size = 1;
-        $cart->orderd = 0; 
+        $cart->orderd = 0;
         $cart->created = Time::now();
         $cart->modified = Time::now();
+        //debug($cart);
+        $this->set('cart', $cart); 
+
+        //debug($item->jancode);
+        if(($item->jancode - 493000) < 0){
+            $this->autoRender = true;
+            //$this->viewBuilder()->setLayout('default');         
+            if ($this->request->is('post')) {
+                $cart = $this->Carts->patchEntity($cart, $this->request->getData());
+                $cart->created = Time::now();
+                $cart->modified = Time::now();
+                //debug($cart);
+                // save cart record to cartsTable
+                if ($this->Carts->save($cart)) {    
+                    $this->Flash->success(__('Here is /Carts/order --- cart->id : ' . $cart->id . ' was saved.'));
+                    return $this->redirect(['controller' => 'Carts', 'action' => 'check_cart']); 
+                }
+                $this->Flash->error(__('The cart could not be saved. Please, try again.'));
+            }
+        } else {
+            // save cart record to cartsTable
+            if ($this->Carts->save($cart)) {    
+                $this->Flash->success(__('Here is /Carts/order --- cart->id : ' . $cart->id . ' was saved.'));
+                return $this->redirect(['controller' => 'Carts', 'action' => 'check_cart']); 
+            }
+            $this->Flash->error(__('The cart could not be saved. Please, try again.'));   
+        }
+        $users = $this->Carts->Users->find('list', ['limit' => 200])->all();
+        $items = $this->Carts->Items->find('list', ['limit' => 200])->all();
+        $this->set(compact('cart', 'users', 'items'));
+    
+
+        /** 
         // save Cart Entity
         if ($this->Carts->save($cart)) {
             $this->Flash->success(__('The cart has been saved.'));
             return $this->redirect(['controller' => 'Items', 'action' => 'otsukai']);
         }
         $this->Flash->error(__('The cart could not be saved. Please, try again.'));
-
+        */
         /** 
         $users = $this->Carts->Users->find('list', ['limit' => 200])->all();
         $items = $this->Carts->Items->find('list', ['limit' => 200])->all();
