@@ -12,7 +12,6 @@ use Cake\Validation\Validator;
  * Details Model
  *
  * @property \App\Model\Table\OrdersTable&\Cake\ORM\Association\BelongsTo $Orders
- * @property \App\Model\Table\ItemsTable&\Cake\ORM\Association\BelongsTo $Items
  * @property \App\Model\Table\OrdersTable&\Cake\ORM\Association\HasMany $Orders
  *
  * @method \App\Model\Entity\Detail newEmptyEntity()
@@ -53,15 +52,13 @@ class DetailsTable extends Table
             'foreignKey' => 'order_id',
             'joinType' => 'INNER',
         ]);
-        $this->belongsTo('Items', [
-            'foreignKey' => 'item_id',
+        $this->belongsTo('Products', [
+            'foreignKey' => 'product_id',
             'joinType' => 'INNER',
         ]);
-        /** 
         $this->hasMany('Orders', [
             'foreignKey' => 'detail_id',
         ]);
-        */
     }
 
     /**
@@ -77,8 +74,8 @@ class DetailsTable extends Table
             ->notEmptyString('order_id');
 
         $validator
-            ->integer('item_id')
-            ->notEmptyString('item_id');
+            ->integer('product_id')
+            ->notEmptyString('product_id');
 
         $validator
             ->integer('size')
@@ -110,7 +107,7 @@ class DetailsTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->existsIn('order_id', 'Orders'), ['errorField' => 'order_id']);
-        $rules->add($rules->existsIn('item_id', 'Items'), ['errorField' => 'item_id']);
+        $rules->add($rules->existsIn('product_id', 'Products'), ['errorField' => 'product_id']);
 
         return $rules;
     }

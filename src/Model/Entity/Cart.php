@@ -10,7 +10,7 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $user_id
- * @property int $item_id
+ * @property int $product_id
  * @property int $size
  * @property int|null $orderd
  * @property string|null $note1
@@ -35,7 +35,7 @@ class Cart extends Entity
      */
     protected $_accessible = [
         'user_id' => true,
-        'item_id' => true,
+        'product_id' => true,
         'size' => true,
         'orderd' => true,
         'note1' => true,

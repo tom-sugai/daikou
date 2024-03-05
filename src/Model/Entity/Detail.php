@@ -10,7 +10,7 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $order_id
- * @property int $item_id
+ * @property int $product_id
  * @property int $size
  * @property string|null $note1
  * @property string|null $note2
@@ -34,7 +34,7 @@ class Detail extends Entity
      */
     protected $_accessible = [
         'order_id' => true,
-        'item_id' => true,
+        'product_id' => true,
         'size' => true,
         'note1' => true,
         'note2' => true,

@@ -12,7 +12,6 @@ use Cake\Validation\Validator;
  * Carts Model
  *
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
- * @property \App\Model\Table\ItemsTable&\Cake\ORM\Association\BelongsTo $Items
  *
  * @method \App\Model\Entity\Cart newEmptyEntity()
  * @method \App\Model\Entity\Cart newEntity(array $data, array $options = [])
@@ -52,8 +51,8 @@ class CartsTable extends Table
             'foreignKey' => 'user_id',
             'joinType' => 'INNER',
         ]);
-        $this->belongsTo('Items', [
-            'foreignKey' => 'item_id',
+        $this->belongsTo('Products', [
+            'foreignKey' => 'product_id',
             'joinType' => 'INNER',
         ]);
     }
@@ -71,8 +70,8 @@ class CartsTable extends Table
             ->notEmptyString('user_id');
 
         $validator
-            ->integer('item_id')
-            ->notEmptyString('item_id');
+            ->integer('product_id')
+            ->notEmptyString('product_id');
 
         $validator
             ->integer('size')
@@ -107,7 +106,7 @@ class CartsTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->existsIn('user_id', 'Users'), ['errorField' => 'user_id']);
-        $rules->add($rules->existsIn('item_id', 'Items'), ['errorField' => 'item_id']);
+        $rules->add($rules->existsIn('product_id', 'Products'), ['errorField' => 'product_id']);
 
         return $rules;
     }
