@@ -4,15 +4,15 @@
         <?php foreach ($carts as $cart): ?>
             <div class="content-list">
             <div class="base-info">   
-                <li><?= $cart->has('item') ? $this->Html->link($cart->item->id, ['controller' => 'Items', 'action' => 'view', $cart->item->id]) : '' ?></li>
-                <li><?= $this->Html->image($cart->item->product->image,  ['width' => 60, 'height' => 60]) ?></li>
+                <li><?= $cart->id ?></li>
+                <li><?= $this->Html->image($cart->product->image,  ['width' => 60, 'height' => 60]) ?></li>
             </div>
             <div class="side-box">                
                 <div class="name-price">
-                    <?= $cart->item->product->pname ?>
+                    <?= $cart->product->pname ?>
                     <?= $this->Number->format($cart->size) ?>
-                    <?= $this->Number->format($cart->item->product->price) ?>
-                    <?php $subtotal = $cart->size * $cart->item->product->price; ?>
+                    <?= $this->Number->format($cart->product->price) ?>
+                    <?php $subtotal = $cart->size * $cart->product->price; ?>
                     <?= $this->Number->format($subtotal) ?>
                 </div>
                 <div class="add-info">
