@@ -3,7 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Cart $cart
  * @var \Cake\Collection\CollectionInterface|string[] $users
- * @var \Cake\Collection\CollectionInterface|string[] $items
+ * @var \Cake\Collection\CollectionInterface|string[] $products
  */
 ?>
 <div class="row">
@@ -20,7 +20,7 @@
                 <legend><?= __('Add Cart') ?></legend>
                 <?php
                     echo $this->Form->control('user_id', ['options' => $users]);
-                    echo $this->Form->control('item_id', ['options' => $items]);
+                    echo $this->Form->control('product_id', ['options' => $products]);
                     echo $this->Form->control('size');
                     echo $this->Form->control('orderd');
                     echo $this->Form->control('note1');

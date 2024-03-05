@@ -13,8 +13,7 @@
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('user_id') ?></th>
-                    <th><?= $this->Paginator->sort('item_id') ?></th>
-                    <th><?= "image" ?></th>
+                    <th><?= $this->Paginator->sort('product_id') ?></th>
                     <th><?= $this->Paginator->sort('size') ?></th>
                     <th><?= $this->Paginator->sort('orderd') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
@@ -25,8 +24,7 @@
                 <tr>
                     <td><?= $this->Number->format($cart->id) ?></td>
                     <td><?= $cart->has('user') ? $this->Html->link($cart->user->id, ['controller' => 'Users', 'action' => 'view', $cart->user->id]) : '' ?></td>
-                    <td><?= $cart->has('item') ? $this->Html->link($cart->item->id, ['controller' => 'Items', 'action' => 'view', $cart->item->id]) : '' ?></td>
-                    <td><?= $this->Html->image($cart->item->product->image,  ['width' => 60, 'height' => 60]) ?></td>
+                    <td><?= $cart->has('product') ? $this->Html->link($cart->product->id, ['controller' => 'Products', 'action' => 'view', $cart->product->id]) : '' ?></td>
                     <td><?= $this->Number->format($cart->size) ?></td>
                     <td><?= $cart->orderd === null ? '' : $this->Number->format($cart->orderd) ?></td>
                     <td class="actions">
@@ -39,7 +37,6 @@
             </tbody>
         </table>
     </div>
-
     <div class="paginator">
         <ul class="pagination">
             <?= $this->Paginator->first('<< ' . __('first')) ?>

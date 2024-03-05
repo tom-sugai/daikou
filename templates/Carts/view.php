@@ -23,8 +23,8 @@
                     <td><?= $cart->has('user') ? $this->Html->link($cart->user->id, ['controller' => 'Users', 'action' => 'view', $cart->user->id]) : '' ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Item') ?></th>
-                    <td><?= $cart->has('item') ? $this->Html->link($cart->item->id, ['controller' => 'Items', 'action' => 'view', $cart->item->id]) : '' ?></td>
+                    <th><?= __('Product') ?></th>
+                    <td><?= $cart->has('product') ? $this->Html->link($cart->product->id, ['controller' => 'Products', 'action' => 'view', $cart->product->id]) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Id') ?></th>
