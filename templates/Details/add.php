@@ -2,7 +2,7 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Detail $detail
- * @var \Cake\Collection\CollectionInterface|string[] $items
+ * @var \Cake\Collection\CollectionInterface|string[] $products
  */
 ?>
 <div class="row">
@@ -19,7 +19,7 @@
                 <legend><?= __('Add Detail') ?></legend>
                 <?php
                     echo $this->Form->control('order_id');
-                    echo $this->Form->control('item_id', ['options' => $items]);
+                    echo $this->Form->control('product_id', ['options' => $products]);
                     echo $this->Form->control('size');
                     echo $this->Form->control('note1');
                     echo $this->Form->control('note2');

@@ -19,8 +19,8 @@
             <h3><?= h($detail->id) ?></h3>
             <table>
                 <tr>
-                    <th><?= __('Item') ?></th>
-                    <td><?= $detail->has('item') ? $this->Html->link($detail->item->id, ['controller' => 'Items', 'action' => 'view', $detail->item->id]) : '' ?></td>
+                    <th><?= __('Product') ?></th>
+                    <td><?= $detail->has('product') ? $this->Html->link($detail->product->id, ['controller' => 'Products', 'action' => 'view', $detail->product->id]) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Id') ?></th>

@@ -13,7 +13,7 @@
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('order_id') ?></th>
-                    <th><?= $this->Paginator->sort('item_id') ?></th>
+                    <th><?= $this->Paginator->sort('product_id') ?></th>
                     <th><?= $this->Paginator->sort('size') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
@@ -23,7 +23,7 @@
                 <tr>
                     <td><?= $this->Number->format($detail->id) ?></td>
                     <td><?= $this->Number->format($detail->order_id) ?></td>
-                    <td><?= $detail->has('item') ? $this->Html->link($detail->item->id, ['controller' => 'Items', 'action' => 'view', $detail->item->id]) : '' ?></td>
+                    <td><?= $detail->has('product') ? $this->Html->link($detail->product->id, ['controller' => 'Products', 'action' => 'view', $detail->product->id]) : '' ?></td>
                     <td><?= $this->Number->format($detail->size) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $detail->id]) ?>
