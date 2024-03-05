@@ -11,7 +11,7 @@
             </div>
             <div class="i-box-2">
                 <div class="i-comment"><?= "---- comment line -----" ?></div>
-                <div class="i-action"><?= $this->Html->link(__('カートに入れる'), ['controller' => 'Carts', 'action' => 'intoCart', $item->id], ['class' => 'button float-right']) ?></div>
+                <div class="i-action"><?= $this->Html->link(__('カートに入れる'), ['controller' => 'Carts', 'action' => 'intoCart', $item->product->id], ['class' => 'button float-right']) ?></div>
             </div>
         </div><!--end s-box-0-->
     <?php endforeach; ?>
