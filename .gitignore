@@ -6,7 +6,7 @@
 /tmp/*
 /vendor/*
 /webroot/img/*
-/db/act_buy.db
+/db/*
 
 # OS generated files #
 ######################
