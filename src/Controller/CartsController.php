@@ -172,32 +172,32 @@ class CartsController extends AppController
         //echo $this->loginUser->name . " is Login Now!! " . "<br>";
         
         $this->paginate = [
-            'contain' => ['Users', 'Items' => 'Products'],
+            'contain' => ['Users', 'Products'],
         ];
         //debug($this->loginUser->id);
-        $carts = $this->Carts->find()->contain(['Users', 'Items' => 'Products'])->where(['Carts.orderd = ' => 0])->where(['Carts.user_id = ' => $this->loginUser->id]);
+        $carts = $this->Carts->find()->contain(['Users', 'Products'])->where(['Carts.orderd = ' => 0])->where(['Carts.user_id = ' => $this->loginUser->id]);
         //debug($carts);
         $carts = $this->paginate($carts);
         $this->set(compact('carts'));
     }
 
-    public function intoCart($item_id){
+    public function intoCart($productId){
         $this->autoLayout = true;
         $this->autoRender = false;
         //echo "This is Carts Controller." . "<br>";
         //echo $this->loginUser->name . " is Login Now!! " . "<br>";
 
         // テーブルオブジェクトを取得
-        $itemsTable = TableRegistry::getTableLocator()->get('Items');        
-        $item = $itemsTable->get($item_id, [
-            'contain' => ['Users', 'Products'],
+        $productsTable = TableRegistry::getTableLocator()->get('Products');        
+        $product = $productsTable->get($productId, [
+            'contain' => [],
         ]);
-        //debug($item);
+        //debug($product);
 
         // Create Cart Entity
         $cart = $this->Carts->newEmptyEntity();
         $cart->user_id = $this->loginUser->id;
-        $cart->item_id = $item_id;
+        $cart->product_id = $product->id;
         $cart->size = 1;
         $cart->orderd = 0;
         $cart->created = Time::now();
@@ -206,7 +206,7 @@ class CartsController extends AppController
         $this->set('cart', $cart); 
 
         //debug($item->jancode);
-        if(($item->jancode - 493000) < 0){
+        if(($product->jancode - 493000) < 0){
             $this->autoRender = true;
             //$this->viewBuilder()->setLayout('default');         
             if ($this->request->is('post')) {
@@ -230,23 +230,8 @@ class CartsController extends AppController
             $this->Flash->error(__('The cart could not be saved. Please, try again.'));   
         }
         $users = $this->Carts->Users->find('list', ['limit' => 200])->all();
-        $items = $this->Carts->Items->find('list', ['limit' => 200])->all();
-        $this->set(compact('cart', 'users', 'items'));
-    
-
-        /** 
-        // save Cart Entity
-        if ($this->Carts->save($cart)) {
-            $this->Flash->success(__('The cart has been saved.'));
-            return $this->redirect(['controller' => 'Items', 'action' => 'otsukai']);
-        }
-        $this->Flash->error(__('The cart could not be saved. Please, try again.'));
-        */
-        /** 
-        $users = $this->Carts->Users->find('list', ['limit' => 200])->all();
-        $items = $this->Carts->Items->find('list', ['limit' => 200])->all();
-        $this->set(compact('cart', 'users', 'items'));
-        */
+        $products = $this->Carts->Products->find('list', ['limit' => 200])->all();
+        $this->set(compact('cart', 'users', 'products'));
     }
 
     /**
@@ -257,7 +242,7 @@ class CartsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Users', 'Items' => 'Products'],
+            'contain' => ['Users', 'Products'],
         ];
         $carts = $this->paginate($this->Carts);
         //debug($carts);
@@ -274,7 +259,7 @@ class CartsController extends AppController
     public function view($id = null)
     {
         $cart = $this->Carts->get($id, [
-            'contain' => ['Users', 'Items'],
+            'contain' => ['Users', 'Products'],
         ]);
 
         $this->set(compact('cart'));
@@ -300,8 +285,8 @@ class CartsController extends AppController
             $this->Flash->error(__('The cart could not be saved. Please, try again.'));
         }
         $users = $this->Carts->Users->find('list', ['limit' => 200])->all();
-        $items = $this->Carts->Items->find('list', ['limit' => 200])->all();
-        $this->set(compact('cart', 'users', 'items'));
+        $products = $this->Carts->Products->find('list', ['limit' => 200])->all();
+        $this->set(compact('cart', 'users', 'products'));
     }
 
     /**
@@ -328,8 +313,8 @@ class CartsController extends AppController
             $this->Flash->error(__('The cart could not be saved. Please, try again.'));
         }
         $users = $this->Carts->Users->find('list', ['limit' => 200])->all();
-        $items = $this->Carts->Items->find('list', ['limit' => 200])->all();
-        $this->set(compact('cart', 'users', 'items'));
+        $products = $this->Carts->Products->find('list', ['limit' => 200])->all();
+        $this->set(compact('cart', 'users', 'products'));
     }
 
     /**
