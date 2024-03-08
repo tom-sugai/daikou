@@ -68,12 +68,12 @@ class OrdersController extends AppController
 
         // Preparation Display orderd Items
         $this->paginate = [
-            'contain' => ['Users', 'Items' => 'Products'],
+            'contain' => ['Users', 'Products'],
         ];
 
         $userId = $this->loginUser->id;
         $cartsTable = TableRegistry::getTableLocator()->get('Carts');
-        $query = $cartsTable->find()->contain(['Users', 'Items' => 'Products'])
+        $query = $cartsTable->find()->contain(['Users', 'Products'])
             ->where(['Carts.user_id' => $userId])
             ->where(['Carts.orderd' => 1]);
         //debug($query->toArray());
@@ -81,8 +81,8 @@ class OrdersController extends AppController
         $this->set(compact('carts'));
 
         // step1 check orderdItems and make detail entity list
-         $orderdItems= $query->toArray();  
-        //debug($orderdItems);
+         $orderdProducts= $query->toArray();  
+        //debug($orderdProducts);
 
         // prepare Details Table
         $detailsTable = TableRegistry::getTableLocator()->get('Details');
@@ -90,16 +90,16 @@ class OrdersController extends AppController
         // Create detail entity Array
         $details = [];
         //$ndx = 0;
-        foreach($orderdItems as $orderdItem){
+        foreach($orderdProducts as $orderdProduct){
             // make empty Entity
             $detail = $detailsTable->newEmptyEntity();
             // set detail entity properties
             //$detail->order_id = $order->id; 
-            $detail->item_id = $orderdItem->item_id;
-            $detail->size = $orderdItem->size;
-            $detail->note1 = $orderdItem->note1;
-            $detail->note2 = $orderdItem->note2;
-            $detail->note3 = $orderdItem->note3;
+            $detail->product_id = $orderdProduct->id;
+            $detail->size = $orderdProduct->size;
+            $detail->note1 = $orderdProduct->note1;
+            $detail->note2 = $orderdProduct->note2;
+            $detail->note3 = $orderdProduct->note3;
             $detail->created = Time::now();
             $detail->modified = Time::now();   
             // set entity(detail) to Array(detailes[ndx])
@@ -129,7 +129,7 @@ class OrdersController extends AppController
                 // その後、$details[]の中の配列要素$detailのfileｄ($order_id)に値が挿入される
                 //debug($order);
                 // clean carts table( delete orderd cart record from carts table ) 
-                foreach($orderdItems as $orderItem){
+                foreach($orderdProducts as $orderItem){
                     $cartsTable->delete($orderItem);
                 }
                 return $this->redirect(['action' => 'confirm-order', $order->id]);
