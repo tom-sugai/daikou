@@ -92,10 +92,10 @@ class CartsController extends AppController
         //echo $this->loginUser->name . " is Login Now!! " . "<br>";
         
         $this->paginate = [
-            'contain' => ['Users', 'Items' => 'Products'],
+            'contain' => ['Users', 'Products'],
         ];
         //debug($this->loginUser->id);
-        $carts = $this->Carts->find()->contain(['Users', 'Items' => 'Products'])->where(['Carts.orderd = ' => 1])->where(['Carts.user_id = ' => $this->loginUser->id]);
+        $carts = $this->Carts->find()->contain(['Users', 'Products'])->where(['Carts.orderd = ' => 1])->where(['Carts.user_id = ' => $this->loginUser->id]);
         //debug($carts->toArray());
         $carts = $this->paginate($carts);
         $this->set(compact('carts'));
@@ -130,7 +130,7 @@ class CartsController extends AppController
 
         //$cart = $this->Carts->get($cartId);
         $cart = $this->Carts->get($cartId, [
-            'contain' => ['Users', 'Items' => 'Products'],
+            'contain' => ['Users', 'Products'],
         ]);
         $cart->orderd = 1;
         $cart->created = Time::now();
@@ -138,7 +138,7 @@ class CartsController extends AppController
         $this->set('cart', $cart); 
 
         //debug($cart->item->jancode);
-        if(($cart->item->jancode - 493000) < 0){
+        if(($cart->product->jancode - 493000) < 0){
             $this->autoRender = true;         
             if ($this->request->is(['patch', 'post', 'put'])) {
                 $cart = $this->Carts->patchEntity($cart, $this->request->getData());
@@ -160,8 +160,8 @@ class CartsController extends AppController
             $this->Flash->error(__('The cart could not be saved. Please, try again.'));   
         }
         $users = $this->Carts->Users->find('list', ['limit' => 200])->all();
-        $items = $this->Carts->Items->find('list', ['limit' => 200])->all();
-        $this->set(compact('cart', 'users', 'items'));
+        $products = $this->Carts->Products->find('list', ['limit' => 200])->all();
+        $this->set(compact('cart', 'users', 'products'));
     }
 
     public function checkCart(){
