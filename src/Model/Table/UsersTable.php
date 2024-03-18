@@ -50,6 +50,11 @@ class UsersTable extends Table
         $this->hasMany('Items', [
             'foreignKey' => 'user_id',
         ]);
+
+        $this->hasOne('Accounts', [
+            'foreignKey' => 'user_id',            
+        ]);
+
         // add 2024-01-07
         /*
         $this->hasMany('Products', [
