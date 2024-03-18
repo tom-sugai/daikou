@@ -48,6 +48,6 @@ class Product extends Entity
         'created' => true,
         'modified' => true,
         'user' => true,
-        'items' => true,
+        'details' => true,
     ];
 }
