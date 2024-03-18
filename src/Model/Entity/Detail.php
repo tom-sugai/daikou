@@ -42,6 +42,6 @@ class Detail extends Entity
         'created' => true,
         'modified' => true,
         'order' => true,
-        'item' => true,
+        'product' => true,
     ];
 }
