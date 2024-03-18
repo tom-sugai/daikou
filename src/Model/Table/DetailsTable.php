@@ -56,9 +56,6 @@ class DetailsTable extends Table
             'foreignKey' => 'product_id',
             'joinType' => 'INNER',
         ]);
-        $this->hasMany('Orders', [
-            'foreignKey' => 'detail_id',
-        ]);
     }
 
     /**
