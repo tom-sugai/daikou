@@ -7,6 +7,7 @@ tmp/*
 vendor/*
 webroot/img/*
 webroot/data/item-list-jan-code.csv
+db/*
 db/act_buy.db
 
 # OS generated files #
