@@ -37,6 +37,7 @@ class OrdersController extends AppController
 
         // loginUser --- Authentication コンポーネントで取得
         $this->loginUser = $this->Authentication->getIdentity();
+        //debug($this->loginUser);
         $this->Authentication->allowUnauthenticated(['order']);
     }
 
@@ -46,17 +47,17 @@ class OrdersController extends AppController
         $this->viewBuilder()->setLayout('otsukai_layout');
 
         $order = $this->Orders->get($id, [
-            'contain' => ['Users', 'Details' => ['Items' => 'Products']],
-        ]);
+            'contain' => ['Users' => 'Accounts', 'Details' => 'Products']]);
         //debug($order);
         $this->set(compact('order'));
         $this->set('details', $order->details);
-        
+
         // put here Event dispatch program
         $message = "Thank you for Order from shop";
         $event = new Event('Notification.E-Mail',$this,['message' => $message, 'order' => $order]);
         //debug($event);
-        $this->getEventManager()->dispatch($event);        
+        $this->getEventManager()->dispatch($event);
+        echo "Order completed !! from Order/confirmOrder ";      
     }
 
     public function fixOrder(){
@@ -66,7 +67,7 @@ class OrdersController extends AppController
         //echo "This is Orders/fixOrder Controller/Action." . "<br>";
         //echo $this->loginUser->name . " is Login Now!! " . "<br>";
 
-        // Preparation Display orderd Items
+        // Preparation Display orderd Products
         $this->paginate = [
             'contain' => ['Users', 'Products'],
         ];
@@ -79,6 +80,16 @@ class OrdersController extends AppController
         //debug($query->toArray());
         $carts = $this->paginate($query);
         $this->set(compact('carts'));
+
+        //---------------------------------------------------
+
+        $usersTable = TableRegistry::getTableLocator()->get('Users');
+        $user = $usersTable->get($this->loginUser->id, [
+            'contain' => ['Accounts'],
+        ]);
+        $account = $user->account;
+        //debug($account);
+        $this->set('account', $account);
 
         // step1 check orderdItems and make detail entity list
          $orderdProducts= $query->toArray();  
@@ -95,7 +106,7 @@ class OrdersController extends AppController
             $detail = $detailsTable->newEmptyEntity();
             // set detail entity properties
             //$detail->order_id = $order->id; 
-            $detail->product_id = $orderdProduct->id;
+            $detail->product_id = $orderdProduct->product_id;
             $detail->size = $orderdProduct->size;
             $detail->note1 = $orderdProduct->note1;
             $detail->note2 = $orderdProduct->note2;
@@ -123,14 +134,16 @@ class OrdersController extends AppController
         // and save with Note1,Note2, Note3 fileds from input form(Order)
         if ($this->request->is('post')) {
             $order = $this->Orders->patchEntity($order, $this->request->getData());
+            //debug($order);
             // save order to ordersTable              
             if ($this->Orders->save($order)) {;
                 // $orderのidが確定
                 // その後、$details[]の中の配列要素$detailのfileｄ($order_id)に値が挿入される
-                //debug($order);
+                //debug($order); 
                 // clean carts table( delete orderd cart record from carts table ) 
-                foreach($orderdProducts as $orderItem){
-                    $cartsTable->delete($orderItem);
+                foreach($orderdProducts as $orderdProduct){
+                    $cartsTable->delete($orderdProduct);
+
                 }
                 return $this->redirect(['action' => 'confirm-order', $order->id]);
             } else {
