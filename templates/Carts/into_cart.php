@@ -3,7 +3,7 @@
         <fieldset >
             <legend style="font-size:1.2rem;"><?= __('注文情報入力') ?></legend>
             <?= $this->Form->control('user_id', ['options' => $users]); ?>
-            <?= $this->Form->control('item_id', ['options' => $items]); ?>
+            <?= $this->Form->control('product_id', ['options' => $products]); ?>
             <?= $this->Form->control('size'); ?>
             <?= $this->Form->control('orderd'); ?>
             <?= $this->Form->control('note1',['label' => ['style' => 'font-size:1.0rem']]) ?>
