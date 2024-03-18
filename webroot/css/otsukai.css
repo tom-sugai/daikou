@@ -127,12 +127,13 @@ html            { max-width: 110rem; margin: 0 auto; }
         width:9.0rem;
     }
 
-    .input, .text {color:blue;}
+    .input, .text {color:blue;font-size: 1.0rem;}
     #confirmform-name {color:black;font-size:1.2rem;}
     #confirmform-tel {color:black;display:inline;}
     #confirmform-email {color:chocolate;}
     
     .table-responsive {border:0.1rem solid red}
+    label { font-size: 1.0rem;}
 
     /* paginatoer layout */
     .pctrl {
