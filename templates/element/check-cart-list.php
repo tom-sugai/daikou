@@ -4,7 +4,7 @@
         <?php foreach ($carts as $cart): ?>
             <div class="content-list">
             <div class="base-info">   
-                <li><?= $cart->id ?></li>
+            <li><?= $cart->has('product') ? $this->Html->link($cart->product->id, ['controller' => 'Products', 'action' => 'view', $cart->product->id]) : '' ?></li>
                 <li><?= $this->Html->image($cart->product->image,  ['width' => 60, 'height' => 60]) ?></li>
             </div>
             <div class="side-box">                
