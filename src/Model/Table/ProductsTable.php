@@ -52,9 +52,11 @@ class ProductsTable extends Table
             'foreignKey' => 'user_id',
             'joinType' => 'INNER',
         ]);
-        $this->hasMany('Items', [
+         
+        $this->hasMany('Details', [
             'foreignKey' => 'product_id',
         ]);
+    
     }
 
     /**
@@ -115,7 +117,7 @@ class ProductsTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->existsIn('user_id', 'Users'), ['errorField' => 'user_id']);
-
+        //$rules->add($rules->existsIn('product_id', 'Details'), ['errorField' => 'product_id']);
         return $rules;
     }
 }
