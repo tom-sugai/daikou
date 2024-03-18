@@ -8,15 +8,15 @@
         <?php foreach ($details as $detail): ?>
             <div class="content-list">
             <div class="base-info">   
-                <li><?= $detail->has('item') ? $this->Html->link($detail->item->id, ['controller' => 'Items', 'action' => 'view', $detail->item->id]) : '' ?></li>
-                <li><?= $this->Html->image($detail->item->product->image,  ['width' => 60, 'height' => 60]) ?></li>
+                <li><?= $this->Html->link($detail->product->id, ['controller' => 'Items', 'action' => 'view', $detail->product->id]) ?></li>
+                <li><?= $this->Html->image($detail->product->image,  ['width' => 60, 'height' => 60]) ?></li>
             </div>
             <div class="side-box">                
                 <div class="name-price">
-                    <?= $detail->item->product->pname ?>
+                    <?= $detail->product->pname ?>
                     <?= $this->Number->format($detail->size) ?>
-                    <?= $this->Number->format($detail->item->product->price) ?>
-                    <?php $subtotal = $detail->size * $detail->item->product->price; ?>
+                    <?= $this->Number->format($detail->product->price) ?>
+                    <?php $subtotal = $detail->size * $detail->product->price; ?>
                     <?= $this->Number->format($subtotal) ?>
                 </div>
                 <div class="add-info">
@@ -25,7 +25,7 @@
                     <?= $detail->note3 ?>
                 </div>
             </div>
-        <?php $total = $total + $subtotal; ?>        
+        <?php $total = $total + $subtotal + $detail->note3; ?> 
         <?php endforeach; ?>
     </ul>
     <?= "注文の合計金額は " . $total . " 円です。" . "<br>" ?>
