@@ -1,5 +1,7 @@
 <?= "注文番号 : " . $order->id ?><br>
 <?= "依頼者のお名前 : " . $order->user->name ?><br>
+<?= "お買物商品のリスト" ?><br>
+<hr></hr>
 <?php $total = 0; ?>
 <?php foreach ($order->details as $detail): ?>
 		<img src="<?= $detail->product->image ?>"  height="40" width="40" alt=""/>
