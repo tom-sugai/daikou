@@ -21,7 +21,7 @@
         <fieldset >
             <legend style="font-size:1.2rem;"><?= __('注文情報入力') ?></legend>
             <?= $this->Form->control('note1',['label' => 'お届け先', 'value' => $account->address1, 'style' => ['font-size:1.2rem;']]) ?>
-            <?= $this->Form->control('note2',['label' => 'お届け日', 'value' => "直近の金曜日の13:00",'style' => ['font-size:1.2rem;']]) ?>
+            <?= $this->Form->control('note2',['label' => 'お届け日', 'value' => $deliveryDate . " 13:00~14:00 ",'style' => ['font-size:1.2rem;']]) ?>
             <?= $this->Form->control('note3',['label' => 'お支払い', 'value' => "Cogica Card", 'style' => ['font-size:1.2rem;']]) ?>
         </fieldset>
     <?= $this->Form->button(__('注文の確定')) ?>
