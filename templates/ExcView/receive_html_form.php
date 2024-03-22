@@ -1,2 +1,2 @@
 <!--<?= $loginUser . "<br>" ?>-->
-<?= "This is receive_html_form.php template" . "<br>" ?>
+<?= "This is receive_cake_form.php template" . "<br>" ?>
