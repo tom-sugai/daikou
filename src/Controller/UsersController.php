@@ -27,7 +27,7 @@ class UsersController extends AppController
         //debug($result);
         // ログインできた場合
         if ($result->isValid()) {
-            $target = $this->Authentication->getLoginRedirect() ?? '/items/otsukai';
+            $target = $this->Authentication->getLoginRedirect() ?? '/top/index';
             return $this->redirect($target);
         }
         // ログインできなかった場合
