@@ -1,3 +1,3 @@
-<?= $loginUser . "<br>" ?>
+<?= $username . "<br>" ?>
 <?= $message . "<br>" ?>
-<?= $text1 ?>
+<?= "text-1 [read from Configure()]" . " : " . $text1 ?>
