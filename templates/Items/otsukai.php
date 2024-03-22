@@ -10,6 +10,7 @@
     <?= "Login User : " . $username ?>
     <p><?= "商品を選んでカートに入れてください。商品を選んだらカートの中を確認してください。" ?>
     <?= $this->Html->link(__('カートをチェック'), ['controller' => 'Carts', 'action' => 'checkCart'], ['class' => 'button10']) ?></p>
+    <?= $this->Html->link(__('Go Top/Index'), ['controller' => 'Top', 'action' => 'index'], ['class' => 'button10']) ?></p>
 </div>
 <div class="categoryform">
             <?= $this->Form->create(null, ['type' => 'post', 'url' => ['action' => 'otsukai']]) ?>
