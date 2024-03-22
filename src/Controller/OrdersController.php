@@ -61,6 +61,46 @@ class OrdersController extends AppController
     }
 
     public function fixOrder(){
+
+        function deliveryDate()
+        {
+            //echo "Time Calculation" . "<br>";
+            //echo time() . "<br>";
+            $dt = getdate();
+            //var_dump($dt);
+            //echo "<br>" . "\$dt[0] : " . $dt[0] . "<br><br>";
+            //echo "today is : " . date("Y/m/d(D)", $dt[0]) . "<br>";
+            //echo "dt['wday'] : " . $dt['wday'] . "<br>";
+            //$days = 5 - $dt['wday'];
+
+            $deliveryDate = "";
+            switch(5 - $dt['wday']):
+                case -1:
+                    //来週の金曜日
+                    $next_week_fri_timestamp = $dt[0] + (60 * 60 * 24) * 6;
+                    $fmt = "Y年m月d日(D)";
+                    //echo "next week Friday is : " . date($fmt, $next_week_fri_timestamp) . "<br>";
+                    $deliveryDate =  date($fmt, $next_week_fri_timestamp);
+                    break;
+                case  0:
+                    //来週の金曜日
+                    $next_week_fri_timestamp = $dt[0] + (60 * 60 * 24) * 7;
+                    $fmt = "Y年m月d日(D)";
+                    //echo "next week Friday is : " . date($fmt, $next_week_fri_timestamp) . "<br>";
+                    $deliveryDate =  date($fmt, $next_week_fri_timestamp);
+                    break;
+                default:
+                    //今週の金曜日
+                    $next_fri_timestamp = $dt[0] + (60 * 60 * 24) * (5 - $dt['wday']);
+                    $fmt = "Y年m月d日(D)";
+                    //echo "next Friday is : " . date($fmt, $next_fri_timestamp) . "<br>";
+                    $deliveryDate =  date($fmt, $next_fri_timestamp);
+            endswitch;
+
+            return $deliveryDate;
+
+        };
+
         $this->autoLayout = true;
         $this->autoRender = true;
         $this->viewBuilder()->setLayout('otsukai_layout');
@@ -129,6 +169,9 @@ class OrdersController extends AppController
 
         // set for orders Form which is to input Oders fields Note1, Note2, Note3
         $this->set('order',$order);
+        // set for Note2 deliveryData
+        $deliveryDate = deliveryDate();
+        $this->set('deliveryDate', $deliveryDate);
 
         // Save order with some related details using details[] array automatecalyly. 
         // and save with Note1,Note2, Note3 fileds from input form(Order)
@@ -143,7 +186,6 @@ class OrdersController extends AppController
                 // clean carts table( delete orderd cart record from carts table ) 
                 foreach($orderdProducts as $orderdProduct){
                     $cartsTable->delete($orderdProduct);
-
                 }
                 return $this->redirect(['action' => 'confirm-order', $order->id]);
             } else {
