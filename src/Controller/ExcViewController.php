@@ -38,16 +38,23 @@ class ExcViewController extends AppController
 
         // loginUser --- Authentication コンポーネントで取得
         $this->identity = $this->Authentication->getIdentity();
-        //$this->set('loginUser', $this->identity->name);
         //debug($this->identity);
+        //$this->set('loginUser', $this->identity->name);
         //$this->Authentication->allowUnauthenticated(['index']);
     }
 
     public function index()
     {
+        $this->autoLayout = true;
+        $this->autoRender = true;
+        $this->viewBuilder()->setLayout('otsukai_layout');
+        $this->set('headertext', 'This is Eexc View Exercise');
+        $user = $this->Authentication->getIdentity();
+        //debug($user->email);
+
         $message = "This is ExcViewController.php.";
         $this->set('message', $message);
-        echo $this->text1 . "<---- out by echo" . "<br>";
+        //echo $this->text1 . "<---- out by echo" . "<br>";
 
     }
 
