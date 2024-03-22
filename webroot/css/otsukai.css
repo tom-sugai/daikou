@@ -123,8 +123,8 @@ html            { max-width: 110rem; margin: 0 auto; }
     .button,button,input[type='button'],input[type='reset'],input[type='submit'] {
         background-color:#d33c43;border:0.1rem solid #d33c43;border-radius:.4rem;color:#fff;cursor:pointer;
         display:inline-block;font-size:1.1rem;font-weight:700;height:2.0rem;letter-spacing:.1rem;line-height:2.0rem;
-        padding:0 0.2rem;text-align:left;text-decoration:none;text-transform:uppercase;white-space:nowrap;
-        width:9.0rem;
+        padding:0 0.2rem;text-align:center;text-decoration:none;text-transform:uppercase;white-space:nowrap;
+        width:12.0rem;
     }
 
     .input, .text {color:blue;font-size: 1.0rem;}
