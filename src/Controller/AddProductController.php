@@ -41,7 +41,7 @@ class AddProductController extends AppController
         $usersTable = TableRegistry::getTableLocator()->get('Users');
         // get client list
         $this->client_array = $usersTable->find()
-            ->where(['role =' => 'client'])
+            //->where(['role =' => 'client'])
             ->all()
             ->extract('email')
             ->toArray();
@@ -135,7 +135,7 @@ class AddProductController extends AppController
     {
         $this->autoLayout = false;
         $this->autoRender = false;
-
+        debug($jancodeList);
         // テーブルオブジェクトを取得
         $productsTable = TableRegistry::getTableLocator()->get('Products');
         // exist in the Products Table ? search jancode !
