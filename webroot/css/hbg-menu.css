@@ -9,9 +9,9 @@
 }
 
 nav { position: relative; top: 0px; left:0px;  /*追記*/
-      z-index: 998; height: 300px; width: 120px;  /*追記*/
+      z-index: 998; height: 400px; width: 120px;  /*追記*/
       padding: 80px 1% 10px;/*調整*/   
-      background-color: #a1cce6; color: #000000; 
+      background-color: #a1cce6; color: #000000; font-size:1.2rem;
 }
 
 .content{
