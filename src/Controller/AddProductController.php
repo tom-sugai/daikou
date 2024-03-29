@@ -41,7 +41,7 @@ class AddProductController extends AppController
         $usersTable = TableRegistry::getTableLocator()->get('Users');
         // get client list
         $this->client_array = $usersTable->find()
-            //->where(['role =' => 'client'])
+            ->where(['OR' => ['role =' => 'client', 'role' => 'editor', 'role' => 'admin']])
             ->all()
             ->extract('email')
             ->toArray();
@@ -63,7 +63,7 @@ class AddProductController extends AppController
 
     }
 
-    public function setCsvName(){
+    public function setListCsvClient(){
         $this->autoLayout = true;
         $this->autoRender = true;
         $this->viewBuilder()->setLayout('default');
@@ -78,88 +78,161 @@ class AddProductController extends AppController
     public function getCsvFile(){
         $this->autoLayout = true;
         $this->autoRender = true;
-
-        echo "This is getCsvFile() method !!" . "<br><br>";
-
+        echo "This is getCsvFile() method !!" . "<br>";
         // select csv file & Client Name
         $result1 = "";
         $result2 = "";
-
         // get Form
         if ($this->request->isPost()){
             $result1 = $this->request->getData('select-1');
             $result2 = $this->request->getData('select-2');
         }
-
         $this->set('result1', $result1);
         $this->set('result2', $result2);
-
         // check csv name
         if($result1 != null){
             $csvFile =  $this->csv_array[$result1];
+            echo $csvFile . "<br>";
         }
-        //debug($csvName);
-
         // check Client Name
         if($result2 != null){
             $clientEmail = $this->client_array[$result2];
+            echo $clientEmail . "<br>";
         }
-        //debug($clientEmail);
+        //go to checkCsv()
+        $this->setAction('checkCsv', $csvFile);  
+    }
+   
+    public function checkCsv($csvFile)
+    {   
+        $this ->autoLayout = false;
+        $this->autoRender = true;
+        echo "This is checkCsv() ." ."<br>";
 
+        // prepare variables
+        $data = [];
+        //$lines = 0;
+
+        // open csv file
+        $file = fopen("data/$csvFile",'r');
+        // read 1st data line
+        $data[] = fgetcsv($file,1000);
+        // check n : number of elements in the array
+        $n = count($data[0]);  
+        echo "n : " . $n . " number of elements in the array. <br>";
+
+        // read from 2nd data line until end.
+        while(!feof($file))
+        {
+            $data[] = fgetcsv($file, 1000);
+            //$lines++;
+        }
+        fclose($file);
+
+        // remove array element top
+        $remove_top = array_shift($data);
+
+        // check data[], jancode column of eache line in $ary_line[4]
+        // $j is line conuter. start from 1. becouse vscode editor line count start 1.
+        $j = 1;
+        foreach($data as $ary_line)
+        {
+            $j++;
+            if($ary_line != null)
+            {
+                /** 
+                echo "------------------------" . "<br>";
+                for( $i=0; $i < $n; $i++)
+                {
+                    echo $ary_line[$i] . " | ";   
+                }
+                echo "<br>";
+                */
+                // check jancode ketasuu
+                //　正規表現の判定関数を記述する : $ary_line[4] != "13桁の数字"
+                $str = $ary_line[4];
+                $pattern = "/[0-9]{13}/";
+                if(!preg_match( $pattern, $str, $result )) 
+                {
+                    echo "line No. : $j is bad data : " . $str . "<br>";
+                }
+            }                
+        }
+        echo "find last data. line No. $j is null (on line order csv file)" . "<br>";
         // go to next action;
-        $this->setAction('readJancodeCsv', $csvFile);   
+        $this->setAction('readJancodeCsv', $csvFile); 
     }
 
     public function readJancodeCsv($csvFile){
         $this->autoLayout = true;
         $this->autoRender = true;
-        $msg = "Read csv file and then make jan-code-list.";
+        $msg = "Create jan-code-list array for next step checkExistDb().";
         $this->set('msg', $msg);
 
-        // 商品リスト（csv file: /webroot/data/）を読み込んで配列(items)に格納
-        // $file-path ='data/file-name.csv'
+        // csv file: /webroot/data/csvFile を読み込む
+        // set $file-path ='data/file-name.csv'
         $csv_path ="data/" . $csvFile;
+        // open csv file
         $file = fopen($csv_path, 'r');
-        $jancodeList = [];
-        $idx = 0;
+
+        // prepar array data[]
+        $data = [];
+        //read csv line to data[]
         while(feof($file) == False) {
-            $jancodeList[$idx] = fgetcsv($file, 100);
-            $idx++;
+            $data[] = fgetcsv($file, 1000);
         }
-        $this->set('jancodeList', $jancodeList);
+        // remove array element top & tail
+        $remove_top = array_shift($data);
+        $remove_last = array_pop($data);
+        // lines is  csv line number 
+        $lines = count($data);
+        $this->set('lines', $lines);
+        $this->set('data', $data);
+
+        // create jancodelist array
+        $jancodeList = [];
+        // extract jancode from $data[4]
+        foreach($data as $rowData){
+            $jancodeList[] = $rowData[4];
+        }
+        //debug($jancodeList);
         $this->setAction('checkExistDb', $jancodeList);
-        //$this->setAction('buildProductArray', $jancodeList);
     }
 
     public function checkExistDb($jancodeList)
     {
         $this->autoLayout = false;
-        $this->autoRender = false;
-        debug($jancodeList);
+        $this->autoRender = true;
+
         // テーブルオブジェクトを取得
         $productsTable = TableRegistry::getTableLocator()->get('Products');
-        // exist in the Products Table ? search jancode !
-        $jancodeList2 =[];
-        $idx = 0;
+
+        // exist in the Products Table
+        // prepar variables
+        $unExistList =[];
+        //$idx = 0;
+        // search jancode !
         foreach ($jancodeList as $jancode){
-            $jcode = $jancode[4];
+            //$jcode = $jancode[4];
             $query = $productsTable->find();
-            $result = $query->where(['jancode = ' => $jcode])->toArray();
+            $result = $query->where(['jancode = ' => $jancode])->toArray();
             //debug($result);
             if ($result == null){
-                // if exist in the Products Table ---> add $jcode to $jancodeList2[$idx]
-                $jancodeList2[$idx] =  $jancodeList2[$idx] + $jancode;
+                // if did'nt exist in the Products Table ---> add $jcode to $unExistList[]
+                $unExistList[] +=  $jancode;
             }
-            $idx++;
+            //$idx++;
         }
-        //debug($jancodeList2);
-        if($jancodeList2 != null){
-            $this->setAction('buildProductArray', $jancodeList2);            
+        //debug($unExistList);
+        
+        if($unExistList != null){
+            $this->setAction('buildProductArray', $unExistList);            
         }
-        echo "New Product is Nothing!!" . "<br><br>";    
+        echo "New Product is Nothing!!" . "<br>";
+        $this->autoRender = true;
     }
 
-    public function buildProductArray($jancodeList2){
+    public function buildProductArray($unExistList){
         $this->autoLayout = true;
         $this->autoRender = true;
 
@@ -171,10 +244,10 @@ class AddProductController extends AppController
         $idx = 0;
         //create http-client instance
         $http = new Client();
-        foreach ($jancodeList as $jancode){
-            // $jancodeList[n] から $jancode[4] を取り出してYahooで検索、結果のイメージ、janCode、商品名を、配列 $productArray へ格納する  
+        foreach ($unExistList as $jancode){
+            // $unExistList から $jancode を取り出してYahooで検索、結果のイメージ、janCode、商品名を、配列 $productArray へ格納する  
             // call ShoppingWebService with $jancode[4] (= jancode).
-            $jcode = $jancode[4];
+            $jcode = $jancode;
             $appId = 'dj00aiZpPTY0eUxBNDFjUVpvYiZzPWNvbnN1bWVyc2VjcmV0Jng9ODc-';    
             $response = $http->get('https://shopping.yahooapis.jp/ShoppingWebService/V3/itemSearch?appid=' . $appId . '&jan_code=' . $jcode . '&results=1');    
             if($response->getStatusCode() == 200){
@@ -184,7 +257,7 @@ class AddProductController extends AppController
                 if($responseArray['hits'] != null)
                 {
                     // Request Success 
-                    // extract itemImage, janCode, itemName
+                    // get & copy janCode, name, brand, category_name, image url, site url
                     // janCode : $responseArray['hits'][0]['janCode']
                     $productArray[$idx]['jancode'] = $responseArray['hits'][0]['janCode'];
                     // itemName : $responseArray['hits'][0]['name']
@@ -199,8 +272,7 @@ class AddProductController extends AppController
                     $productArray[$idx]['site'] = $responseArray['hits'][0]['url'];
                     // store empty
                     $productArray[$idx]['store'] = null;
-                    //debug($productArray[$idx]);
-                    
+                    //debug($productArray[$idx]);   
                 }   else {
                      // Request failure, did'nt exist $responseArray['hits'] == null
                     // set null to all fileds without jancode
@@ -299,7 +371,7 @@ class AddProductController extends AppController
         // for test
         $array = ['a' => 10, 'b' => 20, 'c' => 30];
         $json_array = json_encode($array);
-        debug($json_array);
+        //debug($json_array);
         $this->set('json_array', $json_array);
     }
 }
