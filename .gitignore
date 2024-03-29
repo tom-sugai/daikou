@@ -55,3 +55,8 @@ nbproject/*
 # yarn
 yarn-debug.log
 yarn-error.log
+webroot/data/2024032812without-title-jan-code-list.csv
+webroot/data/without-title-202310311329364.csv
+webroot/data/without-title-jan-code-list.csv
+webroot/data/codes_202311022226590.csv
+.gitignore
