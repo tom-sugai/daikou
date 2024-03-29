@@ -45,6 +45,10 @@ $cakeDescription = 'Otsukai';
               <li><a href=""><?= $this->Html->link(__('List Items'), ['controller' => 'Items', 'action' => 'index']) ?></a></li>
               <li><a href=""><?= $this->Html->link(__('List Products'), ['controller' => 'Products', 'action' => 'index']) ?></a></li>
               <li><a href=""><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></a></li>
+              <li><a href=""><?= $this->Html->link(__('Go Exc/View'), ['controller' => 'ExcView', 'action' => 'index']) ?></a></li>
+              <li><a href=""><?= $this->Html->link(__('Go CsvLoad'), ['controller' => 'FileLoad', 'action' => 'index']) ?></a></li>
+              <li><a href=""><?= $this->Html->link(__('Go AddProduct'), ['controller' => 'AddProduct', 'action' => 'set-list-csv-client']) ?></a></li>
+              <li><a href=""><?= $this->Html->link(__('Go AddItem'), ['controller' => 'AddItem', 'action' => 'set-csv-list-client-list']) ?></a></li>
           </ul>  
       </nav>
     </div>
