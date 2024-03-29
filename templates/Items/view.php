@@ -38,9 +38,33 @@
                 </blockquote>
             </div>
             <div class="text">
-                <strong><?= __('Store') ?></strong>
+                <strong><?= __('Mycategory') ?></strong>
                 <blockquote>
-                    <?= $this->Text->autoParagraph(h($item->store)); ?>
+                    <?= $this->Text->autoParagraph(h($item->mycategory)); ?>
+                </blockquote>
+            </div>
+            <div class="text">
+                <strong><?= __('Mystore') ?></strong>
+                <blockquote>
+                    <?= $this->Text->autoParagraph(h($item->mystore)); ?>
+                </blockquote>
+            </div>
+            <div class="text">
+                <strong><?= __('Note1') ?></strong>
+                <blockquote>
+                    <?= $this->Text->autoParagraph(h($item->note1)); ?>
+                </blockquote>
+            </div>
+            <div class="text">
+                <strong><?= __('Note2') ?></strong>
+                <blockquote>
+                    <?= $this->Text->autoParagraph(h($item->note2)); ?>
+                </blockquote>
+            </div>
+            <div class="text">
+                <strong><?= __('Note3') ?></strong>
+                <blockquote>
+                    <?= $this->Text->autoParagraph(h($item->note3)); ?>
                 </blockquote>
             </div>
             <div class="text">

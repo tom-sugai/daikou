@@ -5,18 +5,15 @@
  */
 ?>
 <div class="items index content">
-    <?= $this->Html->link(__('New Item'), ['controller' => 'Items', 'action' => 'add'], ['class' => 'button float-right']) ?>
-    <h4><?= __('Items') ?></h4>
+    <?= $this->Html->link(__('New Item'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <h3><?= __('Items') ?></h3>
     <div class="table-responsive">
         <table>
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('user_id') ?></th>
-                    <!--<th><?= $this->Paginator->sort('product_id') ?></th>-->
-                    <th><?= "Store" ?></th>
-                    <th><?= "Image" ?></th>
-                    <th><?= "Product Name" ?></th>
+                    <th><?= $this->Paginator->sort('product_id') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -24,10 +21,8 @@
                 <?php foreach ($items as $item): ?>
                 <tr>
                     <td><?= $this->Number->format($item->id) ?></td>
-                    <td><?= $item->has('user') ? $this->Html->link($item->user->name, ['controller' => 'Users', 'action' => 'view', $item->user->id]) : '' ?></td>
-                    <td><?= $item->store ?></td>
-                    <td><?= $this->Html->image($item->product->image,  ['width' => 60, 'height' => 60]) ?></td>
-                    <td><?= $item->has('product') ? $this->Html->link($item->product->pname, ['controller' => 'Products', 'action' => 'view', $item->product->id]) : '' ?></td>
+                    <td><?= $item->has('user') ? $this->Html->link($item->user->id, ['controller' => 'Users', 'action' => 'view', $item->user->id]) : '' ?></td>
+                    <td><?= $item->has('product') ? $this->Html->link($item->product->id, ['controller' => 'Products', 'action' => 'view', $item->product->id]) : '' ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $item->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $item->id]) ?>

@@ -10,17 +10,18 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $user_id
- * @property string|null $category
- * @property string $jancode
- * @property string|null $pname
- * @property string|null $brand
- * @property string|null $store
- * @property string|null $image
- * @property string|null $site
+ * @property int $product_id
+ * @property string|null $jancode
+ * @property string|null $mycategory
+ * @property string|null $mystore
+ * @property string|null $note1
+ * @property string|null $note2
+ * @property string|null $note3
  * @property string|null $created
  * @property string|null $modified
  *
  * @property \App\Model\Entity\User $user
+ * @property \App\Model\Entity\Product $product
  */
 class Item extends Entity
 {
@@ -37,9 +38,14 @@ class Item extends Entity
         'user_id' => true,
         'product_id' => true,
         'jancode' => true,
-        'store' => true,
+        'mycategory' => true,
+        'mystore' => true,
+        'note1' => true,
+        'note2' => true,
+        'note3' => true,
         'created' => true,
         'modified' => true,
         'user' => true,
+        'product' => true,
     ];
 }

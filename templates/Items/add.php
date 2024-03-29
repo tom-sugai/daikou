@@ -22,7 +22,11 @@
                     echo $this->Form->control('user_id', ['options' => $users]);
                     echo $this->Form->control('product_id', ['options' => $products]);
                     echo $this->Form->control('jancode');
-                    echo $this->Form->control('store');
+                    echo $this->Form->control('mycategory');
+                    echo $this->Form->control('mystore');
+                    echo $this->Form->control('note1');
+                    echo $this->Form->control('note2');
+                    echo $this->Form->control('note3');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
