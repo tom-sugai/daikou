@@ -6,3 +6,4 @@
         <?= $element['image'] . "<br/>"  ?>
         <?= $element['site'] . "<br/>" ?>
 <?php endforeach; ?>
+<?= $this->Html->link(__('Go Top/index'), ['controller' => 'Top', 'action' => 'index'], ['class' => 'button']) ?>
