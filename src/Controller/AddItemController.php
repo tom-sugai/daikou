@@ -57,7 +57,7 @@ class AddItemController extends AppController
         //debug($this->response);
     }
 
-    public function setCsvClientList()
+    public function setCsvListClientList()
     {
         $this->autoLayout = true;
         $this->autoRender = true;
@@ -70,12 +70,12 @@ class AddItemController extends AppController
         $this->set('client_list', $this->client_array);
     }
 
-    public function getCsvClientName()
+    public function getCsvFileClientName()
     {
         $this->autoLayout = true;
         $this->autoRender = true;
 
-        echo "This is getCsvClientName method !!" . "<br><br>";
+        echo "This is getCsvFileClientName method !!" . "<br><br>";
 
         // select csv file & Client Name
         $result1 = "";
@@ -102,7 +102,7 @@ class AddItemController extends AppController
             //debug($this->clientEmail);
         }
 
-        // go to next action;
+        // go to next action
         $this->setAction('readCsvFile', $csvFile);   
     }
 
@@ -152,11 +152,11 @@ class AddItemController extends AppController
         }
         //debug($jancodeList2);
         if($jancodeList2 != null){   // there are some items that did'nt enter in the Products table.
-            echo "These jancode items are not exist in the Products table. !!" . "<br>";
-            echo "Please enter these jancode items to the Products table !!" . "<br><br>";
+            echo "These Products didn't exist in the Products table. !!" . "<br>";
+            echo "First, Please add these Products to the Products table !!" . "<br><br>";
             $this->setAction('echoProductList', $jancodeList2);
         } else {
-            echo "There are all items in the Products table. !!" . "<br><br>";
+            echo "These Products exist in the Products table. !!" . "<br><br>";
             $this->setAction('checkExistItemsTable', $jancodeList);       
         }   
     }
@@ -198,7 +198,8 @@ class AddItemController extends AppController
         if($jancodeList2 != null){
             $this->setAction('buildItemArray', $jancodeList2);            
         }
-        echo "The AddItem process completed !!" . "<br><br>";    
+        echo "These Products exist in the Items table. !!" . "<br><br>";
+        $this->autoRender = true;  
     }
 
     public function buildItemArray($jancodeList2)
