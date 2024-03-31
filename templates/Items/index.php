@@ -14,6 +14,11 @@
                     <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('user_id') ?></th>
                     <th><?= $this->Paginator->sort('product_id') ?></th>
+                    <th><?= "myctegory" ?></th>
+                    <th><?= "image" ?></th>
+                    <th><?= "pname" ?></th>
+                    <th><?= $this->Paginator->sort('jancode') ?></th>
+                    <th><?= $this->Paginator->sort('mystore') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -23,6 +28,11 @@
                     <td><?= $this->Number->format($item->id) ?></td>
                     <td><?= $item->has('user') ? $this->Html->link($item->user->id, ['controller' => 'Users', 'action' => 'view', $item->user->id]) : '' ?></td>
                     <td><?= $item->has('product') ? $this->Html->link($item->product->id, ['controller' => 'Products', 'action' => 'view', $item->product->id]) : '' ?></td>
+                    <td><?= $item->mycategory ?></td>
+                    <td><?= $this->Html->image($item->product->image,  ['alt' => 'noImage', 'width' => 60, 'height' => 60]) ?></td>
+                    <td><?= $item->product->pname?></td>
+                    <td><?= $item->product->jancode ?></td>
+                    <td><?= $item->mystore ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $item->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $item->id]) ?>
