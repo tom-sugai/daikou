@@ -1,5 +1,5 @@
 <p>Add Item</p>
-<?= "This is setCsvListClientlist method. !!" ?>
+<?= "This is setCsvListClientList method. !!" ?>
 <div class="setCsvListClientListForm">
 			<?= $this->Form->create(null, ['type' => 'post', 'url' => ['action' => 'get-csv-file-client-name']]) ?>
 		    <div class="csv-sel"><?= $this->Form->select('select-1', $csv_list, array('empty' => 'CSVを選択', 'width' => 40)) ?></div>
