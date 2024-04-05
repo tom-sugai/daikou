@@ -243,8 +243,11 @@ class AddProductController extends AppController
             $this->setAction('buildProductArray', $unExistList);
         } else {
             echo "すべてのアイテムがProductsテーブルに登録されています";
+            $this->redirect(
+                ['controller' => 'AddItem', 'action' => 'returnFromAddProduct']
+            );
         }
-    } 
+    }
 
     public function buildProductArray($unExistList){
         $this->autoLayout = true;
@@ -376,17 +379,8 @@ class AddProductController extends AppController
     
             }
         }
-    }
-
-    public function passItemJson()
-    {
-        // Object $itemJson を JavaScript へ渡す
-        $this->autoLayout = false;
-        $this->autoRender = true;
-        // for test
-        $array = ['a' => 10, 'b' => 20, 'c' => 30];
-        $json_array = json_encode($array);
-        //debug($json_array);
-        $this->set('json_array', $json_array);
+        $this->redirect(
+            ['controller' => 'AddItem', 'action' => 'returnFromAddProduct']
+        );
     }
 }
