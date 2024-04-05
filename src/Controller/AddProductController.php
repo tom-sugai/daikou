@@ -237,8 +237,13 @@ class AddProductController extends AppController
         echo "This is AddProduct/passTest()." . "<br>";
         $session = $this->getRequest()->getSession();
         $unExistList = $session->read('notExistItemOnProductsTable');
+        //debug($unExistList);
         $this->set('unExistList', $unExistList);
-        $this->setAction('buildProductArray', $unExistList);
+        if($unExistList != null){
+            $this->setAction('buildProductArray', $unExistList);
+        } else {
+            echo "すべてのアイテムがProductsテーブルに登録されています";
+        }
     } 
 
     public function buildProductArray($unExistList){
