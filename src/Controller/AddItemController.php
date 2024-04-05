@@ -180,7 +180,7 @@ class AddItemController extends AppController
         $session = $this->getRequest()->getSession();
         $session->write('notExistItemOnProductsTable', $notExistItemOnProductsTable);
         // check
-        $notExistList = $session->read('notExistItemOnProductsTable');
+        //$notExistList = $session->read('notExistItemOnProductsTable');
         //debug($notExistList);
 
         // entry $notExistItemOnProductsTable to Products Controller
