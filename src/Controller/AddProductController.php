@@ -223,7 +223,7 @@ class AddProductController extends AppController
             }
             //$idx++;
         }
-        //debug($unExistList);
+        debug($unExistList);
         
         if($unExistList != null){
             $this->setAction('buildProductArray', $unExistList);            
@@ -232,9 +232,19 @@ class AddProductController extends AppController
         $this->autoRender = true;
     }
 
+    public function passTest(){
+        // session->write('notExistItemOnProductsTable' .... AddItemController/checkExistProductsTable() .... 148)
+        echo "This is AddProduct/passTest()." . "<br>";
+        $session = $this->getRequest()->getSession();
+        $unExistList = $session->read('notExistItemOnProductsTable');
+        $this->set('unExistList', $unExistList);
+        $this->setAction('buildProductArray', $unExistList);
+    } 
+
     public function buildProductArray($unExistList){
         $this->autoLayout = true;
         $this->autoRender = true;
+        echo "This is buildProductArray." . "<br>";
 
         // Yahooサイトから商品情報を検索して private $productArray = [] に格納する
         // 検索した商品情報を AddItemContoroller 内で共有する
