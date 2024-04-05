@@ -14,11 +14,13 @@ use Cake\Filesystem\File;
 
 class AddItemController extends AppController
 {
+    private $loginUser;
     private $csv_array      = [];
     private $client_array   = [];
     //private $productArray   = [];
     private $itemArray      = [];
     private $clientEmail;
+    private $mycategory;
 
     public function initialize():void
     {
@@ -33,6 +35,9 @@ class AddItemController extends AppController
     public function beforeFilter(EventInterface $event)
     {
         parent::beforeFilter($event);
+
+        // loginUser --- Authentication コンポーネントで取得
+        $this->loginUser = $this->Authentication->getIdentity();
 
         // get csv file list
         $dir = new Folder('data');
@@ -94,7 +99,7 @@ class AddItemController extends AppController
         if($result1 != null){
             $csvFile =  $this->csv_array[$result1];
         }
-        //debug($csvName);
+        //debug($csvFile);
 
         // check Client Name
         if($result2 != null){
@@ -102,6 +107,16 @@ class AddItemController extends AppController
             //debug($this->clientEmail);
         }
 
+        //debug($this->loginUser->name);
+        $userName = $this->loginUser->name;
+        echo "login user : $userName" . "<br><br>";
+
+        // extract csvFile name without .csv extension
+        // $mycategory = csvFile name;
+        // $csvfilename = "台所用品.csv"; forrtest
+        $mycategory = str_replace( '.csv', '', $csvFile);
+        echo "mycategory is $mycategory " . "<br><br>";
+ 
         // go to next action
         $this->setAction('readCsvFile', $csvFile);   
     }
@@ -116,62 +131,75 @@ class AddItemController extends AppController
         // 商品リスト（csv file: /webroot/data/）を読み込んで配列(items)に格納
         // $file-path ='data/file-name.csv'
         $csv_path = "data/" . $csvFile;
-        $file = fopen($csv_path, 'r');
-        $jancodeList = [];
-        $idx = 0;
+        $file = fopen($csv_path, 'r'); 
+        $header_line = fgetcsv($file, 1000);  // skip header line
+        $itemList = [];
+        $count = 0;
         while(feof($file) == False) {
-            $jancodeList[$idx] = fgetcsv($file, 100);
-            $idx++;
+            $itemList[$count] = fgetcsv($file, 1000);
+            $count++;
         }
-        $this->set('jancodeList', $jancodeList);
-        $this->setAction('checkExistProductsTable', $jancodeList);
+        $rt = array_pop($itemList); // remove last line ( is blank line)
+        //debug($itemList);
+        $this->set('itemList', $itemList);
+        $this->setAction('checkExistProductsTable', $itemList);
     }
 
-    public function checkExistProductsTable($jancodeList)
+    public function checkExistProductsTable($itemList)
     {
         $this->autoLayout = false;
         $this->autoRender = false;
+        echo "This is checkExistProductsTable." . "<br><br>";
 
         // テーブルオブジェクトを取得
         $productsTable = TableRegistry::getTableLocator()->get('Products');
         // exist in the Products Table ? search jancode !
-        $jancodeList2 =[];
-        $idx = 0;
-        foreach ($jancodeList as $jancode){
-            $jcode = $jancode[4];
+        $existItemOnProductsTable = [];
+        $notExistItemOnProductsTable =[];
+        foreach ($itemList as $itemLine){
+            $jcode = $itemLine[4];
             $query = $productsTable->find();
             $result = $query->where(['jancode = ' => $jcode])->toArray();
             //debug($result);
             if ($result == null){
-                //debug($jcode);
-                // if not exist in the Products Table ---> add $jcode to $jancodeList2[$idx]
-                $jancodeList2[$idx] =  $jcode;
-                //debug($jancodeList2[$idx]);
-                $idx++;
+                // if not exist in the Products Table ---> add $jcode to $itemList2[$count]
+                $notExistItemOnProductsTable[] +=  $jcode;
+            } else {
+                // exist on ProductsTable
+                $existItemOnProductsTable[] += $jcode;
             }
         }
-        //debug($jancodeList2);
-        if($jancodeList2 != null){   // there are some items that did'nt enter in the Products table.
-            echo "These Products didn't exist in the Products table. !!" . "<br>";
-            echo "First, Please add these Products to the Products table !!" . "<br><br>";
-            $this->setAction('echoProductList', $jancodeList2);
-        } else {
-            echo "These Products exist in the Products table. !!" . "<br><br>";
-            $this->setAction('checkExistItemsTable', $jancodeList);       
-        }   
-    }
 
-    public function echoProductList($jancodeList2){
-        $this->autoLayout = true;
-        $this->autoRender = true;
-        $this->set('jancodeList2', $jancodeList2);
-    }
+        echo "These Products didn't exist in the Products table." . "<br>";
+        //debug($notExistItemOnProductsTable);
 
-    public function checkExistItemsTable($jancodeList)  //for test
+        echo "These Products exist in the Products table. !!" . "<br>";
+        //debug($existItemOnProductsTable);
+
+        // pass $notExistItemProductsList to AddProduct Controller
+        $session = $this->getRequest()->getSession();
+        $session->write('notExistItemOnProductsTable', $notExistItemOnProductsTable);
+        // check
+        $notExistList = $session->read('notExistItemOnProductsTable');
+        //debug($notExistList);
+
+        // entry $notExistItemOnProductsTable to Products Controller
+        $this->redirect(
+            ['controller' => 'AddProduct', 'action' => 'passTest']
+        );
+
+        //debug($itemList);
+        //$this->setAction('checkExistItemsTable', $itemList);
+        // where go to next step ??   
+}
+
+    public function checkExistItemsTable($itemList)  //for test
     {
         $this->autoLayout = false;
         $this->autoRender = false;
+        echo "This is checkExistItemsTable." . "<br><br>";
 
+        //debug($itemList);
         // テーブルオブジェクトを取得
         $usersTable = TableRegistry::getTableLocator()->get('Users');
         $itemsTable = TableRegistry::getTableLocator()->get('Items');
@@ -181,33 +209,40 @@ class AddItemController extends AppController
         // user_id = $client[0]['id']
 
         // exist in the Items Table ? search jancode and user_id !!
-        $jancodeList2 =[];
-        $idx = 0;
-        foreach ($jancodeList as $jancode){   //for test
-            $jcode = $jancode[4];
+        $existItemOnItemsTable = [];
+        $notExistItemOnItemsTable = [];
+
+        foreach ($itemList as $itemLine){   //for test
+            //debug($jcode);
+            $jcode = $itemLine[4];
             $query = $itemsTable->find();
             $result = $query->where(['jancode = ' => $jcode])->where(['user_id =' => $client[0]['id']])->toArray();
             //debug($result);
             if ($result == null){
-                // if not exist in the Items Table ---> add $jcode to $jancodeList2[$idx]
-                $jancodeList2[$idx] =  $jcode;
-                $idx++;
+                // if not exist in the Items Table ---> add $jcode to $notExistItemOnItemsTable[$idx]
+                $notExistItemOnItemsTable[] +=  $jcode;
+                //$idx++;
+            } else {
+                $existItemOnItemsTable[] += $jcode;
             }
+
         }
-        //debug($jancodeList2);
-        if($jancodeList2 != null){
-            $this->setAction('buildItemArray', $jancodeList2);            
-        }
-        echo "These Products exist in the Items table. !!" . "<br><br>";
-        $this->autoRender = true;  
+        //debug($notExistItemOnItemsTable);
+        echo "These Items didn't exist in the Items table. !!" . "<br><br>";
+        debug($notExistItemOnItemsTable);
+             
+        echo "These Items exist in the Items table. !!" . "<br><br>";
+        debug($existItemOnItemsTable);
+       
+        $this->setAction('buildItemArray', $notExistItemOnItemsTable);
     }
 
-    public function buildItemArray($jancodeList2)
+    public function buildItemArray($notExistItemOnItemsTable)
     {
         $this->autoLayout = true;
-        $this->autoRender = true;
+        $this->autoRender = false;
 
-        echo "This is buldItemArray() method !!" . "<br><br>";
+        echo "This is buldItemArray() method" . "<br><br>";
 
         // テーブルオブジェクトを取得
         $usersTable = TableRegistry::getTableLocator()->get('Users');
@@ -225,8 +260,8 @@ class AddItemController extends AppController
         // $itemArray のインデックスの初期値
         $idx = 0;
 
-        foreach ($jancodeList2 as $jcode){
-            // $jancodeList2 から $jcode を取り出してProduct テーブルを検索する
+        foreach ($notExistItemOnItemsTable as $jcode){
+            // $notExistItemOnItemsTable から $jcode を取り出してProduct テーブルを検索する
             // 検索結果から user_id, product_id, janCode、store を、配列 $itemArray へ格納する
 
             // get products object from Products table
@@ -243,9 +278,10 @@ class AddItemController extends AppController
                 $itemArray[$idx]['product_id'] = $product[0]['id'];
                 // jancode
                 $itemArray[$idx]['jancode'] = $product[0]['jancode'];
-                // store empty
-                $itemArray[$idx]['store'] = null;
-                //debug($itemArray[$idx]);
+                // mycategory
+                $itemArray[$idx]['mycategory'] = null;
+                // mystore
+                $itemArray[$idx]['mystore'] = null;                
             } else {
                 echo $jcode . " : " . "Can not get Item Info from Products Table" . "<br>";
             }
@@ -288,7 +324,8 @@ class AddItemController extends AppController
                 $itemObj->user_id = $item['user_id'];
                 $itemObj->product_id = $item['product_id'];
                 $itemObj->jancode = $item['jancode'];
-                $itemObj->store = $item['store'];
+                $itemObj->store = $item['mycategory'];
+                $itemObj->store = $item['mystore'];
                 $itemObj->created = Time::now();
                 $itemObj->modified = Time::now();                
                 // save $itemObj
