@@ -178,20 +178,28 @@ class AddItemController extends AppController
 
         // pass $notExistItemProductsList to AddProduct Controller
         $session = $this->getRequest()->getSession();
-        $session->write('notExistItemOnProductsTable', $notExistItemOnProductsTable);
-        // check
-        //$notExistList = $session->read('notExistItemOnProductsTable');
-        //debug($notExistList);
+        $session->write('itemList', $itemList); 
+        
+        if($notExistItemOnProductsTable != null){
+            $session->write('notExistItemOnProductsTable', $notExistItemOnProductsTable);
+            // check
+            //$notExistList = $session->read('notExistItemOnProductsTable');
+            //debug($notExistList);
+            // entry $notExistItemOnProductsTable to Products Controller
+            $this->redirect(
+                ['controller' => 'AddProduct', 'action' => 'passTest']
+            );
+        } else {
+            //debug($itemList);
+            $this->setAction('checkExistItemsTable', $itemList);
+        }
+    }
 
-        // entry $notExistItemOnProductsTable to Products Controller
-        $this->redirect(
-            ['controller' => 'AddProduct', 'action' => 'passTest']
-        );
-
-        //debug($itemList);
-        //$this->setAction('checkExistItemsTable', $itemList);
-        // where go to next step ??   
-}
+    public function returnFomAddProduct(){
+        $session = $this->getRequest()->getSession();
+        $itemList = $this->session->read('itemList');
+        $this->setAction('checkExistItemsTable', $itemList);
+    }
 
     public function checkExistItemsTable($itemList)  //for test
     {
@@ -225,16 +233,19 @@ class AddItemController extends AppController
             } else {
                 $existItemOnItemsTable[] += $jcode;
             }
-
         }
         //debug($notExistItemOnItemsTable);
         echo "These Items didn't exist in the Items table. !!" . "<br><br>";
-        debug($notExistItemOnItemsTable);
+        //debug($notExistItemOnItemsTable);
              
         echo "These Items exist in the Items table. !!" . "<br><br>";
-        debug($existItemOnItemsTable);
+        //debug($existItemOnItemsTable);
        
-        $this->setAction('buildItemArray', $notExistItemOnItemsTable);
+        if($notExistItemOnItemsTable != null){
+            $this->setAction('buildItemArray', $notExistItemOnItemsTable);
+        } else {
+            echo "全てのアイテムがItemsテーブルに登録されています";
+        }
     }
 
     public function buildItemArray($notExistItemOnItemsTable)
@@ -343,6 +354,4 @@ class AddItemController extends AppController
             }
         }
     }
-
-
 }
