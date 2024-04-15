@@ -3,6 +3,7 @@
 use Cake\Cache\Engine\FileEngine;
 use Cake\Database\Connection;
 use Cake\Database\Driver\Mysql;
+use Cake\Database\Driver\Sqlite;
 use Cake\Log\Engine\FileLog;
 use Cake\Mailer\Transport\MailTransport;
 use Cake\Mailer\Transport\SmtpTransport;
@@ -302,8 +303,8 @@ return [
         'default' => [
             'className' => Connection::class,
             //'driver' => Mysql::class,
-            //'driver' => Sqlite::class,
-            'driver' => 'Cake\Database\Driver\Sqlite',
+            'driver' => Sqlite::class,
+            //'driver' => 'Cake\Database\Driver\Sqlite',
 
             'persistent' => false,
             //'timezone' => 'UTC',
@@ -347,7 +348,8 @@ return [
          */
         'test' => [
             'className' => Connection::class,
-            'driver' => Mysql::class,
+            //'driver' => Mysql::class,
+            'driver' => Sqlite::class,
             'persistent' => false,
             //'timezone' => 'UTC',
             'timezone' => 'Asia/Tokyo',
