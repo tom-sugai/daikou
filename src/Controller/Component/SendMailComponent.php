@@ -29,7 +29,7 @@ class SendMailComponent extends Component
         // send mail
         $this->mailer
             ->setEmailFormat('html')
-            ->setFrom('tom@svr.home.com')
+            ->setFrom('tom@lavie.home.com')
             ->setTo($order->user->email)
             ->setSubject('お買い物リストの確認メールです')
             ->setViewVars(['order' => $order])
