@@ -179,7 +179,7 @@ class AddProductController extends AppController
         echo "There are $k data lines in this csv file." . "<br>";
 
         // go to next action;
-        //$this->setAction('readJancodeCsv', $csvFile); 
+        $this->setAction('readJancodeCsv', $csvFile); 
     }
 
     public function readJancodeCsv($csvFile){
