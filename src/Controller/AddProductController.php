@@ -67,6 +67,8 @@ class AddProductController extends AppController
         $this->autoLayout = true;
         $this->autoRender = true;
         $this->viewBuilder()->setLayout('default');
+        echo "0. ------------------------------" . "<br>";
+        echo "This is setListCsvClient() method !!" . "<br>";
 
         // pass file list to view
         $this->set('csv_list', $this->csv_array);
@@ -75,10 +77,12 @@ class AddProductController extends AppController
         $this->set('client_list', $this->client_array);
     }
 
-    public function getCsvFile(){
+    public function getNameCsvClient(){
         $this->autoLayout = true;
         $this->autoRender = true;
+        echo "1. ------------------------------" . "<br>";
         echo "This is getCsvFile() method !!" . "<br>";
+    
         // select csv file & Client Name
         $result1 = "";
         $result2 = "";
@@ -107,6 +111,7 @@ class AddProductController extends AppController
     {   
         $this ->autoLayout = false;
         $this->autoRender = true;
+        echo "2. ------------------------------" . "<br>";
         echo "This is checkCsv() ." ."<br>";
 
         // prepare variables
@@ -115,11 +120,19 @@ class AddProductController extends AppController
 
         // open csv file
         $file = fopen("data/$csvFile",'r');
-        // read 1st data line
+        // read 1st title line
         $data[] = fgetcsv($file,1000);
-        // check n : number of elements in the array
+        //debug($data);
+        // check n : number of columns in this csv file
         $n = count($data[0]);  
-        echo "n : " . $n . " number of elements in the array. <br>";
+        echo $n . " columns in this csv file <br>";
+        //print_r($data);
+        for($i=0; $i<$n; $i++){
+             $element = $data[0][$i];
+             echo "$i : $element , ";
+        }
+        echo "<br>";
+        echo "format : kind of code such as jancode," . " text : code(numeric)" . "<br>";
 
         // read from 2nd data line until end.
         while(!feof($file))
@@ -127,9 +140,11 @@ class AddProductController extends AppController
             $data[] = fgetcsv($file, 1000);
             //$lines++;
         }
+        
+        // close csv file
         fclose($file);
 
-        // remove array element top
+        // remove array element top ( title line )
         $remove_top = array_shift($data);
 
         // check data[], jancode column of eache line in $ary_line[4]
@@ -151,21 +166,28 @@ class AddProductController extends AppController
                 // check jancode ketasuu
                 //　正規表現の判定関数を記述する : $ary_line[4] != "13桁の数字"
                 $str = $ary_line[4];
-                $pattern = "/[0-9]{13}/";
+                //$pattern = "/[0-9]{13}/";
+                $pattern = "/[0-9]{8,13}/";
                 if(!preg_match( $pattern, $str, $result )) 
                 {
                     echo "line No. : $j is bad data : " . $str . "<br>";
                 }
             }                
         }
-        echo "find last data. line No. $j is null (on line order csv file)" . "<br>";
+        echo "find last data(= blank line). line No. $j is null(on line order csv file)" . "<br>";
+        $k = $j - 2;
+        echo "There are $k data lines in this csv file." . "<br>";
+
         // go to next action;
-        $this->setAction('readJancodeCsv', $csvFile); 
+        //$this->setAction('readJancodeCsv', $csvFile); 
     }
 
     public function readJancodeCsv($csvFile){
         $this->autoLayout = true;
-        $this->autoRender = true;
+        $this->autoRender = false;
+        echo "3. ------------------------------" . "<br>";
+        echo "This is readJancodeCsv()." ."<br>";
+
         $msg = "Create jan-code-list array for next step checkExistDb().";
         $this->set('msg', $msg);
 
@@ -195,14 +217,16 @@ class AddProductController extends AppController
         foreach($data as $rowData){
             $jancodeList[] = $rowData[4];
         }
-        //debug($jancodeList);
+        //$this->render();
         $this->setAction('checkExistDb', $jancodeList);
     }
 
     public function checkExistDb($jancodeList)
     {
-        $this->autoLayout = false;
+        $this->autoLayout = true;
         $this->autoRender = true;
+        echo "4. ------------------------------" . "<br>";
+        echo "This is checkExistDb() ." ."<br>";
 
         // テーブルオブジェクトを取得
         $productsTable = TableRegistry::getTableLocator()->get('Products');
@@ -210,8 +234,8 @@ class AddProductController extends AppController
         // exist in the Products Table
         // prepar variables
         $unExistList =[];
-        //$idx = 0;
-        // search jancode !
+        $lineno = 1;
+        // search jancode & create unExistList[]
         foreach ($jancodeList as $jancode){
             //$jcode = $jancode[4];
             $query = $productsTable->find();
@@ -219,22 +243,27 @@ class AddProductController extends AppController
             //debug($result);
             if ($result == null){
                 // if did'nt exist in the Products Table ---> add $jcode to $unExistList[]
-                $unExistList[] +=  $jancode;
+                $unExistList[] =  $jancode;
+            } else {
+                echo "lineNo : $lineno ---- $jancode exist" . "<br>"; 
             }
-            //$idx++;
+            $lineno++;
         }
-        debug($unExistList);
-        
+        //debug($unExistList);
+        // go to next step
         if($unExistList != null){
             $this->setAction('buildProductArray', $unExistList);            
         }
+
         echo "New Product is Nothing!!" . "<br>";
-        $this->autoRender = true;
+        $this->render();
     }
 
     public function passTest(){
-        // session->write('notExistItemOnProductsTable' .... AddItemController/checkExistProductsTable() .... 148)
+        // pass notExistItemOnProductsTable array via session from AddItemController(line:148)/checkExistProductsTable() .... 
+        echo "5. ------------------------------" . "<br>";
         echo "This is AddProduct/passTest()." . "<br>";
+
         $session = $this->getRequest()->getSession();
         $unExistList = $session->read('notExistItemOnProductsTable');
         //debug($unExistList);
@@ -252,6 +281,7 @@ class AddProductController extends AppController
     public function buildProductArray($unExistList){
         $this->autoLayout = true;
         $this->autoRender = true;
+        echo "6. ------------------------------" . "<br>";
         echo "This is buildProductArray." . "<br>";
 
         // Yahooサイトから商品情報を検索して private $productArray = [] に格納する
@@ -320,8 +350,11 @@ class AddProductController extends AppController
         //debug($productArray);
         // 作成した配列、$productArray をビューに渡す
         $this->set('productArray', $productArray);
+        // display by template
+        $this->render();
+
         // storProduct() へ進む
-        $this->setAction('storeProduct', $productArray);
+        //$this->setAction('storeProduct', $productArray);
     }
 
     public function echoProductList()
@@ -333,6 +366,8 @@ class AddProductController extends AppController
     public function storeProduct($productArray){
         $this->autoLayout = true;
         $this->autoRender = true;
+        echo "7. ------------------------------" . "<br>";
+        echo "This is AddProduct/storeProduct()." . "<br>";
 
         // Authentication コンポーネントで user を取得
         if($this->Authentication->getIdentity() !== null){
@@ -379,8 +414,10 @@ class AddProductController extends AppController
     
             }
         }
+        /** 
         $this->redirect(
             ['controller' => 'AddItem', 'action' => 'returnFromAddProduct']
         );
+        */
     }
 }
