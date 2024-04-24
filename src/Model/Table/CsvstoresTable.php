@@ -9,7 +9,7 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Csvstore Model
+ * Csvstores Model
  *
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
  * @property \App\Model\Table\ProductsTable&\Cake\ORM\Association\BelongsTo $Products
@@ -28,7 +28,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Csvstore[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
  * @method \App\Model\Entity\Csvstore[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  */
-class CsvstoreTable extends Table
+class CsvstoresTable extends Table
 {
     /**
      * Initialize method
@@ -40,7 +40,7 @@ class CsvstoreTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('csvstore');
+        $this->setTable('csvstores');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
