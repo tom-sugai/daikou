@@ -12,6 +12,7 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
+                    <th><?= $this->Paginator->sort('user_id') ?></th>
                     <th><?= $this->Paginator->sort('lineno') ?></th>
                     <th><?= $this->Paginator->sort('existpdb') ?></th>
                     <th><?= $this->Paginator->sort('hitsyahoo') ?></th>
@@ -24,7 +25,8 @@
                 <?php foreach ($csvstore as $csvstore): ?>
                 <tr>
                     <td><?= $this->Number->format($csvstore->id) ?></td>
-                    <td><?= $this->Number->format($csvstore->lineno) ?></td>
+                    <td><?= $csvstore->has('user') ? $this->Html->link($csvstore->user->id, ['controller' => 'Users', 'action' => 'view', $csvstore->user->id]) : '' ?></td>
+                    <td><?= $this->Number->format($csvstore->lineno) ?></td>                    
                     <td><?= $csvstore->existpdb === null ? '' : $this->Number->format($csvstore->existpdb) ?></td>
                     <td><?= $csvstore->hitsyahoo === null ? '' : $this->Number->format($csvstore->hitsyahoo) ?></td>
                     <td><?= $csvstore->has('product') ? $this->Html->link($csvstore->product->id, ['controller' => 'Products', 'action' => 'view', $csvstore->product->id]) : '' ?></td>
