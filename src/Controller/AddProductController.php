@@ -82,6 +82,9 @@ class AddProductController extends AppController
         $this->autoRender = true;
         echo "1. ------------------------------" . "<br>";
         echo "This is getCsvFile() method !!" . "<br>";
+
+        debug($this->csv_array);
+        debug($this->client_array);
     
         // select csv file & Client Name
         $result1 = "";
