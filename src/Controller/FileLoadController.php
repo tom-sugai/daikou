@@ -18,7 +18,7 @@ class FileLoadController extends AppController
             //$filePath = '../webroot/img/' . date("YmdHis") . $file['name'];
             //$filePath = '../webroot/files/' . date("YmdH") . $file['name'];
             $filePath = '../webroot/' . $addToDir . '/' . date("YmdH") . $file['name'];
-            $rt = move_uploaded_file($file['tmp_name'], $filePath); //ファイル名の先頭に時間をくっつけて/webroot/imgに移動させる
+            $rt = move_uploaded_file($file['tmp_name'], $filePath); //ファイル名の先頭に時間をくっつけて/webroot/$addToDirに移動させる
             if($rt){   
                 $this->Flash->success($rt);
                 $this->Flash->success('ファイルを受け取りました: ' . $filePath  );
