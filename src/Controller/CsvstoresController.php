@@ -207,7 +207,7 @@ class CsvstoresController extends AppController
     {
         $this->autoLayout = true;
         $this->autoRender = true;
-
+        // There is no main template.
         $this->setAction('selectCsvClient');
     }
 
