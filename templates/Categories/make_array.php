@@ -1,0 +1,1 @@
+<?= "This is makeArray.php template" ?>
