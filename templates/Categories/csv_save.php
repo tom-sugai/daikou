@@ -1,0 +1,1 @@
+<?= $this->Html->link(__('Go Categories/main'), ['controller' => 'Categories', 'action' => 'main'], ['class' => 'button']) ?>
