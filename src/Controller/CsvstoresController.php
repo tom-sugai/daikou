@@ -165,11 +165,19 @@ class CsvstoresController extends AppController
          */
         public function edit($id = null)
         {
+            $categoriesTable = $this->loadModel('Categories');
+            $mycategory1_list = array_unique($categoriesTable->find()->all()->extract('category1')->toArray());
+            $mycategory2_list = array_unique($categoriesTable->find()->all()->extract('category2')->toArray());
+            $mycategory3_list = array_unique($categoriesTable->find()->all()->extract('category3')->toArray()); 
+            
             $csvstore = $this->Csvstores->get($id, [
                 'contain' => [],
             ]);
             if ($this->request->is(['patch', 'post', 'put'])) {
                 $csvstore = $this->Csvstores->patchEntity($csvstore, $this->request->getData());
+                $csvstore->mycategory1 = $mycategory1_list[$this->request->getData('mycategory1')];
+                $csvstore->mycategory2 = $mycategory2_list[$this->request->getData('mycategory2')];
+                $csvstore->mycategory3 = $mycategory3_list[$this->request->getData('mycategory3')];
                 if ($this->Csvstores->save($csvstore)) {
                     $this->Flash->success(__('The csvstore has been saved.'));
 
@@ -179,7 +187,9 @@ class CsvstoresController extends AppController
             }
             $users = $this->Csvstores->Users->find('list', ['limit' => 200])->all();
             $products = $this->Csvstores->Products->find('list', ['limit' => 200])->all();
+   
             $this->set(compact('csvstore', 'users', 'products'));
+            $this->set(compact('mycategory1_list', 'mycategory2_list', 'mycategory3_list'));
         }
 
         /**
