@@ -33,9 +33,9 @@
                     echo $this->Form->control('code');
                     echo $this->Form->control('existpdb');
                     echo $this->Form->control('hitsyahoo');
-                    echo $this->Form->control('mycategory1');
-                    echo $this->Form->control('mycategory2');
-                    echo $this->Form->control('mycategory3');
+                    echo $this->Form->select('mycategory1', $mycategory1_list, array('empty' => '大分類を選択', 'width' => 40));
+                    echo $this->Form->select('mycategory2', $mycategory2_list, array('empty' => '中分類を選択', 'width' => 40));
+                    echo $this->Form->select('mycategory3', $mycategory3_list, array('empty' => '小分類を選択', 'width' => 40));
                     echo $this->Form->control('mystore');
                     echo $this->Form->control('product_id', ['options' => $products, 'empty' => true]);
                     echo $this->Form->control('category');
