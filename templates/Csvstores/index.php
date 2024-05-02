@@ -21,6 +21,8 @@
                     <!--<th><?= $this->Paginator->sort('product_id') ?></th>-->
                     <th><?= $this->Paginator->sort('code') ?></th>
                     <th><?= $this->Paginator->sort('mycategory1') ?></th>
+                    <th><?= $this->Paginator->sort('mycategory2') ?></th>
+                    <th><?= $this->Paginator->sort('mycategory3') ?></th>                    
                     <!--<th><?= $this->Paginator->sort('price') ?></th>-->
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
@@ -38,6 +40,8 @@
                     <!--<td><?= $csvstore->has('product') ? $this->Html->link($csvstore->product->id, ['controller' => 'Products', 'action' => 'view', $csvstore->product->id]) : '' ?></td>-->
                     <td><?= $csvstore->code ?></td>
                     <td><?= $csvstore->mycategory1 ?></td>
+                    <td><?= $csvstore->mycategory2 ?></td>
+                    <td><?= $csvstore->mycategory3 ?></td>                    
                     <!--<td><?= $csvstore->price === null ? '' : $this->Number->format($csvstore->price) ?></td>-->
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $csvstore->id]) ?>
