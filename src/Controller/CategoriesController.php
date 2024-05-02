@@ -246,8 +246,6 @@ class CategoriesController extends AppController
              echo "$i : $element , ";
         }
         echo "<br>";
-        echo "format : kind of code such as jancode," . " text : code(numeric)" . "<br>";
-
         // read from 2nd data line until end.
         while(!feof($file))
         {
@@ -257,6 +255,7 @@ class CategoriesController extends AppController
         fclose($file);
         // remove array element top ( title line )
         $remove_top = array_shift($data);
+        // remove array element end ( null line )        
         $remove_end = array_pop($data);
         // datalines after remove
         $lines = count($data);
@@ -265,7 +264,7 @@ class CategoriesController extends AppController
         // $j is line conuter. start from 1. becouse vscode editor line count start 1.
         echo "------------------------" . "<br>";
         $bad_data_list = [];
-        $j = 1;
+        $j = 2;
         foreach($data as $data_row)
         {
             if($data_row != null)
@@ -276,20 +275,39 @@ class CategoriesController extends AppController
                     echo $data_row[$i] . " | ";
                 }
                 echo "<br>";
-                // check data[0] ---- NOT NULL
-                // check data[1] ---- NOL NULL
-                // check data[2] ---- NOT NULL UNIQE
+                // check data[0] ---- NOT NULL & foreign key constraint to Categories_category1
+                if($data_row[0] == null){
+                    $bad_data_list[] =+ $j;
+                    echo "No. $j data_category1 is null" . "<br>";
+                }
+                // check data[1] ---- NOL NULL & foreign key constraint to Categories_category2
+                if($data_row[1] == null){
+                    $bad_data_list[] =+ $j;
+                    echo "No. $j data_category2 is null" . "<br>";
+                }
+               // create category3_list[] for check data_row[2] : allow null
+                if($data_row[2] != null){
+                    $category3_list[$j] = $data_row[2];
+                    //debug($category3_list);
+                }
             }
             $j++;                
         }
-        /** 
+        // check category3 ---- allow NULL & UNIQE as data array
+        debug($category3_list);
+        $arr = array_count_values($category3_list);
+        foreach($arr as $key => $val){
+            if($val != 1){
+                echo "$key is not UNIQUE !!" . "<br>"; 
+            }
+        }
+        // echo error data info
+        debug($bad_data_list); 
         // go to next action;
         if($bad_data_list == null){
             $this->setAction('csvSave', $data);
         }
-        */
-        $this->setAction('makeArray', $data);
-
+        //$this->setAction('makeArray', $data);
     }
 
     public function makeArray($data):void
