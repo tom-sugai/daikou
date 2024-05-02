@@ -9,6 +9,8 @@ webroot/img/*
 webroot/data/item-list-jan-code.csv
 db/*
 db/act_buy.db
+db_backup/*
+table_dump/*
 
 # OS generated files #
 ######################
