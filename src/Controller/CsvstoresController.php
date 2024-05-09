@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-
 use App\Controller\AppController;
 use Cake\Error\Debugger;
 use Cake\ORM\TableRegistry;
@@ -178,6 +177,8 @@ class CsvstoresController extends AppController
                 $csvstore->mycategory1 = $mycategory1_list[$this->request->getData('mycategory1')];
                 $csvstore->mycategory2 = $mycategory2_list[$this->request->getData('mycategory2')];
                 $csvstore->mycategory3 = $mycategory3_list[$this->request->getData('mycategory3')];
+                $csvstore->created = Time::now();
+                $csvstore->modified = Time::now();
                 if ($this->Csvstores->save($csvstore)) {
                     $this->Flash->success(__('The csvstore has been saved.'));
 
