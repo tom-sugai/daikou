@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Controller\AppController;
 use Cake\I18n\Time;
 use Cake\I18n\FrozenTime;
 use Cake\Http\Client;
