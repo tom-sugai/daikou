@@ -28,6 +28,28 @@ class CsvstoresControllerTest extends TestCase
     ];
 
     /**
+     * Test beforeFilter method
+     *
+     * @return void
+     * @uses \App\Controller\CsvstoresController::beforeFilter()
+     */
+    public function testBeforeFilter(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test afterFilter method
+     *
+     * @return void
+     * @uses \App\Controller\CsvstoresController::afterFilter()
+     */
+    public function testAfterFilter(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
      * Test index method
      *
      * @return void
@@ -78,6 +100,83 @@ class CsvstoresControllerTest extends TestCase
      * @uses \App\Controller\CsvstoresController::delete()
      */
     public function testDelete(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test main method
+     *
+     * @return void
+     * @uses \App\Controller\CsvstoresController::main()
+     */
+    public function testMain(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test selectCsvClient method
+     *
+     * @return void
+     * @uses \App\Controller\CsvstoresController::selectCsvClient()
+     */
+    public function testSelectCsvClient(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test getCsvClient method
+     *
+     * @return void
+     * @uses \App\Controller\CsvstoresController::getCsvClient()
+     */
+    public function testGetCsvClient(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test cleanAndValidateCsv method
+     *
+     * @return void
+     * @uses \App\Controller\CsvstoresController::cleanAndValidateCsv()
+     */
+    public function testCleanAndValidateCsv(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test existInCsvstores method
+     *
+     * @return void
+     * @uses \App\Controller\CsvstoresController::existInCsvstores()
+     */
+    public function testExistInCsvstores(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test existInPdb method
+     *
+     * @return void
+     * @uses \App\Controller\CsvstoresController::existInPdb()
+     */
+    public function testExistInPdb(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test hitsYahoo method
+     *
+     * @return void
+     * @uses \App\Controller\CsvstoresController::hitsYahoo()
+     */
+    public function testHitsYahoo(): void
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
