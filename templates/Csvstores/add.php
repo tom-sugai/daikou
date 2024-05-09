@@ -38,6 +38,7 @@
                     echo $this->Form->control('store');
                     echo $this->Form->control('imageurl');
                     echo $this->Form->control('siteurl');
+                    echo $this->Form->control('published');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

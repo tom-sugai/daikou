@@ -27,6 +27,8 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Csvstore[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
  * @method \App\Model\Entity\Csvstore[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
  * @method \App\Model\Entity\Csvstore[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class CsvstoresTable extends Table
 {
@@ -43,6 +45,8 @@ class CsvstoresTable extends Table
         $this->setTable('csvstores');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
+
+        $this->addBehavior('Timestamp');
 
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
@@ -140,6 +144,10 @@ class CsvstoresTable extends Table
         $validator
             ->scalar('siteurl')
             ->allowEmptyString('siteurl');
+
+        $validator
+            ->integer('published')
+            ->allowEmptyString('published');
 
         return $validator;
     }

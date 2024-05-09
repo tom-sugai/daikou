@@ -46,6 +46,10 @@
                     <th><?= __('Price') ?></th>
                     <td><?= $csvstore->price === null ? '' : $this->Number->format($csvstore->price) ?></td>
                 </tr>
+                <tr>
+                    <th><?= __('Published') ?></th>
+                    <td><?= $csvstore->published === null ? '' : $this->Number->format($csvstore->published) ?></td>
+                </tr>
             </table>
             <div class="text">
                 <strong><?= __('Csvname') ?></strong>
@@ -123,6 +127,18 @@
                 <strong><?= __('Siteurl') ?></strong>
                 <blockquote>
                     <?= $this->Text->autoParagraph(h($csvstore->siteurl)); ?>
+                </blockquote>
+            </div>
+            <div class="text">
+                <strong><?= __('Created') ?></strong>
+                <blockquote>
+                    <?= $this->Text->autoParagraph(h($csvstore->created)); ?>
+                </blockquote>
+            </div>
+            <div class="text">
+                <strong><?= __('Modified') ?></strong>
+                <blockquote>
+                    <?= $this->Text->autoParagraph(h($csvstore->modified)); ?>
                 </blockquote>
             </div>
         </div>

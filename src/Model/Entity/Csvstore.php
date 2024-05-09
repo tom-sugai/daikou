@@ -28,6 +28,9 @@ use Cake\ORM\Entity;
  * @property string|null $store
  * @property string|null $imageurl
  * @property string|null $siteurl
+ * @property int|null $published
+ * @property string|null $created
+ * @property string|null $modified
  *
  * @property \App\Model\Entity\User $user
  * @property \App\Model\Entity\Product $product
@@ -63,6 +66,9 @@ class Csvstore extends Entity
         'store' => true,
         'imageurl' => true,
         'siteurl' => true,
+        'published' => true,
+        'created' => true,
+        'modified' => true,
         'user' => true,
         'product' => true,
     ];
